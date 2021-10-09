@@ -47,13 +47,9 @@ You will found sidebar links in `resources/views/components/sidebar/content.blad
 
 #### Screens
 
-| Screens                     |
-| --------------------------- |
-| ![Shocase 1](screens/1.png) |
-| ![Shocase 7](screens/7.png) |
-| ![Shocase 2](screens/2.png) |
-| ![Shocase 8](screens/8.png) |
-| ![Shocase 3](screens/3.png) |
-| ![Shocase 4](screens/4.png) |
-| ![Shocase 6](screens/6.png) |
-| ![Shocase 5](screens/5.png) |
+|                             |                             |
+| --------------------------- | --------------------------- |
+| ![Shocase 1](screens/1.PNG) | ![Shocase 7](screens/7.PNG) |
+| ![Shocase 2](screens/2.PNG) | ![Shocase 8](screens/8.PNG) |
+| ![Shocase 3](screens/3.PNG) | ![Shocase 4](screens/4.PNG) |
+| ![Shocase 6](screens/6.PNG) | ![Shocase 5](screens/5.PNG) |
