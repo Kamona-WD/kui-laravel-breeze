@@ -7,7 +7,7 @@
             <x-button target="_blank" href="https://github.com/kamona-wd/kui-laravel-breeze" variant="black"
                 class="items-center max-w-xs gap-2">
                 <x-icons.github class="w-6 h-6" aria-hidden="true" />
-                <span>View on Github</span>
+                <span>Star on Github</span>
             </x-button>
         </div>
     </x-slot>
@@ -22,9 +22,9 @@
         @endphp
 
 
-        <div class="grid gap-4 items-center">
+        <div class="grid items-center gap-4">
             @foreach ($variants as $variant)
-            <div class="grid grid-cols-3 gap-4 items-start justify-items-center">
+            <div class="grid items-start grid-cols-3 gap-4 justify-items-center">
                 @foreach ($sizes as $size)
                 <x-button :variant="$variant" size="{{ $size }}">Button</x-button>
                 @endforeach
