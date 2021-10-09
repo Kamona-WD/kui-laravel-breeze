@@ -1,0 +1,39 @@
+{
+  "name": "kamona/kui-laravel-breeze",
+  "description": "Different UI for laravel/breeze",
+  "keywords": [
+    "laravel",
+    "breeze",
+    "tailwindcss",
+    "alpinejs",
+    "ui",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Kamona-WD/kui-laravel-breeze",
+  "authors": [
+    {
+      "name": "Kamona-WD",
+      "email": "ak3849909@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.0",
+    "laravel/breeze": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "KUI\\Breeze\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "KUI\\Breeze\\KUIBreezeServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
