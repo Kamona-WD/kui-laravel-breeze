@@ -92,18 +92,52 @@ class ReplaceCommand extends Command
         // Icons
         $this->requireComposerPackages('blade-ui-kit/blade-heroicons:^1.2');
 
-        $this->info('Breeze scaffolding repalced successfully.');
+        $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     public function replaceVue()
     {
-        $this->comment('Vue stack will be avilable soon.');
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@heroicons/vue' => '^1.0.4',
+                '@vueuse/core' => '^6.5.3',
+                '@vue/babel-plugin-jsx' => '^1.1.0',
+                'autoprefixer' => '^10.3.7',
+                'postcss' => '^8.3.9',
+                'tailwindcss' => '^2.2.16',
+                'perfect-scrollbar' => '^1.5.2'
+            ] + $packages;
+        });
+
+        // Views...
+        copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        // Components + Pages...
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Composables'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Pages', resource_path('js/Pages'));
+
+        // Tailwind / Webpack...
+        copy(__DIR__ . '/../../stubs/vue/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/vue/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../stubs/vue/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/vue/.babelrc', base_path('.babelrc'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     public function replaceReact()
     {
-        $this->comment('React stack will be avilable soon.');
+        $this->warn('React stack will be avilable soon.');
     }
 
     /**
