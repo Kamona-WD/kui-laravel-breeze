@@ -31,7 +31,8 @@ composer require kamona/kui-laravel-breeze --dev
 
 # after finish run this command
 
-php artisan kui-breeze:replace blade # available stacks blade,vue. react will be added soon.
+php artisan kui-breeze:replace blade
+# available stacks (blade,vue). react will be added soon.
 # So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue`
 
 # then
