@@ -46,7 +46,10 @@ npm install && npm run dev # or yarn && yarn dev
 
 #### Navigation
 
-You will found sidebar links in `resources/views/components/sidebar/content.blade.php`.
+You will found sidebar links in:
+
+- blade: `resources/views/components/sidebar/content.blade.php`.
+- vue: `resources/js/Components/Sidebar/SidebarContent.vue`
 
 #### Screens
 
