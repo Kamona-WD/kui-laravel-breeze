@@ -2,6 +2,7 @@
     <component
         :is="Tag"
         v-if="href"
+        :href="href"
         :class="[
             'p-2 flex items-center gap-2 rounded-md transition-colors',
             {
@@ -53,7 +54,6 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
 import { sidebarState } from '@/Composables'
-
 import { EmptyCircleIcon } from '@/Components/Icons/outline.jsx'
 
 export default {
@@ -73,17 +73,15 @@ export default {
             type: String,
             required: true,
         },
-        icon: {
-            required: false,
-        },
-        withArrow: {
+        external: {
+            type: Boolean,
             default: false,
         },
     },
     setup(props) {
-        const { href, active, title, icon: Icon, withArrow } = props
+        const { href, active, title, external } = props
 
-        const Tag = !href ? 'button' : href && !external ? 'a' : Link
+        const Tag = !external ? Link : "a";
 
         return {
             sidebarState,
