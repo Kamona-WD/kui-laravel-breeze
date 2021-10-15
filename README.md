@@ -21,7 +21,7 @@ composer require laravel/breeze --dev
 
 # after finish run this command
 
-php artisan breeze:install blade
+php artisan breeze:install
 ```
 
 3. Install kamona/kui-laravel-breeze
