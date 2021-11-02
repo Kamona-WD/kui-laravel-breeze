@@ -122,7 +122,7 @@ export default {
                 e.stopPropagation()
                 return
             }
-            emit('click')
+            emit('click', e)
         }
 
         const Tag = external ?  'a' : Link
