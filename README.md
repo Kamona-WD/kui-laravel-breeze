@@ -43,8 +43,7 @@ npm install && npm run dev # or yarn && yarn dev
 
 4. Configure your database.
 5. Run `php artisan migrate`.
-6. `npm install && npm run dev`
-7. `php artisan serve`
+6. `php artisan serve`
 
 #### Navigation
 
