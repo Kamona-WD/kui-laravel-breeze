@@ -54,7 +54,7 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
 import { sidebarState } from '@/Composables'
-import { EmptyCircleIcon } from '@/Components/Icons/outline.jsx'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
 
 export default {
     components: {

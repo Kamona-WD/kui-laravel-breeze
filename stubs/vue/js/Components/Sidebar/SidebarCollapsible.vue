@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <SidebarLink @click="isOpen = !isOpen" :title="title">
+        <SidebarLink @click="isOpen = !isOpen" :title="title" :active="active">
             <template #icon>
                 <slot name="icon">
                     <EmptyCircleIcon
@@ -18,19 +18,23 @@
                 >
                     <span
                         :class="[
-                            'absolute right-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200',
+                            'absolute right-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200',
                             {
                                 '-rotate-45': isOpen,
                                 'rotate-45': !isOpen,
+                                'bg-white': active,
+                                'bg-gray-400': !active,
                             },
                         ]"
                     ></span>
                     <span
                         :class="[
-                            'absolute left-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200',
+                            'absolute left-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200',
                             {
                                 'rotate-45': isOpen,
                                 '-rotate-45': !isOpen,
+                                'bg-white': active,
+                                'bg-gray-400': !active,
                             },
                         ]"
                     ></span>
@@ -43,6 +47,7 @@
             @enter="enter"
             @before-leave="beforeLeave"
             @leave="leave"
+            appear
         >
             <div
                 v-show="
@@ -62,8 +67,8 @@
 
 <script>
 import { ref } from 'vue'
-import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
-import { EmptyCircleIcon } from '@/Components/Icons/outline.jsx'
+import SidebarLink from '@/Components/Sidebar/SidebarLink'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
 import { sidebarState } from '@/Composables'
 
 export default {

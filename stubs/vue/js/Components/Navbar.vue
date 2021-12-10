@@ -161,7 +161,7 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, onUnmounted, Transition } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { useFullscreen } from '@vueuse/core'
 import {
@@ -181,9 +181,9 @@ import {
 } from '@/Composables'
 import Button from '@/Components/Button'
 import ApplicationLogo from '@/Components/ApplicationLogo'
-import BreezeDropdown from '@/Components/Dropdown.vue'
-import BreezeDropdownLink from '@/Components/DropdownLink.vue'
-import { ArrowsInnerIcon } from '@/Components/Icons/outline.jsx'
+import BreezeDropdown from '@/Components/Dropdown'
+import BreezeDropdownLink from '@/Components/DropdownLink'
+import { ArrowsInnerIcon } from '@/Components/Icons/outline'
 
 export default {
     components: {

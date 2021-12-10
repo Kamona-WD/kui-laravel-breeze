@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Button from '@/Components/Button.vue'
-import { MenuFoldLineLeftIcon, MenuFoldLineRightIcon } from '@/Components/Icons/outline.jsx'
+import Button from '@/Components/Button'
+import { MenuFoldLineLeftIcon, MenuFoldLineRightIcon } from '@/Components/Icons/outline'
 import { sidebarState } from '@/Composables'
 
 export default {

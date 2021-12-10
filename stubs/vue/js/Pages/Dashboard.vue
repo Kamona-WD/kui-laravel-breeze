@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import Button from '@/Components/Button.vue'
-import { GithubIcon } from '@/Components/Icons/brands.jsx'
 import { Head } from '@inertiajs/inertia-vue3'
+import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
+import Button from '@/Components/Button'
+import { GithubIcon } from '@/Components/Icons/brands'
 
 export default {
     components: {

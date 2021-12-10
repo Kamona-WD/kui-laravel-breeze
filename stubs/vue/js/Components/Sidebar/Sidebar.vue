@@ -41,9 +41,9 @@
 import { onMounted } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { sidebarState } from '@/Composables'
-import SidebarHeader from '@/Components/Sidebar/SidebarHeader.vue'
-import SidebarContent from '@/Components/Sidebar/SidebarContent.vue'
-import SidebarFooter from '@/Components/Sidebar/SidebarFooter.vue'
+import SidebarHeader from '@/Components/Sidebar/SidebarHeader'
+import SidebarContent from '@/Components/Sidebar/SidebarContent'
+import SidebarFooter from '@/Components/Sidebar/SidebarFooter'
 
 export default {
     components: {

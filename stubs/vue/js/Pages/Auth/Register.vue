@@ -64,14 +64,14 @@
 </template>
 
 <script>
-import BreezeInputIconWrapper from '@/Components/InputIconWrapper.vue'
-import BreezeButton from '@/Components/Button.vue'
-import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
-import BreezeLabel from '@/Components/Label.vue'
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import { Head, Link } from '@inertiajs/inertia-vue3';
-import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline';
+import { Head, Link } from '@inertiajs/inertia-vue3'
+import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline'
+import BreezeInputIconWrapper from '@/Components/InputIconWrapper'
+import BreezeButton from '@/Components/Button'
+import BreezeGuestLayout from '@/Layouts/Guest'
+import BreezeInput from '@/Components/Input'
+import BreezeLabel from '@/Components/Label'
+import BreezeValidationErrors from '@/Components/ValidationErrors'
 
 export default {
     layout: BreezeGuestLayout,
