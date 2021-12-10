@@ -1,113 +1,89 @@
 <template>
-    <Head title="Register" />
+    <GuestLayout title="Register">
+        <ValidationErrors class="mb-4" />
 
-    <BreezeValidationErrors class="mb-4" />
+        <form @submit.prevent="submit">
+            <div class="grid gap-6">
+                <div class="space-y-2">
+                    <Label for="name" value="Name" />
+                    <InputIconWrapper>
+                        <template #icon>
+                            <UserIcon aria-hidden="true" class="w-5 h-5" />
+                        </template>
+                        <Input withIcon id="name" type="text" placeholder="Name" class="block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                    </InputIconWrapper>
+                </div>
 
-    <form @submit.prevent="submit">
-        <div class="grid gap-6">
-            <div class="space-y-2">
-                <BreezeLabel for="name" value="Name" />
-                <BreezeInputIconWrapper>
-                    <template #icon>
-                        <UserIcon aria-hidden="true" class="w-5 h-5" />
-                    </template>
-                    <BreezeInput withIcon id="name" type="text" placeholder="Name" class="block w-full" v-model="form.name" required autofocus autocomplete="name" />
-                </BreezeInputIconWrapper>
+                <div class="space-y-2">
+                    <Label for="email" value="Email" />
+                    <InputIconWrapper>
+                        <template #icon>
+                            <MailIcon aria-hidden="true" class="w-5 h-5" />
+                        </template>
+                        <Input withIcon id="email" type="email" class="block w-full" placeholder="Email" v-model="form.email" required autocomplete="username" />
+                    </InputIconWrapper>
+                </div>
+
+                <div class="space-y-2">
+                    <Label for="password" value="Password" />
+                    <InputIconWrapper>
+                        <template #icon>
+                            <LockClosedIcon aria-hidden="true" class="w-5 h-5" />
+                        </template>
+                        <Input withIcon id="password" type="password" class="block w-full" placeholder="Password" v-model="form.password" required autocomplete="new-password" />
+                    </InputIconWrapper>
+                </div>
+
+                <div class="space-y-2">
+                    <Label for="password_confirmation" value="Confirm Password" />
+                    <InputIconWrapper>
+                        <template #icon>
+                            <LockClosedIcon aria-hidden="true" class="w-5 h-5" />
+                        </template>
+                        <Input withIcon id="password_confirmation" type="password" class="block w-full" placeholder="Confirm Password" v-model="form.password_confirmation" required autocomplete="new-password" />
+                    </InputIconWrapper>
+                </div>
+
+                <div>
+                    <Button class="justify-center gap-2 w-full" :disabled="form.processing" v-slot="{ iconSizeClasses }">
+                        <UserAddIcon aria-hidden="true" :class="iconSizeClasses" />
+                        <span>Register</span>
+                    </Button>
+                </div>
+
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Already have an account?
+                    <Link :href="route('login')" class="text-blue-500 hover:underline">
+                        Login
+                    </Link>
+                </p>
             </div>
 
-            <div class="space-y-2">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInputIconWrapper>
-                    <template #icon>
-                        <MailIcon aria-hidden="true" class="w-5 h-5" />
-                    </template>
-                    <BreezeInput withIcon id="email" type="email" class="block w-full" placeholder="Email" v-model="form.email" required autocomplete="username" />
-                </BreezeInputIconWrapper>
-            </div>
-
-            <div class="space-y-2">
-                <BreezeLabel for="password" value="Password" />
-                <BreezeInputIconWrapper>
-                    <template #icon>
-                        <LockClosedIcon aria-hidden="true" class="w-5 h-5" />
-                    </template>
-                    <BreezeInput withIcon id="password" type="password" class="block w-full" placeholder="Password" v-model="form.password" required autocomplete="new-password" />
-                </BreezeInputIconWrapper>
-            </div>
-
-            <div class="space-y-2">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
-                <BreezeInputIconWrapper>
-                    <template #icon>
-                        <LockClosedIcon aria-hidden="true" class="w-5 h-5" />
-                    </template>
-                    <BreezeInput withIcon id="password_confirmation" type="password" class="block w-full" placeholder="Confirm Password" v-model="form.password_confirmation" required autocomplete="new-password" />
-                </BreezeInputIconWrapper>
-            </div>
-
-            <div>
-                <BreezeButton class="justify-center gap-2 w-full" :disabled="form.processing" v-slot="{ iconSizeClasses }">
-                    <UserAddIcon aria-hidden="true" :class="iconSizeClasses" />
-                    <span>Register</span>
-                </BreezeButton>
-            </div>
-
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-                Already have an account?
-                <Link :href="route('login')" class="text-blue-500 hover:underline">
-                    Login
-                </Link>
-            </p>
-        </div>
-
-    </form>
+        </form>
+    </GuestLayout>
 </template>
 
-<script>
-import { Head, Link } from '@inertiajs/inertia-vue3'
+<script setup>
+import { Link, useForm } from '@inertiajs/inertia-vue3'
 import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline'
-import BreezeInputIconWrapper from '@/Components/InputIconWrapper'
-import BreezeButton from '@/Components/Button'
-import BreezeGuestLayout from '@/Layouts/Guest'
-import BreezeInput from '@/Components/Input'
-import BreezeLabel from '@/Components/Label'
-import BreezeValidationErrors from '@/Components/ValidationErrors'
+import GuestLayout from '@/Layouts/Guest'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import ValidationErrors from '@/Components/ValidationErrors'
+import Button from '@/Components/Button'
 
-export default {
-    layout: BreezeGuestLayout,
+const form = useForm({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    terms: false,
+})
 
-    components: {
-        BreezeInputIconWrapper,
-        BreezeButton,
-        BreezeInput,
-        BreezeLabel,
-        BreezeValidationErrors,
-        Head,
-        Link,
-        UserIcon,
-        MailIcon,
-        LockClosedIcon,
-        UserAddIcon,
-    },
-
-    data() {
-        return {
-            form: this.$inertia.form({
-                name: '',
-                email: '',
-                password: '',
-                password_confirmation: '',
-                terms: false,
-            })
-        }
-    },
-
-    methods: {
-        submit() {
-            this.form.post(this.route('register'), {
-                onFinish: () => this.form.reset('password', 'password_confirmation'),
-            })
-        }
-    }
+const submit = () => {
+    form.post(route('register'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    })
 }
 </script>

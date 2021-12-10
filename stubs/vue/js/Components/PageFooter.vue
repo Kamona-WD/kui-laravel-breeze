@@ -19,13 +19,6 @@
     </footer>
 </template>
 
-<script>
+<script setup>
 import { HeartIcon } from '@heroicons/vue/solid'
-export default {
-    components: {
-        HeartIcon,
-    },
-}
 </script>
-
-<style></style>

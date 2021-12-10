@@ -22,22 +22,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Button from '@/Components/Button'
 import { MenuFoldLineLeftIcon, MenuFoldLineRightIcon } from '@/Components/Icons/outline'
 import { sidebarState } from '@/Composables'
-
-export default {
-    components: {
-        Button,
-        MenuFoldLineLeftIcon,
-        MenuFoldLineRightIcon,
-    },
-
-    setup(){
-        return {
-            sidebarState
-        }
-    }
-}
 </script>

@@ -1,7 +1,5 @@
 <template>
-    <Head title="Dashboard" />
-
-    <BreezeAuthenticatedLayout>
+    <AuthenticatedLayout title="Dashboard">
         <template #header>
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <h2 class="text-xl font-semibold leading-tight">
@@ -18,21 +16,11 @@
         <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             You're logged in!
         </div>
-    </BreezeAuthenticatedLayout>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { Head } from '@inertiajs/inertia-vue3'
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
+<script setup>
+import AuthenticatedLayout from '@/Layouts/Authenticated'
 import Button from '@/Components/Button'
 import { GithubIcon } from '@/Components/Icons/brands'
-
-export default {
-    components: {
-        BreezeAuthenticatedLayout,
-        Button,
-        GithubIcon,
-        Head,
-    },
-}
 </script>

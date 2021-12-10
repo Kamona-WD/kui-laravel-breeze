@@ -1,4 +1,6 @@
 <template>
+    <Head :title="title" />
+    
     <div
         class="flex flex-col items-center justify-center min-h-screen gap-4 py-6 bg-gray-100  dark:bg-dark-bg"
     >
@@ -43,29 +45,15 @@
     </div>
 </template>
 
-<script>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue'
-import { Link } from '@inertiajs/inertia-vue3'
-import PageFooter from '@/Components/PageFooter.vue'
-import Button from '@/Components/Button.vue'
-import { toggleDarkMode, isDark } from '@/Composables'
+<script setup>
+import { Head, Link } from '@inertiajs/inertia-vue3'
 import { MoonIcon, SunIcon } from '@heroicons/vue/outline'
+import ApplicationLogo from '@/Components/ApplicationLogo'
+import PageFooter from '@/Components/PageFooter'
+import Button from '@/Components/Button'
+import { toggleDarkMode, isDark } from '@/Composables'
 
-export default {
-    components: {
-        ApplicationLogo,
-        Link,
-        PageFooter,
-        Button,
-        MoonIcon,
-        SunIcon,
-    },
-
-    setup() {
-        return {
-            toggleDarkMode,
-            isDark,
-        }
-    },
-}
+const props = defineProps({
+    title: String
+})
 </script>
