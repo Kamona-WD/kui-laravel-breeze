@@ -25,7 +25,7 @@
 
         <!-- Examples -->
         <!-- 
-        External link example
+        => External link example
         <SidebarLink
             title="Github"
             href="https://github.com/kamona-wd/kui-laravel-breeze"
@@ -34,7 +34,7 @@
         >
         </SidebarLink>
 
-        Collapsible examples
+        => Collapsible examples
         <SidebarCollapsible title="Users" :active="$page.url.startsWith('/users')">
             <SidebarCollapsibleItem :href="route('users.index')" title="List" :active="$page.url === '/users/index'" />
             <SidebarCollapsibleItem :href="route('users.create')" title="Create" :active="$page.url === '/users/create'" />
@@ -56,10 +56,10 @@
 
 <script>
 import PerfrectScrollbar from '@/Components/PerfectScrollbar'
-import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
-import { DashboardIcon } from '@/Components/Icons/outline.jsx'
-import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible.vue'
-import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem.vue'
+import SidebarLink from '@/Components/Sidebar/SidebarLink'
+import { DashboardIcon } from '@/Components/Icons/outline'
+import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible'
+import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem'
 
 export default {
     components: {
