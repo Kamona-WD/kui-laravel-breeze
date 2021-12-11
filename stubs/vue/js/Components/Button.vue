@@ -15,11 +15,11 @@ import { Link } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
     variant: {
-            type: String,
-            default: 'primary',
-            validator(value) {
-                return ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'black'].includes(value)
-            },
+        type: String,
+        default: 'primary',
+        validator(value) {
+            return ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'black'].includes(value)
+        },
     },
     type: {
         type: String,

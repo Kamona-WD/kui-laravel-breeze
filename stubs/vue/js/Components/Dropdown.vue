@@ -30,6 +30,18 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 
+const props = defineProps({
+    align: {
+        default: 'right'
+    },
+    width: {
+        default: '48'
+    },
+    contentClasses: {
+        default: () => ['py-1', 'bg-white dark:bg-dark-eval-1']
+    }
+})
+
 let open = ref(false)
 
 const closeOnEscape = (e) => {
