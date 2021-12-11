@@ -5,8 +5,8 @@
     </label>
 </template>
 
-<script>
-export default {
-    props: ['value'],
-}
+<script setup>
+const props = defineProps({
+    value: String
+})
 </script>

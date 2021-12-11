@@ -160,7 +160,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { onMounted, onUnmounted } from 'vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { useFullscreen } from '@vueuse/core'
@@ -185,41 +185,13 @@ import BreezeDropdown from '@/Components/Dropdown'
 import BreezeDropdownLink from '@/Components/DropdownLink'
 import { ArrowsInnerIcon } from '@/Components/Icons/outline'
 
-export default {
-    components: {
-        ApplicationLogo,
-        Button,
-        BreezeDropdown,
-        BreezeDropdownLink,
-        Link,
-        // icons
-        SunIcon,
-        MoonIcon,
-        SearchIcon,
-        MenuIcon,
-        XIcon,
-        ArrowsInnerIcon,
-        ArrowsExpandIcon
-    },
+const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
 
-    setup() {
-        const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
+onMounted(() => {
+    document.addEventListener('scroll', handleScroll)
+})
 
-        onMounted(() => {
-            document.addEventListener('scroll', handleScroll)
-        })
-        onUnmounted(() => {
-            document.removeEventListener('scroll', handleScroll)
-        })
-
-        return {
-            scrolling,
-            isDark,
-            toggleDarkMode,
-            isFullscreen,
-            toggleFullScreen,
-            sidebarState,
-        }
-    },
-}
+onUnmounted(() => {
+    document.removeEventListener('scroll', handleScroll)
+})
 </script>

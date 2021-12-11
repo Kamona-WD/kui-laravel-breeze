@@ -15,22 +15,22 @@
     />
 </template>
 
-<script>
-export default {
-    props: {
-        modelValue: String,
-        withIcon: {
-            type: Boolean,
-            default: false,
-        },
-    },
+<script setup>
+import { ref } from 'vue'
 
-    emits: ['update:modelValue'],
+const props = defineProps({
+    modelValue: String,
+    withIcon: {
+        type: Boolean,
+        default: false,
+    }
+})
 
-    methods: {
-        focus() {
-            this.$refs.input.focus()
-        },
-    },
+const input = ref(null)
+
+const emit = defineEmits(['update:modelValue'])
+
+const focus = () => {
+    input.value.focus()
 }
 </script>

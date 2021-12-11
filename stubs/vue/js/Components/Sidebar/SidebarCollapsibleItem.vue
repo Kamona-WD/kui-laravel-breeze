@@ -24,32 +24,23 @@
     </li>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 
-export default {
-    components: {
-        Link,
+const props = defineProps({
+    href: String,
+    title: String,
+    active: {
+        type: Boolean,
+        default: false,
     },
-    props: {
-        href: String,
-        title: String,
-        active: {
-            type: Boolean,
-            default: false,
-        },
-        external: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    setup(props) {
-        const { external } = props
+    external: {
+        type: Boolean,
+        default: false,
+    }
+})
 
-        const Tag = external ? 'a' : Link
-        return {
-            Tag,
-        }
-    },
-}
+const { external } = props
+
+const Tag = external ? 'a' : Link
 </script>

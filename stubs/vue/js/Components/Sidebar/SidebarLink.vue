@@ -51,42 +51,29 @@
     </button>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 import { sidebarState } from '@/Composables'
 import { EmptyCircleIcon } from '@/Components/Icons/outline'
 
-export default {
-    components: {
-        EmptyCircleIcon,
+const props = defineProps({
+    href: {
+        type: String,
+        required: false,
     },
-    props: {
-        href: {
-            type: String,
-            required: false,
-        },
-        active: {
-            type: Boolean,
-            default: false,
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-        external: {
-            type: Boolean,
-            default: false,
-        },
+    active: {
+        type: Boolean,
+        default: false,
     },
-    setup(props) {
-        const { href, active, title, external } = props
+    title: {
+        type: String,
+        required: true,
+    },
+    external: {
+        type: Boolean,
+        default: false,
+    },
+});
 
-        const Tag = !external ? Link : "a";
-
-        return {
-            sidebarState,
-            Tag,
-        }
-    },
-}
+const Tag = !props.external ? Link : "a"
 </script>

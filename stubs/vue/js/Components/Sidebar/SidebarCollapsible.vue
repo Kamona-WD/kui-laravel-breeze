@@ -65,54 +65,41 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import SidebarLink from '@/Components/Sidebar/SidebarLink'
 import { EmptyCircleIcon } from '@/Components/Icons/outline'
 import { sidebarState } from '@/Composables'
 
-export default {
-    components: {
-        SidebarLink,
-        EmptyCircleIcon,
-    },
-    props: {
-        title: {
+const props = defineProps({
+    title: {
             type: String,
-        },
-        icon: {
-            required: false,
-        },
-        active: {
-            type: Boolean,
-        },
     },
-    setup(props) {
-        const { active } = props
-
-        const isOpen = ref(active)
-
-        const beforeEnter = (el) => {
-            el.style.maxHeight = `0px`
-        }
-        const enter = (el) => {
-            el.style.maxHeight = `${el.scrollHeight}px`
-        }
-        const beforeLeave = (el) => {
-            el.style.maxHeight = `${el.scrollHeight}px`
-        }
-        const leave = (el) => {
-            el.style.maxHeight = `0px`
-        }
-
-        return {
-            isOpen,
-            sidebarState,
-            beforeEnter,
-            enter,
-            beforeLeave,
-            leave,
-        }
+    icon: {
+        required: false,
     },
+    active: {
+        type: Boolean,
+    }
+})
+
+const { active } = props
+
+const isOpen = ref(active)
+
+const beforeEnter = (el) => {
+    el.style.maxHeight = `0px`
+}
+
+const enter = (el) => {
+    el.style.maxHeight = `${el.scrollHeight}px`
+}
+
+const beforeLeave = (el) => {
+    el.style.maxHeight = `${el.scrollHeight}px`
+}
+
+const leave = (el) => {
+    el.style.maxHeight = `0px`
 }
 </script>

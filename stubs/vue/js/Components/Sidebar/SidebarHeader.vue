@@ -31,28 +31,11 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 import ApplicationLogo from '@/Components/ApplicationLogo'
 import Button from '@/Components/Button'
 import { MenuFoldLineLeftIcon, MenuFoldLineRightIcon } from '@/Components/Icons/outline'
 import { XIcon } from '@heroicons/vue/outline'
 import { sidebarState } from '@/Composables'
-
-export default {
-    components: {
-        Link,
-        ApplicationLogo,
-        Button,
-        MenuFoldLineLeftIcon,
-        MenuFoldLineRightIcon,
-        XIcon
-    },
-
-    setup(){
-        return {
-            sidebarState
-        }
-    }
-}
 </script>

@@ -4,46 +4,38 @@
     </component>
 </template>
 
-<script>
+<script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
 import PerfectScrollbar from 'perfect-scrollbar'
 
-export default {
-    props: {
-        settings: {
-            type: Object,
-            default: {},
-        },
-        tagname: {
-            type: String,
-            default: 'div',
-        },
+const props = defineProps({
+    settings: {
+        type: Object,
+        default: {},
     },
-    setup(props) {
-        const { settings, tagname } = props
+    tagname: {
+        type: String,
+        default: 'div',
+    }
+})
 
-        let ps = null
+const { settings, tagname } = props
 
-        const update = () => {
-            if (ps) {
-                ps.update()
-            }
-        }
+let ps = null
 
-        const el = ref(null)
-
-        onMounted(() => {
-            ps = new PerfectScrollbar(el.value, settings)
-        })
-
-        onUnmounted(() => {
-            ps.destroy()
-        })
-
-        return {
-            el,
-            update,
-        }
-    },
+const update = () => {
+    if (ps) {
+        ps.update()
+    }
 }
+
+const el = ref(null)
+
+onMounted(() => {
+    ps = new PerfectScrollbar(el.value, settings)
+})
+
+onUnmounted(() => {
+    ps.destroy()
+})
 </script>

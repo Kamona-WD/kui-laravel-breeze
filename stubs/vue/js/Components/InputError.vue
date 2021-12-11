@@ -6,8 +6,8 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: ['message']
-}
+<script setup>
+const props = defineProps({
+    message: String
+})
 </script>
