@@ -53,19 +53,24 @@ class ReplaceCommand extends Command
         }
     }
 
-    public function replaceBlade()
+    protected function replaceBlade()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
                 '@alpinejs/collapse' => '^3.4.2',
+                '@tailwindcss/forms' => '^0.4.0',
                 'alpinejs' => '^3.4.2',
                 'autoprefixer' => '^10.3.7',
                 'postcss' => '^8.3.9',
-                'tailwindcss' => '^2.2.16',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.7',
                 'perfect-scrollbar' => '^1.5.2'
             ] + $packages;
         });
+
+        // Favicon
+        $this->replaceFavIcon();
 
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
@@ -96,7 +101,7 @@ class ReplaceCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    public function replaceVue()
+    protected function replaceVue()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -104,12 +109,17 @@ class ReplaceCommand extends Command
                 '@heroicons/vue' => '^1.0.4',
                 '@vueuse/core' => '^6.5.3',
                 '@vue/babel-plugin-jsx' => '^1.1.0',
+                '@tailwindcss/forms' => '^0.4.0',
                 'autoprefixer' => '^10.3.7',
                 'postcss' => '^8.3.9',
-                'tailwindcss' => '^2.2.16',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.7',
                 'perfect-scrollbar' => '^1.5.2'
             ] + $packages;
         });
+
+        // Favicon
+        $this->replaceFavIcon();
 
         // Views...
         copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
@@ -135,9 +145,15 @@ class ReplaceCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    public function replaceReact()
+    protected function replaceReact()
     {
         $this->warn('React stack will be avilable soon.');
+    }
+
+    protected function replaceFavIcon()
+    {
+        (new Filesystem)->ensureDirectoryExists(base_path('public'));
+        copy(__DIR__ . '/../../stubs/favicon.ico', base_path('public/favicon.ico'));
     }
 
     /**

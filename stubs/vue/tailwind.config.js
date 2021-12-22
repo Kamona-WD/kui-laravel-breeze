@@ -1,15 +1,14 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
 
 module.exports = {
-    mode: "jit",
     darkMode: "class",
-    purge: [
+    content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./resources/js/**/*.vue",
         "./resources/js/**/*.js",
+        "./resources/js/**/*.jsx",
     ],
 
     theme: {
@@ -24,14 +23,7 @@ module.exports = {
                     "eval-2": "#2A2F42",
                     "eval-3": "#2C3142",
                 },
-                cyan: colors.cyan,
             },
-        },
-    },
-
-    variants: {
-        extend: {
-            opacity: ["disabled"],
         },
     },
 

@@ -16,9 +16,4 @@ class KUIBreezeServiceProvider extends ServiceProvider
             Console\ReplaceCommand::class,
         ]);
     }
-
-    public function register()
-    {
-        //
-    }
 }
