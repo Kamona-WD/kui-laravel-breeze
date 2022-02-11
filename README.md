@@ -36,8 +36,13 @@ composer require kamona/kui-laravel-breeze --dev
 # after finish run this command
 
 php artisan kui-breeze:replace blade
-# available stacks (blade,vue,react).
+# available stacks (blade,vue,vue-jsx,react).
 # So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue` and the same for react.
+# For example
+# php artisan breeze:replace blade => php artisan kui-breeze:replace blade
+# php artisan breeze:replace vue => php artisan kui-breeze:replace vue or vue-jsx
+# php artisan breeze:replace vue => php artisan kui-breeze:replace vue-jsx
+# php artisan breeze:replace react => php artisan kui-breeze:replace react
 
 # then
 npm install && npm run dev # or yarn && yarn dev
@@ -52,8 +57,9 @@ npm install && npm run dev # or yarn && yarn dev
 You will found sidebar links in:
 
 - blade: `resources/views/components/sidebar/content.blade.php`.
-- vue: `resources/js/Components/Sidebar/SidebarContent.vue`
-- react: `resources/js/Components/Sidebar/SidebarContent.jsx`
+- vue: `resources/js/Components/Sidebar/SidebarContent.vue`.
+- vue-jsx: `resources/js/Components/Sidebar/SidebarContent.jsx`.
+- react: `resources/js/Components/Sidebar/SidebarContent.jsx`.
 
 #### Screens
 

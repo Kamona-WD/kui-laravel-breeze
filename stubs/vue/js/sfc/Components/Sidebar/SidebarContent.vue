@@ -10,18 +10,32 @@
             :active="route().current('dashboard')"
         >
             <template #icon>
-                <DashboardIcon
-                    class="flex-shrink-0 w-6 h-6"
-                    aria-hidden="true"
-                />
+                <DashboardIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </template>
         </SidebarLink>
 
-        <SidebarCollapsible title="Dropdown">
-            <SidebarCollapsibleItem href="#" title="Link 1" :active="false" />
-            <SidebarCollapsibleItem href="#" title="Link 2" :active="true" />
-            <SidebarCollapsibleItem href="#" title="Link 3" :active="false" />
+        <SidebarCollapsible title="Components" :active="route().current('components.*')">
+            <template #icon>
+                <TemplateIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            </template>
+
+            <SidebarCollapsibleItem
+                :href="route('components.buttons')"
+                title="Buttons"
+                :active="route().current('components.buttons')"
+            />
         </SidebarCollapsible>
+
+        <SidebarLink
+            external
+            title="Figma File"
+            href="https://www.figma.com/community/file/1019844542917981418"
+            target="_blank"
+        >
+            <template #icon>
+                <FigmaIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            </template>
+        </SidebarLink>
 
         <!-- Examples -->
         <!-- 
@@ -50,7 +64,7 @@
 
             <SidebarCollapsibleItem :href="route('users.index')" title="List" :active="route().current('users.index')" />
             <SidebarCollapsibleItem :href="route('users.create')" title="Create" :active="route().current('users.create')" />
-        </SidebarCollapsible> -->
+        </SidebarCollapsible>-->
     </PerfectScrollbar>
 </template>
 
@@ -60,4 +74,6 @@ import SidebarLink from '@/Components/Sidebar/SidebarLink'
 import { DashboardIcon } from '@/Components/Icons/outline'
 import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible'
 import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem'
+import { TemplateIcon } from "@heroicons/vue/outline";
+import { FigmaIcon } from "@/Components/Icons/brands";
 </script>

@@ -1,5 +1,5 @@
 import { useDark, useToggle } from '@vueuse/core'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 
 export const isDark = useDark()
 export const toggleDarkMode = useToggle(isDark)
