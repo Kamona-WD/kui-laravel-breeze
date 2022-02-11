@@ -40,6 +40,8 @@ class ReplaceCommand extends Command
      */
     public function handle()
     {
+        $this->writeLogo();
+
         if ($this->argument('stack') === 'blade') {
             return $this->replaceBlade();
         }
@@ -147,7 +149,45 @@ class ReplaceCommand extends Command
 
     protected function replaceReact()
     {
-        $this->warn('React stack will be avilable soon.');
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@headlessui/react' => '^1.4.2',
+                '@heroicons/react' => '^1.0.5',
+                '@tailwindcss/forms' => '^0.4.0',
+                'autoprefixer' => '^10.3.7',
+                'postcss' => '^8.3.9',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.7',
+                'react-transition-group' => '^4.4.2',
+                'perfect-scrollbar' => '^1.5.5'
+            ] + $packages;
+        });
+
+        // Favicon
+        $this->replaceFavIcon();
+
+        // Views...
+        copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        // Components + Pages...
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Hooks'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Hooks', resource_path('js/Hooks'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Pages', resource_path('js/Pages'));
+
+        // Tailwind / Webpack...
+        copy(__DIR__ . '/../../stubs/react/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/react/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../stubs/react/js/app.js', resource_path('js/app.js'));
+
+        $this->info('Breeze scaffolding replaced successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     protected function replaceFavIcon()
@@ -242,5 +282,19 @@ class ReplaceCommand extends Command
     protected function replaceInFile($search, $replace, $path)
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+    }
+
+    protected function writeLogo()
+    {
+        $logo = PHP_EOL . '<fg=bright-blue>
+██╗  ██╗     ██╗   ██╗██╗
+██║ ██╔╝     ██║   ██║██║
+█████╔╝█████╗██║   ██║██║
+██╔═██╗╚════╝██║   ██║██║
+██║  ██╗     ╚██████╔╝██║
+╚═╝  ╚═╝      ╚═════╝ ╚═╝
+        </>' . PHP_EOL;
+
+        return $this->line($logo);
     }
 }

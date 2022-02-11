@@ -6,6 +6,7 @@
             <span>Made with</span>
             <span>
                 <HeartIcon class="w-6 h-6 text-red-500" />
+                <span className="sr-only">Love</span>
             </span>
             <span>by</span>
             <a
