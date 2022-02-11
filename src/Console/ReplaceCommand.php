@@ -80,6 +80,12 @@ class ReplaceCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/buttons-showcase'));
 
+        // Clean directories
+        (new Filesystem)->cleanDirectory(resource_path('views/auth'));
+        (new Filesystem)->cleanDirectory(resource_path('views/layouts'));
+        (new Filesystem)->cleanDirectory(resource_path('views/components'));
+        (new Filesystem)->cleanDirectory(resource_path('views/buttons-showcase'));
+
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/auth', resource_path('views/auth'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/layouts', resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/components', resource_path('views/components'));
@@ -132,6 +138,12 @@ class ReplaceCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
+        // Clean directories
+        (new Filesystem)->cleanDirectory(resource_path('js/Components'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Composables'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Layouts'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
+
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Components', resource_path('js/Components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Layouts', resource_path('js/Layouts'));
@@ -168,13 +180,22 @@ class ReplaceCommand extends Command
         $this->replaceFavIcon();
 
         // Views...
-        copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__ . '/../../stubs/react/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        // Routes
+        copy(__DIR__ . '/../../stubs/react/web.php', base_path('routes/web.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Hooks'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+
+        // Clean directories
+        (new Filesystem)->cleanDirectory(resource_path('js/Components'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Hooks'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Layouts'));
+        (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Components', resource_path('js/Components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Hooks', resource_path('js/Hooks'));
