@@ -40,7 +40,7 @@ php artisan kui-breeze:replace blade
 # So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue` and the same for react.
 # For example
 # php artisan breeze:replace blade => php artisan kui-breeze:replace blade
-# php artisan breeze:replace vue => php artisan kui-breeze:replace vue or vue-jsx
+# php artisan breeze:replace vue => php artisan kui-breeze:replace vue
 # php artisan breeze:replace vue => php artisan kui-breeze:replace vue-jsx
 # php artisan breeze:replace react => php artisan kui-breeze:replace react
 
