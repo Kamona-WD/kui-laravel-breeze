@@ -13,7 +13,7 @@ class ReplaceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,react,vue)}
+    protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,vue,vue-jsx,react)}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -42,12 +42,19 @@ class ReplaceCommand extends Command
     {
         $this->writeLogo();
 
+        // Favicon
+        $this->replaceFavIcon();
+
         if ($this->argument('stack') === 'blade') {
             return $this->replaceBlade();
         }
 
         if ($this->argument('stack') === 'vue') {
-            return $this->replaceVue();
+            return $this->replaceVue('sfc');
+        }
+
+        if ($this->argument('stack') === 'vue-jsx') {
+            return $this->replaceVue('jsx');
         }
 
         if ($this->argument('stack') === 'react') {
@@ -70,9 +77,6 @@ class ReplaceCommand extends Command
                 'perfect-scrollbar' => '^1.5.2'
             ] + $packages;
         });
-
-        // Favicon
-        $this->replaceFavIcon();
 
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
@@ -109,11 +113,11 @@ class ReplaceCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected function replaceVue()
+    protected function replaceVue($type)
     {
         // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
+        $this->updateNodePackages(function ($packages) use ($type) {
+            $vuePackages = [
                 '@heroicons/vue' => '^1.0.4',
                 '@vueuse/core' => '^6.5.3',
                 '@vue/babel-plugin-jsx' => '^1.1.0',
@@ -123,11 +127,17 @@ class ReplaceCommand extends Command
                 'postcss-import' => '^14.0.2',
                 'tailwindcss' => '^3.0.7',
                 'perfect-scrollbar' => '^1.5.2'
-            ] + $packages;
+            ];
+
+            if ($type == 'jsx') {
+                $vuePackages = $vuePackages + ['@headlessui/vue' => '^1.4.3'];
+            }
+
+            return $vuePackages + $packages;
         });
 
-        // Favicon
-        $this->replaceFavIcon();
+        // Routes
+        copy(__DIR__ . '/../../stubs/vue/web.php', base_path('routes/web.php'));
 
         // Views...
         copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
@@ -144,15 +154,16 @@ class ReplaceCommand extends Command
         (new Filesystem)->cleanDirectory(resource_path('js/Layouts'));
         (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Components', resource_path('js/Components'));
+        // Copy
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Components', resource_path('js/Components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Pages', resource_path('js/Pages'));
 
         // Tailwind / Webpack...
         copy(__DIR__ . '/../../stubs/vue/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__ . '/../../stubs/vue/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/vue/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/vue/js/' . $type . '/app.js', resource_path('js/app.js'));
         copy(__DIR__ . '/../../stubs/vue/.babelrc', base_path('.babelrc'));
 
         $this->info('Breeze scaffolding replaced successfully.');
@@ -175,9 +186,6 @@ class ReplaceCommand extends Command
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
         });
-
-        // Favicon
-        $this->replaceFavIcon();
 
         // Views...
         copy(__DIR__ . '/../../stubs/react/views/app.blade.php', resource_path('views/app.blade.php'));
