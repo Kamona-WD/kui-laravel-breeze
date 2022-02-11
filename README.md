@@ -8,6 +8,7 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 [![Total Downloads](https://img.shields.io/packagist/dt/kamona/kui-laravel-breeze.svg)](https://packagist.org/packages/kamona/kui-laravel-breeze)
 
 #### [Figma file](https://www.figma.com/community/file/1019844542917981418/)
+
 #### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream)
 
 #### Note
@@ -35,8 +36,8 @@ composer require kamona/kui-laravel-breeze --dev
 # after finish run this command
 
 php artisan kui-breeze:replace blade
-# available stacks (blade,vue). react will be added soon.
-# So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue`
+# available stacks (blade,vue,react).
+# So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue` and the same for react.
 
 # then
 npm install && npm run dev # or yarn && yarn dev
@@ -52,6 +53,7 @@ You will found sidebar links in:
 
 - blade: `resources/views/components/sidebar/content.blade.php`.
 - vue: `resources/js/Components/Sidebar/SidebarContent.vue`
+- react: `resources/js/Components/Sidebar/SidebarContent.jsx`
 
 #### Screens
 
