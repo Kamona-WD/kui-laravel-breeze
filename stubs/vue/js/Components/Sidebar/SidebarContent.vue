@@ -1,5 +1,5 @@
 <template>
-    <PerfrectScrollbar
+    <PerfectScrollbar
         tagname="nav"
         aria-label="main"
         class="relative flex flex-col flex-1 max-h-full gap-4 px-3"
@@ -51,11 +51,11 @@
             <SidebarCollapsibleItem :href="route('users.index')" title="List" :active="route().current('users.index')" />
             <SidebarCollapsibleItem :href="route('users.create')" title="Create" :active="route().current('users.create')" />
         </SidebarCollapsible> -->
-    </PerfrectScrollbar>
+    </PerfectScrollbar>
 </template>
 
 <script setup>
-import PerfrectScrollbar from '@/Components/PerfectScrollbar'
+import PerfectScrollbar from '@/Components/PerfectScrollbar'
 import SidebarLink from '@/Components/Sidebar/SidebarLink'
 import { DashboardIcon } from '@/Components/Icons/outline'
 import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible'
