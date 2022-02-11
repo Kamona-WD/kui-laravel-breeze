@@ -9,7 +9,7 @@ export default (props) => {
             auth={props.auth}
             errors={props.errors}
             header={
-                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <h2 className="text-xl font-semibold leading-tight">
                         Dashboard
                     </h2>

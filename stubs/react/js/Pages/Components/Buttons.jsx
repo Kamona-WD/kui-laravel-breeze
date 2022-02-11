@@ -27,11 +27,18 @@ export default (props) => {
             }
         >
             <div className="p-6">
-                <div class="grid items-center gap-6">
+                <div className="grid items-center gap-6">
                     {variants.map((variant) => (
-                        <div class="grid items-start grid-cols-3 gap-6 justify-items-center">
+                        <div
+                            key={variant}
+                            className="grid items-start grid-cols-3 gap-6 justify-items-center"
+                        >
                             {sizes.map((size) => (
-                                <Button variant={variant} size={size}>
+                                <Button
+                                    key={size}
+                                    variant={variant}
+                                    size={size}
+                                >
                                     {variant}
                                 </Button>
                             ))}
@@ -41,11 +48,15 @@ export default (props) => {
             </div>
 
             <div className="p-6">
-                <div class="grid items-center gap-6">
+                <div className="grid items-center gap-6">
                     {variants.map((variant) => (
-                        <div class="grid items-start grid-cols-3 gap-6 justify-items-center">
+                        <div
+                            key={variant}
+                            className="grid items-start grid-cols-3 gap-6 justify-items-center"
+                        >
                             {sizes.map((size) => (
                                 <Button
+                                    key={size}
                                     variant={variant}
                                     size={size}
                                     className="gap-2 justify-center"
@@ -67,11 +78,19 @@ export default (props) => {
             </div>
 
             <div className="p-6">
-                <div class="grid items-center gap-6">
+                <div className="grid items-center gap-6">
                     {variants.map((variant) => (
-                        <div class="grid items-start grid-cols-3 gap-6 justify-items-center">
+                        <div
+                            key={variant}
+                            className="grid items-start grid-cols-3 gap-6 justify-items-center"
+                        >
                             {sizes.map((size) => (
-                                <Button variant={variant} size={size} iconOnly>
+                                <Button
+                                    key={size}
+                                    variant={variant}
+                                    size={size}
+                                    iconOnly
+                                >
                                     <HomeIcon
                                         aria-hidden="true"
                                         className={`${
