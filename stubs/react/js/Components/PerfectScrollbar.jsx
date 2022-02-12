@@ -1,10 +1,10 @@
-import PerfectScrollbar from "perfect-scrollbar";
 import { useEffect, useRef } from "react";
+import PerfectScrollbar from "perfect-scrollbar";
 
 export default (props) => {
     const { tag: Tag = "div" } = props;
 
-    const el = useRef(null);
+    const el = useRef();
 
     let ps = null;
 
@@ -15,7 +15,7 @@ export default (props) => {
     };
 
     useEffect(() => {
-        ps = new PerfectScrollbar("#a", props.settings || {});
+        ps = new PerfectScrollbar(el.current, props.settings || {});
 
         return () => {
             ps.destroy();
@@ -27,7 +27,6 @@ export default (props) => {
             className={`relative ${props.className}`}
             onMouseOver={update}
             ref={el}
-            id="a"
         >
             {props.children}
         </Tag>
