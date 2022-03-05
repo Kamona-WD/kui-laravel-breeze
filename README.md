@@ -11,6 +11,8 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 
 #### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream)
 
+#### [Fortify Version](https://github.com/Kamona-WD/kui-laravel-fortify)
+
 #### Note
 
 We recommend installing this package on a project that you are starting from scratch.
