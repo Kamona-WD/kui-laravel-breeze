@@ -9,7 +9,7 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 
 #### [Figma file](https://www.figma.com/community/file/1019844542917981418/)
 
-#### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream)
+<!-- #### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream) -->
 
 #### [Fortify Version](https://github.com/Kamona-WD/kui-laravel-fortify)
 
