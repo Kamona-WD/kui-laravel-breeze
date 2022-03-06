@@ -5,7 +5,7 @@
                 {{ __('Dashboard') }}
             </h2>
             <x-button target="_blank" href="https://github.com/kamona-wd/kui-laravel-breeze" variant="black"
-                class="items-center max-w-xs gap-2">
+                class="justify-center max-w-xs gap-2">
                 <x-icons.github class="w-6 h-6" aria-hidden="true" />
                 <span>Star on Github</span>
             </x-button>
@@ -13,6 +13,6 @@
     </x-slot>
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        You're logged in!
+        {{ __("You're logged in!")  }}
     </div>
 </x-app-layout>
