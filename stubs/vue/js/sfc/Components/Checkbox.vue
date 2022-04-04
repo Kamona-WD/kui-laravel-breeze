@@ -3,30 +3,28 @@
            class="text-purple-500 border-gray-300 rounded focus:border-purple-300 focus:ring focus:ring-purple-500 dark:border-gray-600 dark:bg-dark-eval-1 dark:focus:ring-offset-dark-eval-1">
 </template>
 
-<script>
-export default {
-    emits: ['update:checked'],
+<script setup>
+import { computed } from 'vue';
 
-    props: {
-        checked: {
-            type: [Array, Boolean],
-            default: false,
-        },
-        value: {
-            default: null,
-        },
+const emit = defineEmits(['update:checked']);
+
+const props = defineProps({
+    checked: {
+        type: [Array, Boolean],
+        default: false,
+    },
+    value: {
+        default: null,
+    },
+});
+
+const proxyChecked = computed({
+    get() {
+        return props.checked;
     },
 
-    computed: {
-        proxyChecked: {
-            get() {
-                return this.checked;
-            },
-
-            set(val) {
-                this.$emit("update:checked", val);
-            },
-        },
+    set(val) {
+        emit("update:checked", val);
     },
-}
+})
 </script>

@@ -68,7 +68,7 @@ import Input from '@/Components/Input'
 import Label from '@/Components/Label'
 import ValidationErrors from '@/Components/ValidationErrors'
 
-const props = defineProps({
+defineProps({
     canResetPassword: Boolean,
     status: String,
 })

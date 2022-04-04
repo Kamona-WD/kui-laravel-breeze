@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
     message: String
 })
 </script>

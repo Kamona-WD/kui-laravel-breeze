@@ -115,7 +115,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
-const props = defineProps({
+defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,

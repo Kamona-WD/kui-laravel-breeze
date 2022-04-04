@@ -75,7 +75,7 @@
             </Button>
 
             <!-- Dropdwon -->
-            <BreezeDropdown align="right" width="48">
+            <Dropdown align="right" width="48">
                 <template #trigger>
                     <span class="inline-flex rounded-md">
                         <button
@@ -100,15 +100,15 @@
                     </span>
                 </template>
                 <template #content>
-                    <BreezeDropdownLink
+                    <DropdownLink
                         :href="route('logout')"
                         method="post"
                         as="button"
                     >
                         Log Out
-                    </BreezeDropdownLink>
+                    </DropdownLink>
                 </template>
-            </BreezeDropdown>
+            </Dropdown>
         </div>
     </nav>
 
@@ -181,8 +181,8 @@ import {
 } from '@/Composables'
 import Button from '@/Components/Button'
 import ApplicationLogo from '@/Components/ApplicationLogo'
-import BreezeDropdown from '@/Components/Dropdown'
-import BreezeDropdownLink from '@/Components/DropdownLink'
+import Dropdown from '@/Components/Dropdown'
+import DropdownLink from '@/Components/DropdownLink'
 import { ArrowsInnerIcon } from '@/Components/Icons/outline'
 
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()

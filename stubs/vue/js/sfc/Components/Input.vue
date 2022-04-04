@@ -16,9 +16,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const props = defineProps({
+defineProps({
     modelValue: String,
     withIcon: {
         type: Boolean,
@@ -26,11 +26,13 @@ const props = defineProps({
     }
 })
 
+defineEmits(['update:modelValue'])
+
 const input = ref(null)
 
-const emit = defineEmits(['update:modelValue'])
-
-const focus = () => {
-    input.value.focus()
-}
+onMounted(() => {
+    if (input.value.hasAttribute('autofocus')) {
+        input.value.focus();
+    }
+})
 </script>

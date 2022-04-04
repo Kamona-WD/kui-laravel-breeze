@@ -68,13 +68,13 @@ class ReplaceCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@alpinejs/collapse' => '^3.4.2',
-                '@tailwindcss/forms' => '^0.4.0',
+                '@tailwindcss/forms' => '^0.5.0',
                 'alpinejs' => '^3.4.2',
-                'autoprefixer' => '^10.3.7',
-                'postcss' => '^8.3.9',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.7',
-                'perfect-scrollbar' => '^1.5.2'
+                'tailwindcss' => '^3.0.18',
+                'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
         });
 
@@ -121,12 +121,12 @@ class ReplaceCommand extends Command
                 '@heroicons/vue' => '^1.0.4',
                 '@vueuse/core' => '^6.5.3',
                 '@vue/babel-plugin-jsx' => '^1.1.0',
-                '@tailwindcss/forms' => '^0.4.0',
-                'autoprefixer' => '^10.3.7',
-                'postcss' => '^8.3.9',
+                '@tailwindcss/forms' => '^0.5.0',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.7',
-                'perfect-scrollbar' => '^1.5.2'
+                'tailwindcss' => '^3.0.18',
+                'perfect-scrollbar' => '^1.5.5'
             ];
 
             if ($type == 'jsx') {
@@ -177,11 +177,11 @@ class ReplaceCommand extends Command
             return [
                 '@headlessui/react' => '^1.4.2',
                 '@heroicons/react' => '^1.0.5',
-                '@tailwindcss/forms' => '^0.4.0',
-                'autoprefixer' => '^10.3.7',
-                'postcss' => '^8.3.9',
+                '@tailwindcss/forms' => '^0.5.0',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.7',
+                'tailwindcss' => '^3.0.18',
                 'react-transition-group' => '^4.4.2',
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;

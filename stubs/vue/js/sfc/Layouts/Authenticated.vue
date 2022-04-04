@@ -44,7 +44,7 @@ import Navbar from '@/Components/Navbar'
 import PageFooter from '@/Components/PageFooter'
 import { sidebarState } from '@/Composables'
 
-const props = defineProps({
+defineProps({
     title: String
 })
 </script>

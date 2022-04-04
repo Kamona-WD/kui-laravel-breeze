@@ -53,7 +53,7 @@ import PageFooter from '@/Components/PageFooter'
 import Button from '@/Components/Button'
 import { toggleDarkMode, isDark } from '@/Composables'
 
-const props = defineProps({
+defineProps({
     title: String
 })
 </script>
