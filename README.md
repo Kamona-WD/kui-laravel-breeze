@@ -7,9 +7,6 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 [![Stars](https://img.shields.io/github/stars/Kamona-WD/kui-laravel-breeze)](https://github.com/Kamona-WD/kui-laravel-breeze/stargazers)
 [![Total Downloads](https://img.shields.io/packagist/dt/kamona/kui-laravel-breeze.svg)](https://packagist.org/packages/kamona/kui-laravel-breeze)
 
-#### ⚠️ Note
-> ⚠️ This package require `laravel/breeze` version less than `1.10`
-
 <!-- #### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream) -->
 
 #### [Fortify Version](https://github.com/Kamona-WD/kui-laravel-fortify)
@@ -19,6 +16,8 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 We recommend installing this package on a project that you are starting from scratch.
 
 #### Usage
+
+> **_note_** It doesn't matter if you use `vitejs` or `laravel-mix`, it will work in both cases.
 
 1. Fresh install Laravel >= 8.0 and `cd` to your app.
 2. Install laravel/breeze
@@ -66,8 +65,8 @@ You will found sidebar links in:
 
 #### Screens
 
-|                             |                             |
-| --------------------------- | --------------------------- |
+|                              |                              |
+| ---------------------------- | ---------------------------- |
 | ![Showcase 1](screens/1.PNG) | ![Showcase 7](screens/7.PNG) |
 | ![Showcase 2](screens/2.PNG) | ![Showcase 8](screens/8.PNG) |
 | ![Showcase 3](screens/3.PNG) | ![Showcase 4](screens/4.PNG) |

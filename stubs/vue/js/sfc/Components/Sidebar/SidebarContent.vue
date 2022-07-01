@@ -26,17 +26,6 @@
             />
         </SidebarCollapsible>
 
-        <SidebarLink
-            external
-            title="Figma File"
-            href="https://www.figma.com/community/file/1019844542917981418"
-            target="_blank"
-        >
-            <template #icon>
-                <FigmaIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
-            </template>
-        </SidebarLink>
-
         <!-- Examples -->
         <!-- 
         => External link example
@@ -69,11 +58,10 @@
 </template>
 
 <script setup>
-import PerfectScrollbar from '@/Components/PerfectScrollbar'
-import SidebarLink from '@/Components/Sidebar/SidebarLink'
+import PerfectScrollbar from '@/Components/PerfectScrollbar.vue'
+import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
 import { DashboardIcon } from '@/Components/Icons/outline'
-import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible'
-import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem'
+import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible.vue'
+import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem.vue'
 import { TemplateIcon } from "@heroicons/vue/outline";
-import { FigmaIcon } from "@/Components/Icons/brands";
 </script>

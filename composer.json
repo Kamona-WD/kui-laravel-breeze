@@ -7,7 +7,9 @@
     "tailwindcss",
     "alpinejs",
     "ui",
-    "dashboard"
+    "dashboard",
+    "vuejs",
+    "react"
   ],
   "license": "MIT",
   "homepage": "https://github.com/Kamona-WD/kui-laravel-breeze",

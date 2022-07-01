@@ -60,13 +60,13 @@
 <script setup>
 import { Link, useForm } from '@inertiajs/inertia-vue3'
 import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/vue/outline'
-import InputIconWrapper from '@/Components/InputIconWrapper'
-import Button from '@/Components/Button'
-import Checkbox from '@/Components/Checkbox'
-import GuestLayout from '@/Layouts/Guest'
-import Input from '@/Components/Input'
-import Label from '@/Components/Label'
-import ValidationErrors from '@/Components/ValidationErrors'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Button from '@/Components/Button.vue'
+import Checkbox from '@/Components/Checkbox.vue'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
 
 defineProps({
     canResetPassword: Boolean,

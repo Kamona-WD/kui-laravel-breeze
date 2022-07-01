@@ -14,7 +14,8 @@ class ReplaceCommand extends Command
      * @var string
      */
     protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,vue,vue-jsx,react)}
-                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}
+                            {--vite : Vitejs}';
 
     /**
      * The console command description.
@@ -22,6 +23,8 @@ class ReplaceCommand extends Command
      * @var string
      */
     protected $description = 'Replace laravel\\breeze views.';
+
+    protected $isVite = false;
 
     /**
      * Create a new command instance.
@@ -41,6 +44,10 @@ class ReplaceCommand extends Command
     public function handle()
     {
         $this->writeLogo();
+
+        if (file_exists(base_path('vite.config.js')) || $this->option('vite')) {
+            $this->isVite = true;
+        }
 
         // Favicon
         $this->replaceFavIcon();
@@ -68,12 +75,7 @@ class ReplaceCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@alpinejs/collapse' => '^3.4.2',
-                '@tailwindcss/forms' => '^0.5.0',
-                'alpinejs' => '^3.4.2',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.18',
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
         });
@@ -90,20 +92,26 @@ class ReplaceCommand extends Command
         (new Filesystem)->cleanDirectory(resource_path('views/components'));
         (new Filesystem)->cleanDirectory(resource_path('views/buttons-showcase'));
 
+        copy(__DIR__ . '/../../stubs/blade/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/layouts', resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/components', resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/buttons-showcase', resource_path('views/buttons-showcase'));
 
-        copy(__DIR__ . '/../../stubs/blade/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        if (!$this->isVite) {
+            copy(__DIR__ . '/../../stubs/blade/views/layouts/app.mix.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/blade/views/layouts/guest.mix.blade.php', resource_path('views/layouts/guest.blade.php'));
+        } else {
+            copy(__DIR__ . '/../../stubs/blade/views/layouts/app.vite.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/blade/views/layouts/guest.vite.blade.php', resource_path('views/layouts/guest.blade.php'));
+        }
 
         // Routes
         copy(__DIR__ . '/../../stubs/blade/web.php', base_path('routes/web.php'));
 
         // Assets
         copy(__DIR__ . '/../../stubs/blade/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/blade/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__ . '/../../stubs/blade/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
         copy(__DIR__ . '/../../stubs/blade/js/app.js', resource_path('js/app.js'));
 
         // Icons
@@ -117,30 +125,28 @@ class ReplaceCommand extends Command
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) use ($type) {
-            $vuePackages = [
+            $extraPackages = [
                 '@heroicons/vue' => '^1.0.4',
                 '@vueuse/core' => '^6.5.3',
-                '@vue/babel-plugin-jsx' => '^1.1.0',
-                '@tailwindcss/forms' => '^0.5.0',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.18',
                 'perfect-scrollbar' => '^1.5.5'
             ];
 
-            if ($type == 'jsx') {
-                $vuePackages = $vuePackages + ['@headlessui/vue' => '^1.4.3'];
+            if (!$this->isVite) {
+                $extraPackages += ['@vue/babel-plugin-jsx' => '^1.1.0'];
+            } else {
+                $extraPackages += ['@vitejs/plugin-vue-jsx' => '^1.3.10'];
             }
 
-            return $vuePackages + $packages;
+            if ($type == 'jsx') {
+                $extraPackages += ['@headlessui/vue' => '^1.4.3'];
+            }
+
+            return $extraPackages + $packages;
         });
 
         // Routes
         copy(__DIR__ . '/../../stubs/vue/web.php', base_path('routes/web.php'));
-
-        // Views...
-        copy(__DIR__ . '/../../stubs/vue/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
@@ -159,12 +165,21 @@ class ReplaceCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Layouts', resource_path('js/Layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Icons', resource_path('js/Components/Icons'));
 
-        // Tailwind / Webpack...
+        // Tailwind / Assets...
         copy(__DIR__ . '/../../stubs/vue/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/vue/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/vue/js/' . $type . '/app.js', resource_path('js/app.js'));
-        copy(__DIR__ . '/../../stubs/vue/.babelrc', base_path('.babelrc'));
+        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
+
+        if (!$this->isVite) {
+            copy(__DIR__ . '/../../stubs/common/inertia/layout/app.mix.blade.php', resource_path('views/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/vue/js/' . $type . '/app.mix.js', resource_path('js/app.js'));
+            copy(__DIR__ . '/../../stubs/vue/.babelrc', base_path('.babelrc'));
+        } else {
+            copy(__DIR__ . '/../../stubs/common/inertia/layout/app.vite.blade.php', resource_path('views/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/vue/js/' . $type . '/app.vite.js', resource_path('js/app.js'));
+            copy(__DIR__ . '/../../stubs/vue/vite.config.js', base_path('vite.config.js'));
+        }
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -177,18 +192,11 @@ class ReplaceCommand extends Command
             return [
                 '@headlessui/react' => '^1.4.2',
                 '@heroicons/react' => '^1.0.5',
-                '@tailwindcss/forms' => '^0.5.0',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^3.0.18',
                 'react-transition-group' => '^4.4.2',
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
         });
-
-        // Views...
-        copy(__DIR__ . '/../../stubs/react/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Routes
         copy(__DIR__ . '/../../stubs/react/web.php', base_path('routes/web.php'));
@@ -210,10 +218,19 @@ class ReplaceCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Layouts', resource_path('js/Layouts'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Pages', resource_path('js/Pages'));
 
-        // Tailwind / Webpack...
+        // Tailwind / Assets...
         copy(__DIR__ . '/../../stubs/react/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/react/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/react/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
+
+        if (!$this->isVite) {
+            copy(__DIR__ . '/../../stubs/common/inertia/layout/app.mix.blade.php', resource_path('views/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/react/js/app.mix.js', resource_path('js/app.js'));
+        } else {
+            copy(__DIR__ . '/../../stubs/common/inertia/layout/app.vite.blade.php', resource_path('views/app.blade.php'));
+            copy(__DIR__ . '/../../stubs/react/js/app.vite.js', resource_path('js/app.jsx'));
+
+            $this->replaceInFile("'resources/js/app.js'", "'resources/js/app.jsx'", resource_path('views/app.blade.php'));
+        }
 
         $this->info('Breeze scaffolding replaced successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -222,7 +239,7 @@ class ReplaceCommand extends Command
     protected function replaceFavIcon()
     {
         (new Filesystem)->ensureDirectoryExists(base_path('public'));
-        copy(__DIR__ . '/../../stubs/favicon.ico', base_path('public/favicon.ico'));
+        copy(__DIR__ . '/../../stubs/common/favicon.ico', base_path('public/favicon.ico'));
     }
 
     /**
@@ -281,22 +298,6 @@ class ReplaceCommand extends Command
             base_path('package.json'),
             json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
         );
-    }
-
-    /**
-     * Copied from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
-     * Delete the "node_modules" directory and remove the associated lock files.
-     *
-     * @return void
-     */
-    protected static function flushNodeModules()
-    {
-        tap(new Filesystem, function ($files) {
-            $files->deleteDirectory(base_path('node_modules'));
-
-            $files->delete(base_path('yarn.lock'));
-            $files->delete(base_path('package-lock.json'));
-        });
     }
 
     /**

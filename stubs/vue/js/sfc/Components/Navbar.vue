@@ -179,10 +179,10 @@ import {
     toggleDarkMode,
     sidebarState,
 } from '@/Composables'
-import Button from '@/Components/Button'
-import ApplicationLogo from '@/Components/ApplicationLogo'
-import Dropdown from '@/Components/Dropdown'
-import DropdownLink from '@/Components/DropdownLink'
+import Button from '@/Components/Button.vue'
+import ApplicationLogo from '@/Components/ApplicationLogo.vue'
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
 import { ArrowsInnerIcon } from '@/Components/Icons/outline'
 
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()

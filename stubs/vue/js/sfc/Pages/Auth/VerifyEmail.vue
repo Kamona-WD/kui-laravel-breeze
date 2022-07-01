@@ -39,8 +39,8 @@
 <script setup>
 import { computed } from 'vue'
 import { Link, useForm } from '@inertiajs/inertia-vue3'
-import GuestLayout from '@/Layouts/Guest'
-import Button from '@/Components/Button'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Button from '@/Components/Button.vue'
 
 const props = defineProps({
     status: String
