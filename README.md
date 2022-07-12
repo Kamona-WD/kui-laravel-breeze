@@ -7,9 +7,9 @@ Different UI for [larave/breeze](https://github.com/laravel/breeze).
 [![Stars](https://img.shields.io/github/stars/Kamona-WD/kui-laravel-breeze)](https://github.com/Kamona-WD/kui-laravel-breeze/stargazers)
 [![Total Downloads](https://img.shields.io/packagist/dt/kamona/kui-laravel-breeze.svg)](https://packagist.org/packages/kamona/kui-laravel-breeze)
 
-<!-- #### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream) -->
+#### [Jetstream Version](https://github.com/Kamona-WD/kui-laravel-jetstream)
 
-#### [Fortify Version](https://github.com/Kamona-WD/kui-laravel-fortify)
+<!-- #### [Fortify Version](https://github.com/Kamona-WD/kui-laravel-fortify) -->
 
 #### Note
 
@@ -37,6 +37,7 @@ composer require kamona/kui-laravel-breeze --dev
 
 # after finish run this command
 
+# This package will detect if your project uses vitejs or not by check if vite.config.js exist or not.
 php artisan kui-breeze:replace blade
 # available stacks (blade,vue,vue-jsx,react).
 # So if you run `php artisan breeze:install vue` you can run `php artisan kui-breeze:replace vue` and the same for react.
