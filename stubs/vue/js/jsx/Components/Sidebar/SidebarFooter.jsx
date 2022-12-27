@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue';
-import Button from '@/Components/Button';
+import { defineComponent } from 'vue'
+import Button from '@/Components/Button'
 import {
     MenuFoldLineLeftIcon,
     MenuFoldLineRightIcon,
-} from '@/Components/Icons/outline';
-import { sidebarState } from '@/Composables';
+} from '@/Components/Icons/outline'
+import { sidebarState } from '@/Composables'
 
 export default defineComponent({
     setup() {
@@ -16,7 +16,7 @@ export default defineComponent({
                     type="button"
                     v-show={!sidebarState.isOpen}
                     onClick={() => {
-                        sidebarState.isOpen = !sidebarState.isOpen;
+                        sidebarState.isOpen = !sidebarState.isOpen
                     }}
                     srText={
                         sidebarState.isOpen ? 'Close sidebar' : 'Open sidebar'
@@ -39,6 +39,6 @@ export default defineComponent({
                     )}
                 </Button>
             </div>
-        );
+        )
     },
-});
+})

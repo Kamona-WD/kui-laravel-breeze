@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     props: {
@@ -14,9 +14,9 @@ export default defineComponent({
     emits: ['update:checked'],
 
     setup(props, { emit }) {
-        const { value, checked } = props;
+        const { value, checked } = props
 
-        const isChecked = ref(checked);
+        const isChecked = ref(checked)
 
         return () => (
             <input
@@ -25,9 +25,9 @@ export default defineComponent({
                 value={value}
                 v-model={isChecked.value}
                 onChange={() => {
-                    emit('update:checked', isChecked.value);
+                    emit('update:checked', isChecked.value)
                 }}
             />
-        );
+        )
     },
-});
+})

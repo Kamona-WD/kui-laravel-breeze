@@ -1,6 +1,6 @@
-import Authenticated from '@/Layouts/Authenticated';
-import Button from '@/Components/Button';
-import { GithubIcon } from '@/Components/Icons/brands';
+import Authenticated from '@/Layouts/Authenticated'
+import Button from '@/Components/Button'
+import { GithubIcon } from '@/Components/Icons/brands'
 
 export default (props) => {
     return (
@@ -31,5 +31,5 @@ export default (props) => {
                 You're logged in!
             </div>
         </Authenticated>
-    );
-};
+    )
+}

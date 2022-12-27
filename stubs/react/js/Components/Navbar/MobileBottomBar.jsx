@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import { Link } from '@inertiajs/inertia-react';
-import { SearchIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import Button from '@/Components/Button';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { GlobalContext } from '@/Layouts/Authenticated';
+import { useContext } from 'react'
+import { Link } from '@inertiajs/inertia-react'
+import { SearchIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import Button from '@/Components/Button'
+import ApplicationLogo from '@/Components/ApplicationLogo'
+import { GlobalContext } from '@/Layouts/Authenticated'
 
 export default () => {
     const { isScrollDown, isScrollUp, isSidebarOpen, setSidebarOpen } =
-        useContext(GlobalContext);
+        useContext(GlobalContext)
 
     return (
         <div
@@ -26,7 +26,7 @@ export default () => {
 
             <Button
                 onClick={() => {
-                    setSidebarOpen(true);
+                    setSidebarOpen(true)
                 }}
                 iconOnly
                 variant="secondary"
@@ -40,5 +40,5 @@ export default () => {
                 )}
             </Button>
         </div>
-    );
-};
+    )
+}

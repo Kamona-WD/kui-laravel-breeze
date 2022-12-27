@@ -1,13 +1,13 @@
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import { Link, Head } from "@inertiajs/inertia-react";
-import PageFooter from "@/Components/PageFooter";
+import ApplicationLogo from '@/Components/ApplicationLogo'
+import { Link, Head } from '@inertiajs/inertia-react'
+import PageFooter from '@/Components/PageFooter'
 
 export default ({ children, title }) => {
     return (
         <>
             <Head title={title} />
 
-            <div className="flex flex-col items-center justify-center min-h-screen gap-6 py-6 bg-gray-100 dark:bg-dark-bg">
+            <div className="flex flex-col items-center justify-center min-h-screen gap-6 py-6 bg-gray-100 dark:bg-dark-eval-0">
                 <div className="flex-shrink-0">
                     <Link href="/">
                         <ApplicationLogo className="w-20 h-20" />
@@ -24,5 +24,5 @@ export default ({ children, title }) => {
                 <PageFooter />
             </div>
         </>
-    );
-};
+    )
+}

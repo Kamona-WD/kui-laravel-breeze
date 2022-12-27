@@ -1,10 +1,10 @@
-import { defineComponent } from "vue";
-import PerfectScrollbar from "@/Components/PerfectScrollbar";
-import SidebarLink from "@/Components/Sidebar/SidebarLink";
-import { DashboardIcon } from "@/Components/Icons/outline";
-import SidebarCollapsible from "@/Components/Sidebar/SidebarCollapsible";
-import SidebarCollapsibleItem from "@/Components/Sidebar/SidebarCollapsibleItem";
-import { TemplateIcon } from "@heroicons/vue/outline";
+import { defineComponent } from 'vue'
+import PerfectScrollbar from '@/Components/PerfectScrollbar'
+import SidebarLink from '@/Components/Sidebar/SidebarLink'
+import { DashboardIcon } from '@/Components/Icons/outline'
+import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible'
+import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem'
+import { TemplateIcon } from '@heroicons/vue/outline'
 
 export default defineComponent({
     setup() {
@@ -16,8 +16,8 @@ export default defineComponent({
             >
                 <SidebarLink
                     title="Dashboard"
-                    href={route("dashboard")}
-                    active={route().current("dashboard")}
+                    href={route('dashboard')}
+                    active={route().current('dashboard')}
                     v-slots={{
                         icon: () => (
                             <DashboardIcon
@@ -30,7 +30,7 @@ export default defineComponent({
 
                 <SidebarCollapsible
                     title="Components"
-                    active={route().current("components.*")}
+                    active={route().current('components.*')}
                     v-slots={{
                         icon: () => (
                             <TemplateIcon
@@ -41,12 +41,12 @@ export default defineComponent({
                     }}
                 >
                     <SidebarCollapsibleItem
-                        href={route("components.buttons")}
+                        href={route('components.buttons')}
                         title="Buttons"
-                        active={route().current("components.buttons")}
+                        active={route().current('components.buttons')}
                     />
                 </SidebarCollapsible>
             </PerfectScrollbar>
-        );
+        )
     },
-});
+})

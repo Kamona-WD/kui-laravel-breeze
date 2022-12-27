@@ -1,3 +1,26 @@
+<script setup>
+import { useForm } from '@inertiajs/inertia-vue3'
+import { MailIcon, PaperAirplaneIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Button from '@/Components/Button.vue'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+
+defineProps({
+    status: String
+})
+
+const form = useForm({
+    email: ''
+})
+
+const submit = () => {
+    form.post(route('password.email'))
+}
+</script>
+
 <template>
     <GuestLayout title="Forgot Password">
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
@@ -32,26 +55,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
-import { MailIcon, PaperAirplaneIcon } from '@heroicons/vue/outline'
-import InputIconWrapper from '@/Components/InputIconWrapper.vue'
-import Button from '@/Components/Button.vue'
-import GuestLayout from '@/Layouts/Guest.vue'
-import Input from '@/Components/Input.vue'
-import Label from '@/Components/Label.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
-
-defineProps({
-    status: String
-})
-
-const form = useForm({
-    email: ''
-})
-
-const submit = () => {
-    form.post(route('password.email'))
-}
-</script>

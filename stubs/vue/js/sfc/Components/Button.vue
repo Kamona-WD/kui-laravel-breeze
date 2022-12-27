@@ -1,14 +1,3 @@
-<template>
-    <component :is="Tag" v-if="href" :href="!disabled ? href : null" :class="classes" :aria-disabled="disabled.toString()">
-        <span v-if="srText" class="sr-only">{{ srText }}</span>
-        <slot :iconSizeClasses="iconSizeClasses" />
-    </component>
-    <button v-else :type="type" :class="classes" @click="handleClick" :disabled="disabled">
-        <span v-if="srText" class="sr-only">{{ srText }}</span>
-        <slot :iconSizeClasses="iconSizeClasses" />
-    </button>
-</template>
-
 <script setup>
 import { toRefs, computed } from 'vue'
 import { Link } from '@inertiajs/inertia-vue3'
@@ -125,3 +114,39 @@ const handleClick = (e) => {
 
 const Tag = external ?  'a' : Link
 </script>
+
+<template>
+    <component
+        :is="Tag"
+        v-if="href"
+        :href="!disabled ? href : null"
+        :class="classes"
+        :aria-disabled="disabled.toString()"
+    >
+        <span
+            v-if="srText"
+            class="sr-only"
+        >
+            {{ srText }}
+        </span>
+
+        <slot :iconSizeClasses="iconSizeClasses" />
+    </component>
+
+    <button
+        v-else
+        :type="type"
+        :class="classes"
+        @click="handleClick"
+        :disabled="disabled"
+    >
+        <span
+            v-if="srText"
+            class="sr-only"
+        >
+            {{ srText }}
+        </span>
+
+        <slot :iconSizeClasses="iconSizeClasses" />
+    </button>
+</template>

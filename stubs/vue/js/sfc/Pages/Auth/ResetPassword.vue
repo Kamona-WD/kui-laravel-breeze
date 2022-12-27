@@ -1,3 +1,32 @@
+<script setup>
+import { useForm } from '@inertiajs/inertia-vue3'
+import { MailIcon, LockClosedIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Button from '@/Components/Button.vue'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+
+const props = defineProps({
+    email: String,
+    token: String,
+})
+
+const form = useForm({
+    token: props.token,
+    email: props.email,
+    password: '',
+    password_confirmation: '',
+})
+
+const submit = () => {
+    form.post(route('password.store'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    })
+}
+</script>
+
 <template>
     <GuestLayout title="Reset Password">
         <ValidationErrors class="mb-4" />
@@ -43,32 +72,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
-import { MailIcon, LockClosedIcon } from '@heroicons/vue/outline'
-import InputIconWrapper from '@/Components/InputIconWrapper.vue'
-import Button from '@/Components/Button.vue'
-import GuestLayout from '@/Layouts/Guest.vue'
-import Input from '@/Components/Input.vue'
-import Label from '@/Components/Label.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
-
-const props = defineProps({
-    email: String,
-    token: String,
-})
-
-const form = useForm({
-    token: props.token,
-    email: props.email,
-    password: '',
-    password_confirmation: '',
-})
-
-const submit = () => {
-    form.post(route('password.update'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    })
-}
-</script>

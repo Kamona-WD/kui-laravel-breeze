@@ -1,3 +1,28 @@
+<script setup>
+import { Link, useForm } from '@inertiajs/inertia-vue3'
+import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline'
+import GuestLayout from '@/Layouts/Guest.vue'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+import Button from '@/Components/Button.vue'
+
+const form = useForm({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    terms: false,
+})
+
+const submit = () => {
+    form.post(route('register'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    })
+}
+</script>
+
 <template>
     <GuestLayout title="Register">
         <ValidationErrors class="mb-4" />
@@ -62,28 +87,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { Link, useForm } from '@inertiajs/inertia-vue3'
-import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline'
-import GuestLayout from '@/Layouts/Guest.vue'
-import InputIconWrapper from '@/Components/InputIconWrapper.vue'
-import Input from '@/Components/Input.vue'
-import Label from '@/Components/Label.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
-import Button from '@/Components/Button.vue'
-
-const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    terms: false,
-})
-
-const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    })
-}
-</script>

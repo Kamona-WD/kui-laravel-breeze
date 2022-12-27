@@ -1,3 +1,22 @@
+<script setup>
+import { computed } from 'vue'
+import { Link, useForm } from '@inertiajs/inertia-vue3'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Button from '@/Components/Button.vue'
+
+const props = defineProps({
+    status: String
+})
+
+const form = useForm()
+
+const submit = () => {
+    form.post(route('verification.send'))
+}
+
+const verificationLinkSent = computed(() => props.status === 'verification-link-sent')
+</script>
+
 <template>
     <GuestLayout title="Email Verification">
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
@@ -35,22 +54,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { computed } from 'vue'
-import { Link, useForm } from '@inertiajs/inertia-vue3'
-import GuestLayout from '@/Layouts/Guest.vue'
-import Button from '@/Components/Button.vue'
-
-const props = defineProps({
-    status: String
-})
-
-const form = useForm()
-
-const submit = () => {
-    form.post(route('verification.send'))
-}
-
-const verificationLinkSent = computed(() => props.status === 'verification-link-sent')
-</script>

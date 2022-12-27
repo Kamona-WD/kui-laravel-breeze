@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup(_, { slots }) {
@@ -10,8 +10,9 @@ export default defineComponent({
                 >
                     {slots.icon?.()}
                 </div>
+
                 {slots.default?.()}
             </div>
-        );
+        )
     },
-});
+})

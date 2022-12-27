@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue';
-import AuthenticatedLayout from '@/Layouts/Authenticated';
-import Button from '@/Components/Button';
-import { GithubIcon } from '@/Components/Icons/brands';
+import { defineComponent } from 'vue'
+import AuthenticatedLayout from '@/Layouts/Authenticated'
+import Button from '@/Components/Button'
+import { GithubIcon } from '@/Components/Icons/brands'
 
 const Header = defineComponent({
     setup() {
@@ -27,9 +27,9 @@ const Header = defineComponent({
                     )}
                 </Button>
             </div>
-        );
+        )
     },
-});
+})
 
 export default defineComponent({
     setup() {
@@ -42,6 +42,6 @@ export default defineComponent({
                     You're logged in!!
                 </div>
             </AuthenticatedLayout>
-        );
+        )
     },
-});
+})

@@ -1,33 +1,33 @@
-import { useEffect } from "react";
-import Button from "@/Components/Button";
-import Guest from "@/Layouts/Guest";
-import Input from "@/Components/Input";
-import Label from "@/Components/Label";
-import ValidationErrors from "@/Components/ValidationErrors";
-import { useForm } from "@inertiajs/inertia-react";
-import InputIconWrapper from "@/Components/InputIconWrapper";
-import { LockClosedIcon } from "@heroicons/react/outline";
+import { useEffect } from 'react'
+import Button from '@/Components/Button'
+import Guest from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import ValidationErrors from '@/Components/ValidationErrors'
+import { useForm } from '@inertiajs/inertia-react'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import { LockClosedIcon } from '@heroicons/react/outline'
 
 export default () => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        password: "",
-    });
+        password: '',
+    })
 
     useEffect(() => {
         return () => {
-            reset("password");
-        };
-    }, []);
+            reset('password')
+        }
+    }, [])
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+        setData(event.target.name, event.target.value)
+    }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("password.confirm"));
-    };
+        post(route('password.confirm'))
+    }
 
     return (
         <Guest title="Confirm Password">
@@ -73,5 +73,5 @@ export default () => {
                 </div>
             </form>
         </Guest>
-    );
-};
+    )
+}

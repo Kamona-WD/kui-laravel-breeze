@@ -23,7 +23,7 @@ export default defineComponent({
         });
 
         const submit = () => {
-            form.post(route('password.update'), {
+            form.post(route('password.store'), {
                 onFinish: () => form.reset('password', 'password_confirmation'),
             });
         };
