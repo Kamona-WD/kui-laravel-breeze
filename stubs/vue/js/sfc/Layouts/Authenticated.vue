@@ -1,8 +1,20 @@
+<script setup>
+import { Head } from '@inertiajs/inertia-vue3'
+import Sidebar from '@/Components/Sidebar/Sidebar.vue'
+import Navbar from '@/Components/Navbar.vue'
+import PageFooter from '@/Components/PageFooter.vue'
+import { sidebarState } from '@/Composables'
+
+defineProps({
+    title: String
+})
+</script>
+
 <template>
     <Head :title="title"></Head>
 
     <div
-        class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-100"
+        class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-100"
     >
         <!-- Sidebar -->
         <Sidebar />
@@ -36,15 +48,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { Head } from '@inertiajs/inertia-vue3'
-import Sidebar from '@/Components/Sidebar/Sidebar.vue'
-import Navbar from '@/Components/Navbar.vue'
-import PageFooter from '@/Components/PageFooter.vue'
-import { sidebarState } from '@/Composables'
-
-defineProps({
-    title: String
-})
-</script>

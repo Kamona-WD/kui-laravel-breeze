@@ -1,8 +1,21 @@
+<script setup>
+import { Head, Link } from '@inertiajs/inertia-vue3'
+import { MoonIcon, SunIcon } from '@heroicons/vue/outline'
+import ApplicationLogo from '@/Components/ApplicationLogo.vue'
+import PageFooter from '@/Components/PageFooter.vue'
+import Button from '@/Components/Button.vue'
+import { toggleDarkMode, isDark } from '@/Composables'
+
+defineProps({
+    title: String
+})
+</script>
+
 <template>
     <Head :title="title" />
-    
+
     <div
-        class="flex flex-col items-center justify-center min-h-screen gap-4 py-6 bg-gray-100  dark:bg-dark-bg"
+        class="flex flex-col items-center justify-center min-h-screen gap-4 py-6 bg-gray-100 dark:bg-dark-eval-0"
     >
         <div class="flex-shrink-0">
             <Link href="/">
@@ -44,16 +57,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3'
-import { MoonIcon, SunIcon } from '@heroicons/vue/outline'
-import ApplicationLogo from '@/Components/ApplicationLogo.vue'
-import PageFooter from '@/Components/PageFooter.vue'
-import Button from '@/Components/Button.vue'
-import { toggleDarkMode, isDark } from '@/Composables'
-
-defineProps({
-    title: String
-})
-</script>

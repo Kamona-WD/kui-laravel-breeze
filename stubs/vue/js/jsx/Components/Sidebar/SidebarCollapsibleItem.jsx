@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { defineComponent } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     props: {
@@ -16,7 +16,7 @@ export default defineComponent({
     },
 
     setup(props, { attrs }) {
-        const Tag = props.external ? 'a' : Link;
+        const Tag = props.external ? 'a' : Link
 
         return () => (
             <li
@@ -41,6 +41,6 @@ export default defineComponent({
                     {props.title}
                 </Tag>
             </li>
-        );
+        )
     },
-});
+})

@@ -8,10 +8,10 @@ export default ({ errors }) => {
 
                 <ul className="mt-3 text-sm text-red-600 list-disc list-inside">
                     {Object.keys(errors).map(function (key, index) {
-                        return <li key={index}>{errors[key]}</li>;
+                        return <li key={index}>{errors[key]}</li>
                     })}
                 </ul>
             </div>
         )
-    );
-};
+    )
+}

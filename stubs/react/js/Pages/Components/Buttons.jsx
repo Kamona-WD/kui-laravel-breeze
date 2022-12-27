@@ -1,6 +1,6 @@
-import Button from '@/Components/Button';
-import Authenticated from '@/Layouts/Authenticated';
-import { HomeIcon } from '@heroicons/react/outline';
+import Button from '@/Components/Button'
+import Authenticated from '@/Layouts/Authenticated'
+import { HomeIcon } from '@heroicons/react/outline'
 
 export default (props) => {
     const variants = [
@@ -11,9 +11,9 @@ export default (props) => {
         'warning',
         'info',
         'black',
-    ];
+    ]
 
-    const sizes = ['sm', 'base', 'lg'];
+    const sizes = ['sm', 'base', 'lg']
 
     return (
         <Authenticated
@@ -107,5 +107,5 @@ export default (props) => {
                 </div>
             </div>
         </Authenticated>
-    );
-};
+    )
+}

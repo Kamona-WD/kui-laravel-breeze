@@ -1,3 +1,30 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+import { sidebarState } from '@/Composables'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
+
+const props = defineProps({
+    href: {
+        type: String,
+        required: false,
+    },
+    active: {
+        type: Boolean,
+        default: false,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    external: {
+        type: Boolean,
+        default: false,
+    },
+})
+
+const Tag = !props.external ? Link : 'a'
+</script>
+
 <template>
     <component
         :is="Tag"
@@ -50,30 +77,3 @@
         <slot name="arrow" />
     </button>
 </template>
-
-<script setup>
-import { Link } from '@inertiajs/inertia-vue3'
-import { sidebarState } from '@/Composables'
-import { EmptyCircleIcon } from '@/Components/Icons/outline'
-
-const props = defineProps({
-    href: {
-        type: String,
-        required: false,
-    },
-    active: {
-        type: Boolean,
-        default: false,
-    },
-    title: {
-        type: String,
-        required: true,
-    },
-    external: {
-        type: Boolean,
-        default: false,
-    },
-});
-
-const Tag = !props.external ? Link : "a"
-</script>

@@ -1,9 +1,9 @@
-import { defineComponent } from 'vue';
-import { Head } from '@inertiajs/inertia-vue3';
-import Sidebar from '@/Components/Sidebar/Sidebar';
-import Navbar from '@/Components/Navbar/Navbar';
-import PageFooter from '@/Components/PageFooter';
-import { sidebarState } from '@/Composables';
+import { defineComponent } from 'vue'
+import { Head } from '@inertiajs/inertia-vue3'
+import Sidebar from '@/Components/Sidebar/Sidebar'
+import Navbar from '@/Components/Navbar/Navbar'
+import PageFooter from '@/Components/PageFooter'
+import { sidebarState } from '@/Composables'
 
 export default defineComponent({
     props: {
@@ -15,7 +15,7 @@ export default defineComponent({
             <>
                 <Head title={props.title} />
 
-                <div class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-100">
+                <div class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-100">
                     <Sidebar />
 
                     <div
@@ -44,6 +44,6 @@ export default defineComponent({
                     </div>
                 </div>
             </>
-        );
+        )
     },
-});
+})

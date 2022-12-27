@@ -1,8 +1,8 @@
-import { defineComponent } from "vue";
-import AuthenticatedLayout from "@/Layouts/Authenticated";
-import Button from "@/Components/Button";
-import { GithubIcon } from "@/Components/Icons/brands";
-import { HomeIcon } from "@heroicons/vue/outline";
+import { defineComponent } from 'vue'
+import AuthenticatedLayout from '@/Layouts/Authenticated'
+import Button from '@/Components/Button'
+import { GithubIcon } from '@/Components/Icons/brands'
+import { HomeIcon } from '@heroicons/vue/outline'
 
 const Header = defineComponent({
     setup() {
@@ -28,23 +28,23 @@ const Header = defineComponent({
                     )}
                 </Button>
             </div>
-        );
+        )
     },
-});
+})
 
 export default defineComponent({
     setup() {
         let buttonsVariants = [
-            "primary",
-            "secondary",
-            "success",
-            "danger",
-            "warning",
-            "info",
-            "black",
-        ];
+            'primary',
+            'secondary',
+            'success',
+            'danger',
+            'warning',
+            'info',
+            'black',
+        ]
 
-        let buttonSizes = ["sm", "base", "lg"];
+        let buttonSizes = ['sm', 'base', 'lg']
 
         return () => (
             <AuthenticatedLayout
@@ -128,6 +128,6 @@ export default defineComponent({
                     ))}
                 </div>
             </AuthenticatedLayout>
-        );
+        )
     },
-});
+})

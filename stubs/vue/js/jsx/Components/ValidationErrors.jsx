@@ -1,11 +1,11 @@
-import { defineComponent, computed } from 'vue';
-import { usePage } from '@inertiajs/inertia-vue3';
+import { defineComponent, computed } from 'vue'
+import { usePage } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     setup() {
-        const errors = computed(() => usePage().props.value.errors);
+        const errors = computed(() => usePage().props.value.errors)
 
-        const hasErrors = computed(() => Object.keys(errors.value).length > 0);
+        const hasErrors = computed(() => Object.keys(errors.value).length > 0)
 
         return () => (
             <div>
@@ -25,6 +25,6 @@ export default defineComponent({
                     </>
                 )}
             </div>
-        );
+        )
     },
-});
+})

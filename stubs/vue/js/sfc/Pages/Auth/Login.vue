@@ -1,3 +1,32 @@
+<script setup>
+import { Link, useForm } from '@inertiajs/inertia-vue3'
+import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Button from '@/Components/Button.vue'
+import Checkbox from '@/Components/Checkbox.vue'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+
+defineProps({
+    canResetPassword: Boolean,
+    status: String,
+})
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false
+})
+
+const submit = () => {
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    })
+}
+</script>
+
 <template>
     <GuestLayout title="Log in">
         <ValidationErrors class="mb-4" />
@@ -56,32 +85,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { Link, useForm } from '@inertiajs/inertia-vue3'
-import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/vue/outline'
-import InputIconWrapper from '@/Components/InputIconWrapper.vue'
-import Button from '@/Components/Button.vue'
-import Checkbox from '@/Components/Checkbox.vue'
-import GuestLayout from '@/Layouts/Guest.vue'
-import Input from '@/Components/Input.vue'
-import Label from '@/Components/Label.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
-
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-})
-
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false
-})
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    })
-}
-</script>

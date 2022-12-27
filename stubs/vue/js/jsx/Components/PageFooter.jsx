@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import { HeartIcon } from '@heroicons/vue/solid';
+import { defineComponent } from 'vue'
+import { HeartIcon } from '@heroicons/vue/solid'
 
 export default defineComponent({
     setup() {
@@ -21,6 +21,6 @@ export default defineComponent({
                     </a>
                 </p>
             </footer>
-        );
+        )
     },
-});
+})

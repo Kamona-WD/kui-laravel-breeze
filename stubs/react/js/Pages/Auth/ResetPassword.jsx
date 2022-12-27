@@ -1,36 +1,36 @@
-import { useEffect } from "react";
-import { useForm } from "@inertiajs/inertia-react";
-import { MailIcon, LockClosedIcon } from "@heroicons/react/outline";
-import Guest from "@/Layouts/Guest";
-import ValidationErrors from "@/Components/ValidationErrors";
-import InputIconWrapper from "@/Components/InputIconWrapper";
-import Label from "@/Components/Label";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
+import { useEffect } from 'react'
+import { useForm } from '@inertiajs/inertia-react'
+import { MailIcon, LockClosedIcon } from '@heroicons/react/outline'
+import Guest from '@/Layouts/Guest'
+import ValidationErrors from '@/Components/ValidationErrors'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Label from '@/Components/Label'
+import Input from '@/Components/Input'
+import Button from '@/Components/Button'
 
 export default ({ token, email }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,
-        password: "",
-        password_confirmation: "",
-    });
+        password: '',
+        password_confirmation: '',
+    })
 
     useEffect(() => {
         return () => {
-            reset("password", "password_confirmation");
-        };
-    }, []);
+            reset('password', 'password_confirmation')
+        }
+    }, [])
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+        setData(event.target.name, event.target.value)
+    }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("password.update"));
-    };
+        post(route('password.store'))
+    }
 
     return (
         <Guest title="Reset Password">
@@ -123,5 +123,5 @@ export default ({ token, email }) => {
                 </div>
             </form>
         </Guest>
-    );
-};
+    )
+}

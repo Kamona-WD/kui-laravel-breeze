@@ -1,13 +1,13 @@
-import { defineComponent } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Button from '@/Components/Button';
+import { defineComponent } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
+import ApplicationLogo from '@/Components/ApplicationLogo'
+import Button from '@/Components/Button'
 import {
     MenuFoldLineLeftIcon,
     MenuFoldLineRightIcon,
-} from '@/Components/Icons/outline';
-import { XIcon } from '@heroicons/vue/outline';
-import { sidebarState } from '@/Composables';
+} from '@/Components/Icons/outline'
+import { XIcon } from '@heroicons/vue/outline'
+import { sidebarState } from '@/Composables'
 
 export default defineComponent({
     setup() {
@@ -27,7 +27,7 @@ export default defineComponent({
                     type="button"
                     v-show={sidebarState.isOpen || sidebarState.isHovered}
                     onClick={() => {
-                        sidebarState.isOpen = !sidebarState.isOpen;
+                        sidebarState.isOpen = !sidebarState.isOpen
                     }}
                     srText={
                         sidebarState.isOpen ? 'Close sidebar' : 'Open sidebar'
@@ -55,6 +55,6 @@ export default defineComponent({
                     )}
                 </Button>
             </div>
-        );
+        )
     },
-});
+})

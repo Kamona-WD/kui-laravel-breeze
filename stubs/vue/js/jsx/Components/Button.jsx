@@ -1,5 +1,5 @@
-import { defineComponent, toRefs, computed } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { defineComponent, toRefs, computed } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     props: {
@@ -15,7 +15,7 @@ export default defineComponent({
                     'warning',
                     'info',
                     'black',
-                ].includes(value);
+                ].includes(value)
             },
         },
         type: {
@@ -26,7 +26,7 @@ export default defineComponent({
             type: String,
             default: 'base',
             validator(value) {
-                return ['sm', 'base', 'lg'].includes(value);
+                return ['sm', 'base', 'lg'].includes(value)
             },
         },
         squared: {
@@ -71,13 +71,13 @@ export default defineComponent({
             iconOnly,
             srText,
             external,
-        } = props;
+        } = props
 
-        const { disabled } = toRefs(props);
+        const { disabled } = toRefs(props)
 
         const baseClasses = [
             'inline-flex items-center transition-colors font-medium select-none disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-dark-eval-2',
-        ];
+        ]
 
         const variantClasses = (variant) => ({
             'bg-purple-500 text-white hover:bg-purple-600 focus:ring-purple-500':
@@ -94,7 +94,7 @@ export default defineComponent({
                 variant == 'info',
             'bg-black text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-black dark:hover:bg-dark-eval-3':
                 variant == 'black',
-        });
+        })
 
         const classes = computed(() => [
             ...baseClasses,
@@ -117,7 +117,7 @@ export default defineComponent({
             {
                 'pointer-events-none opacity-50': href && disabled.value,
             },
-        ]);
+        ])
 
         const iconSizeClasses = [
             {
@@ -125,18 +125,18 @@ export default defineComponent({
                 'w-6 h-6': size == 'base',
                 'w-7 h-7': size == 'lg',
             },
-        ];
+        ]
 
         const handleClick = (e) => {
             if (disabled.value) {
-                e.preventDefault();
-                e.stopPropagation();
-                return;
+                e.preventDefault()
+                e.stopPropagation()
+                return
             }
-            emit('click', e);
-        };
+            emit('click', e)
+        }
 
-        const Tag = external ? 'a' : Link;
+        const Tag = external ? 'a' : Link
 
         if (href) {
             return () => (
@@ -148,7 +148,7 @@ export default defineComponent({
                     {srText && <span class="sr-only">{srText}</span>}
                     {slots.default?.({ iconSizeClasses })}
                 </Tag>
-            );
+            )
         }
 
         return () => (
@@ -161,6 +161,6 @@ export default defineComponent({
                 {srText && <span class="sr-only">{srText}</span>}
                 {slots.default?.({ iconSizeClasses })}
             </button>
-        );
+        )
     },
-});
+})

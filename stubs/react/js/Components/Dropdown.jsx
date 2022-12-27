@@ -1,9 +1,9 @@
-import { Link } from "@inertiajs/inertia-react";
-import { Transition } from "@headlessui/react";
-import { Menu } from "@headlessui/react";
+import { Link } from '@inertiajs/inertia-react'
+import { Transition } from '@headlessui/react'
+import { Menu } from '@headlessui/react'
 
-const Item = ({ href, title, method = "GET", as }) => {
-    const baseClasses = `block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out focus:outline-none dark:focus:text-white dark:focus:bg-dark-eval-3 dark:text-gray-400`;
+const Item = ({ href, title, method = 'GET', as }) => {
+    const baseClasses = `block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out focus:outline-none dark:focus:text-white dark:focus:bg-dark-eval-3 dark:text-gray-400`
 
     return (
         <Menu.Item>
@@ -14,35 +14,35 @@ const Item = ({ href, title, method = "GET", as }) => {
                     as={as}
                     className={`${baseClasses} ${
                         active &&
-                        "bg-gray-100 dark:text-gray-200 dark:bg-dark-eval-3"
-                    } ${disabled && "pointer-events-none"}`}
+                        'bg-gray-100 dark:text-gray-200 dark:bg-dark-eval-3'
+                    } ${disabled && 'pointer-events-none'}`}
                 >
                     {title}
                 </Link>
             )}
         </Menu.Item>
-    );
-};
+    )
+}
 
 const Dropdown = ({
     children,
     trigger,
-    align = "right",
-    width = "48",
-    contentClasses = "py-1 bg-white",
+    align = 'right',
+    width = '48',
+    contentClasses = 'py-1 bg-white',
 }) => {
-    let alignmentClasses = "origin-top";
+    let alignmentClasses = 'origin-top'
 
-    if (align === "left") {
-        alignmentClasses = "origin-top-left left-0";
-    } else if (align === "right") {
-        alignmentClasses = "origin-top-right right-0";
+    if (align === 'left') {
+        alignmentClasses = 'origin-top-left left-0'
+    } else if (align === 'right') {
+        alignmentClasses = 'origin-top-right right-0'
     }
 
-    let widthClasses = "";
+    let widthClasses = ''
 
-    if (width === "48") {
-        widthClasses = "w-48";
+    if (width === '48') {
+        widthClasses = 'w-48'
     }
 
     return (
@@ -68,8 +68,8 @@ const Dropdown = ({
                 </Menu.Items>
             </Transition>
         </Menu>
-    );
-};
+    )
+}
 
-Dropdown.Item = Item;
-export default Dropdown;
+Dropdown.Item = Item
+export default Dropdown

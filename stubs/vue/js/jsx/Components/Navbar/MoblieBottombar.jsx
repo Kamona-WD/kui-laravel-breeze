@@ -1,9 +1,9 @@
-import { defineComponent } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
-import { SearchIcon, MenuIcon, XIcon } from '@heroicons/vue/outline';
-import { scrolling, sidebarState } from '@/Composables';
-import Button from '@/Components/Button';
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import { defineComponent } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
+import { SearchIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { scrolling, sidebarState } from '@/Composables'
+import Button from '@/Components/Button'
+import ApplicationLogo from '@/Components/ApplicationLogo'
 
 export default defineComponent({
     setup() {
@@ -41,7 +41,7 @@ export default defineComponent({
                     variant="secondary"
                     type="button"
                     onClick={() => {
-                        sidebarState.isOpen = !sidebarState.isOpen;
+                        sidebarState.isOpen = !sidebarState.isOpen
                     }}
                     class="md:hidden"
                     srText="Search"
@@ -62,6 +62,6 @@ export default defineComponent({
                     )}
                 </Button>
             </div>
-        );
+        )
     },
-});
+})

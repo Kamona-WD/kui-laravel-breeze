@@ -1,11 +1,11 @@
-import PerfectScrollbar from '@/Components/PerfectScrollbar';
-import { DashboardIcon } from '@/Components/Icons/outline';
+import PerfectScrollbar from '@/Components/PerfectScrollbar'
+import { DashboardIcon } from '@/Components/Icons/outline'
 import {
     SidebarLink,
     SidebarCollapsibleItem,
     SidebarCollapsible,
-} from '@/Components/Sidebar/Sidebar';
-import { TemplateIcon } from '@heroicons/react/outline';
+} from '@/Components/Sidebar/Sidebar'
+import { TemplateIcon } from '@heroicons/react/outline'
 
 export default () => {
     return (
@@ -37,5 +37,5 @@ export default () => {
                 />
             </SidebarCollapsible>
         </PerfectScrollbar>
-    );
-};
+    )
+}

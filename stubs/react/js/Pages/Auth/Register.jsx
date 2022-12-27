@@ -1,46 +1,46 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 import {
     UserIcon,
     MailIcon,
     LockClosedIcon,
     UserAddIcon,
-} from "@heroicons/react/outline";
-import { Link, useForm } from "@inertiajs/inertia-react";
-import Guest from "@/Layouts/Guest";
-import ValidationErrors from "@/Components/ValidationErrors";
-import InputIconWrapper from "@/Components/InputIconWrapper";
-import Label from "@/Components/Label";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
+} from '@heroicons/react/outline'
+import { Link, useForm } from '@inertiajs/inertia-react'
+import Guest from '@/Layouts/Guest'
+import ValidationErrors from '@/Components/ValidationErrors'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Label from '@/Components/Label'
+import Input from '@/Components/Input'
+import Button from '@/Components/Button'
 
 export default () => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-    });
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+    })
 
     useEffect(() => {
         return () => {
-            reset("password", "password_confirmation");
-        };
-    }, []);
+            reset('password', 'password_confirmation')
+        }
+    }, [])
 
     const onHandleChange = (event) => {
         setData(
             event.target.name,
-            event.target.type === "checkbox"
+            event.target.type === 'checkbox'
                 ? event.target.checked
                 : event.target.value
-        );
-    };
+        )
+    }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("register"));
-    };
+        post(route('register'))
+    }
 
     return (
         <Guest title="Register">
@@ -166,9 +166,9 @@ export default () => {
 
                     {/* Login link */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Already have an account?{" "}
+                        Already have an account?{' '}
                         <Link
-                            href={route("login")}
+                            href={route('login')}
                             className="text-blue-500 hover:underline"
                         >
                             Login
@@ -177,5 +177,5 @@ export default () => {
                 </div>
             </form>
         </Guest>
-    );
-};
+    )
+}

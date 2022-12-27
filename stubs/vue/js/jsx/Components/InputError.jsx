@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
     props: {
@@ -12,6 +12,6 @@ export default defineComponent({
                     <p class="text-sm text-red-600">{props.message}</p>
                 )}
             </>
-        );
+        )
     },
-});
+})
