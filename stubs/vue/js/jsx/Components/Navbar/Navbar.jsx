@@ -1,24 +1,24 @@
-import { defineComponent, onMounted, onUnmounted } from 'vue';
-import { usePage } from '@inertiajs/inertia-vue3';
-import { useFullscreen } from '@vueuse/core';
-import MoblieBottombar from '@/Components/Navbar/MoblieBottombar';
-import { SunIcon, MoonIcon, ArrowsExpandIcon } from '@heroicons/vue/outline';
-import { handleScroll, isDark, scrolling, toggleDarkMode } from '@/Composables';
-import Button from '@/Components/Button';
-import { Dropdown, DropdownLink } from '@/Components/Dropdown';
-import { ArrowsInnerIcon } from '@/Components/Icons/outline';
+import { defineComponent, onMounted, onUnmounted } from 'vue'
+import { usePage } from '@inertiajs/inertia-vue3'
+import { useFullscreen } from '@vueuse/core'
+import MoblieBottombar from '@/Components/Navbar/MoblieBottombar'
+import { SunIcon, MoonIcon, ArrowsExpandIcon } from '@heroicons/vue/outline'
+import { handleScroll, isDark, scrolling, toggleDarkMode } from '@/Composables'
+import Button from '@/Components/Button'
+import { Dropdown, DropdownLink } from '@/Components/Dropdown'
+import { ArrowsInnerIcon } from '@/Components/Icons/outline'
 
 export default defineComponent({
     setup() {
-        const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
+        const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
 
         onMounted(() => {
-            document.addEventListener('scroll', handleScroll);
-        });
+            document.addEventListener('scroll', handleScroll)
+        })
 
         onUnmounted(() => {
-            document.removeEventListener('scroll', handleScroll);
-        });
+            document.removeEventListener('scroll', handleScroll)
+        })
         return () => (
             <>
                 <nav
@@ -152,6 +152,6 @@ export default defineComponent({
 
                 <MoblieBottombar />
             </>
-        );
+        )
     },
-});
+})

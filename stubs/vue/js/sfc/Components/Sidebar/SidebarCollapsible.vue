@@ -1,3 +1,42 @@
+<script setup>
+import { ref } from 'vue'
+import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
+import { sidebarState } from '@/Composables'
+
+const props = defineProps({
+    title: {
+        type: String,
+    },
+    icon: {
+        required: false,
+    },
+    active: {
+        type: Boolean,
+    },
+})
+
+const { active } = props
+
+const isOpen = ref(active)
+
+const beforeEnter = (el) => {
+    el.style.maxHeight = `0px`
+}
+
+const enter = (el) => {
+    el.style.maxHeight = `${el.scrollHeight}px`
+}
+
+const beforeLeave = (el) => {
+    el.style.maxHeight = `${el.scrollHeight}px`
+}
+
+const leave = (el) => {
+    el.style.maxHeight = `0px`
+}
+</script>
+
 <template>
     <div class="relative">
         <SidebarLink @click="isOpen = !isOpen" :title="title" :active="active">
@@ -56,7 +95,7 @@
                 class="overflow-hidden transition-all duration-200 max-h-0"
             >
                 <ul
-                    class="relative px-0 pt-2 pb-0 ml-5  before:w-0 before:block before:absolute before:inset-y-0 before:left-0 before:border-l-2 before:border-l-gray-200 dark:before:border-l-gray-600"
+                    class="relative px-0 pt-2 pb-0 ml-5 before:w-0 before:block before:absolute before:inset-y-0 before:left-0 before:border-l-2 before:border-l-gray-200 dark:before:border-l-gray-600"
                 >
                     <slot />
                 </ul>
@@ -64,42 +103,3 @@
         </transition>
     </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
-import { EmptyCircleIcon } from '@/Components/Icons/outline'
-import { sidebarState } from '@/Composables'
-
-const props = defineProps({
-    title: {
-            type: String,
-    },
-    icon: {
-        required: false,
-    },
-    active: {
-        type: Boolean,
-    }
-})
-
-const { active } = props
-
-const isOpen = ref(active)
-
-const beforeEnter = (el) => {
-    el.style.maxHeight = `0px`
-}
-
-const enter = (el) => {
-    el.style.maxHeight = `${el.scrollHeight}px`
-}
-
-const beforeLeave = (el) => {
-    el.style.maxHeight = `${el.scrollHeight}px`
-}
-
-const leave = (el) => {
-    el.style.maxHeight = `0px`
-}
-</script>

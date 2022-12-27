@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
     props: {
@@ -10,6 +10,6 @@ export default defineComponent({
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {props.value ? <span>{props.value}</span> : slots.default?.()}
             </label>
-        );
+        )
     },
-});
+})

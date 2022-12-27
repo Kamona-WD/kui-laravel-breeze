@@ -1,6 +1,6 @@
-import { defineComponent, Transition, computed } from 'vue';
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { defineComponent, Transition, computed } from 'vue'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export const DropdownLink = defineComponent({
     props: {
@@ -26,9 +26,9 @@ export const DropdownLink = defineComponent({
                     </Link>
                 )}
             </MenuItem>
-        );
+        )
     },
-});
+})
 
 export const Dropdown = defineComponent({
     props: {
@@ -47,18 +47,18 @@ export const Dropdown = defineComponent({
         const widthClass = computed(() => {
             return {
                 48: 'w-48',
-            }[props.width.toString()];
-        });
+            }[props.width.toString()]
+        })
 
         const alignmentClasses = computed(() => {
             if (props.align === 'left') {
-                return 'origin-top-left left-0';
+                return 'origin-top-left left-0'
             } else if (props.align === 'right') {
-                return 'origin-top-right right-0';
+                return 'origin-top-right right-0'
             } else {
-                return 'origin-top';
+                return 'origin-top'
             }
-        });
+        })
 
         return () => (
             <Menu as="div" class="relative">
@@ -90,6 +90,6 @@ export const Dropdown = defineComponent({
                     </MenuItems>
                 </Transition>
             </Menu>
-        );
+        )
     },
-});
+})

@@ -8,6 +8,7 @@
         >
             <slot name="icon" />
         </div>
+
         <slot />
     </div>
 </template>

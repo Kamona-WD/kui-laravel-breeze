@@ -1,41 +1,41 @@
-import { useEffect } from "react";
-import { Link, useForm } from "@inertiajs/inertia-react";
-import { MailIcon, LockClosedIcon, LoginIcon } from "@heroicons/react/outline";
-import Guest from "@/Layouts/Guest";
-import ValidationErrors from "@/Components/ValidationErrors";
-import InputIconWrapper from "@/Components/InputIconWrapper";
-import Label from "@/Components/Label";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
-import Checkbox from "@/Components/Checkbox";
+import { useEffect } from 'react'
+import { Link, useForm } from '@inertiajs/inertia-react'
+import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/react/outline'
+import Guest from '@/Layouts/Guest'
+import ValidationErrors from '@/Components/ValidationErrors'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Label from '@/Components/Label'
+import Input from '@/Components/Input'
+import Button from '@/Components/Button'
+import Checkbox from '@/Components/Checkbox'
 
 export default ({ status, canResetPassword }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
-        password: "",
-        remember: "",
-    });
+        email: '',
+        password: '',
+        remember: '',
+    })
 
     useEffect(() => {
         return () => {
-            reset("password");
-        };
-    }, []);
+            reset('password')
+        }
+    }, [])
 
     const onHandleChange = (event) => {
         setData(
             event.target.name,
-            event.target.type === "checkbox"
+            event.target.type === 'checkbox'
                 ? event.target.checked
                 : event.target.value
-        );
-    };
+        )
+    }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("login"));
-    };
+        post(route('login'))
+    }
 
     return (
         <Guest title="Log in">
@@ -115,7 +115,7 @@ export default ({ status, canResetPassword }) => {
 
                         {canResetPassword && (
                             <Link
-                                href={route("password.request")}
+                                href={route('password.request')}
                                 className="text-blue-500 ext-sm hover:underline"
                             >
                                 Forgot your password?
@@ -134,9 +134,9 @@ export default ({ status, canResetPassword }) => {
 
                     {/* Register link */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Don't have an account?{" "}
+                        Don't have an account?{' '}
                         <Link
-                            href={route("register")}
+                            href={route('register')}
                             className="text-blue-500 hover:underline"
                         >
                             Register
@@ -145,5 +145,5 @@ export default ({ status, canResetPassword }) => {
                 </div>
             </form>
         </Guest>
-    );
-};
+    )
+}

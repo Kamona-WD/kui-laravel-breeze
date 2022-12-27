@@ -1,26 +1,26 @@
-import { useEffect, useRef } from "react";
-import PerfectScrollbar from "perfect-scrollbar";
+import { useEffect, useRef } from 'react'
+import PerfectScrollbar from 'perfect-scrollbar'
 
 export default (props) => {
-    const { tag: Tag = "div" } = props;
+    const { tag: Tag = 'div' } = props
 
-    const el = useRef();
+    const el = useRef()
 
-    let ps = null;
+    let ps = null
 
     const update = () => {
         if (ps) {
-            ps.update();
+            ps.update()
         }
-    };
+    }
 
     useEffect(() => {
-        ps = new PerfectScrollbar(el.current, props.settings || {});
+        ps = new PerfectScrollbar(el.current, props.settings || {})
 
         return () => {
-            ps.destroy();
-        };
-    }, []);
+            ps.destroy()
+        }
+    }, [])
 
     return (
         <Tag
@@ -30,5 +30,5 @@ export default (props) => {
         >
             {props.children}
         </Tag>
-    );
-};
+    )
+}

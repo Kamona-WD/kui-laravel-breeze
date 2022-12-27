@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import { GlobalContext } from '@/Layouts/Authenticated';
-import { SunIcon, MoonIcon, ArrowsExpandIcon } from '@heroicons/react/outline';
-import Button from '@/Components/Button';
-import Dropdown from '@/Components/Dropdown';
-import MobileBottomBar from '@/Components/Navbar/MobileBottomBar';
+import { useContext } from 'react'
+import { GlobalContext } from '@/Layouts/Authenticated'
+import { SunIcon, MoonIcon } from '@heroicons/react/outline'
+import Button from '@/Components/Button'
+import Dropdown from '@/Components/Dropdown'
+import MobileBottomBar from '@/Components/Navbar/MobileBottomBar'
 
 export default ({ auth }) => {
     const { isScrollDown, isScrollUp, isDark, setDarkMode } =
-        useContext(GlobalContext);
+        useContext(GlobalContext)
 
     return (
         <>
@@ -26,7 +26,7 @@ export default ({ auth }) => {
                         className="md:hidden"
                         srText="Toggle dark mode"
                         onClick={() => {
-                            setDarkMode(!isDark);
+                            setDarkMode(!isDark)
                         }}
                     >
                         {isDark ? (
@@ -45,7 +45,7 @@ export default ({ auth }) => {
                         className="hidden md:inline-flex"
                         srText="Toggle dark mode"
                         onClick={() => {
-                            setDarkMode(!isDark);
+                            setDarkMode(!isDark)
                         }}
                     >
                         {isDark ? (
@@ -91,5 +91,5 @@ export default ({ auth }) => {
 
             <MobileBottomBar />
         </>
-    );
-};
+    )
+}

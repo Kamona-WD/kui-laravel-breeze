@@ -4,8 +4,8 @@ import {
     onUnmounted,
     ref,
     withModifiers,
-} from 'vue';
-import PerfectScrollbar from 'perfect-scrollbar';
+} from 'vue'
+import PerfectScrollbar from 'perfect-scrollbar'
 
 export default defineComponent({
     props: {
@@ -20,25 +20,25 @@ export default defineComponent({
     },
 
     setup(props, { slots }) {
-        const { settings, tagname: Tag } = props;
+        const { settings, tagname: Tag } = props
 
-        let ps = null;
+        let ps = null
 
         const update = () => {
             if (ps) {
-                ps.update();
+                ps.update()
             }
-        };
+        }
 
-        const el = ref(null);
+        const el = ref(null)
 
         onMounted(() => {
-            ps = new PerfectScrollbar(el.value, settings);
-        });
+            ps = new PerfectScrollbar(el.value, settings)
+        })
 
         onUnmounted(() => {
-            ps.destroy();
-        });
+            ps.destroy()
+        })
 
         return () => (
             <Tag
@@ -48,6 +48,6 @@ export default defineComponent({
             >
                 {slots.default?.()}
             </Tag>
-        );
+        )
     },
-});
+})

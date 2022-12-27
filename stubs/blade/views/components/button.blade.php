@@ -1,4 +1,13 @@
-@props(['variant' => 'primary', 'iconOnly' => false, 'srText' => '', 'href' => false, 'size' => 'base', 'disabled' => false, 'pill' => false, 'squared' => false])
+@props([
+    'variant' => 'primary',
+    'iconOnly' => false,
+    'srText' => '',
+    'href' => false,
+    'size' => 'base',
+    'disabled' => false,
+    'pill' => false,
+    'squared' => false
+])
 
 @php
 
@@ -49,7 +58,7 @@
         $classes .= ' rounded-md';
     } else if ($pill) {
         $classes .= ' rounded-full';
-        
+
     }
 
 @endphp

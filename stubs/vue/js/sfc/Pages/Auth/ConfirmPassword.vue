@@ -1,3 +1,24 @@
+<script setup>
+import { useForm } from '@inertiajs/inertia-vue3'
+import { LockClosedIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper.vue'
+import Button from '@/Components/Button.vue'
+import GuestLayout from '@/Layouts/Guest.vue'
+import Input from '@/Components/Input.vue'
+import Label from '@/Components/Label.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+
+const form = useForm({
+    password: ''
+})
+
+const submit = () => {
+    form.post(route('password.confirm'), {
+        onFinish: () => form.reset(),
+    })
+}
+</script>
+
 <template>
     <GuestLayout title="Confirm Password">
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
@@ -27,24 +48,3 @@
         </form>
     </GuestLayout>
 </template>
-
-<script setup>
-import { useForm } from '@inertiajs/inertia-vue3';
-import { LockClosedIcon } from '@heroicons/vue/outline';
-import InputIconWrapper from '@/Components/InputIconWrapper.vue'
-import Button from '@/Components/Button.vue'
-import GuestLayout from '@/Layouts/Guest.vue'
-import Input from '@/Components/Input.vue'
-import Label from '@/Components/Label.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
-
-const form = useForm({
-    password: ''
-})
-
-const submit = () => {
-    form.post(route('password.confirm'), {
-        onFinish: () => form.reset(),
-    })
-}
-</script>

@@ -9,5 +9,5 @@ export default ({ icon, children }) => {
             </div>
             {children}
         </div>
-    );
-};
+    )
+}

@@ -1,20 +1,20 @@
-import { useContext, useState } from 'react';
-import { GlobalContext } from '@/Layouts/Authenticated';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/inertia-react';
-import Button from '@/Components/Button';
+import { useContext, useState } from 'react'
+import { GlobalContext } from '@/Layouts/Authenticated'
+import ApplicationLogo from '@/Components/ApplicationLogo'
+import { Link } from '@inertiajs/inertia-react'
+import Button from '@/Components/Button'
 import {
     MenuFoldLineLeftIcon,
     MenuFoldLineRightIcon,
     EmptyCircleIcon,
-} from '@/Components/Icons/outline';
-import { XIcon } from '@heroicons/react/outline';
-import { Transition } from 'react-transition-group';
-import { Transition as HeadlessTransition } from '@headlessui/react';
-import SidebarContent from '@/Components/Sidebar/SidebarContent';
+} from '@/Components/Icons/outline'
+import { XIcon } from '@heroicons/react/outline'
+import { Transition } from 'react-transition-group'
+import { Transition as HeadlessTransition } from '@headlessui/react'
+import SidebarContent from '@/Components/Sidebar/SidebarContent'
 
 const SidebarOverlay = () => {
-    const { isSidebarOpen, setSidebarOpen } = useContext(GlobalContext);
+    const { isSidebarOpen, setSidebarOpen } = useContext(GlobalContext)
 
     return (
         <>
@@ -30,19 +30,19 @@ const SidebarOverlay = () => {
                 {isSidebarOpen && (
                     <div
                         onClick={() => {
-                            setSidebarOpen(false);
+                            setSidebarOpen(false)
                         }}
                         className="fixed inset-0 z-20 bg-black/50 lg:hidden"
                     ></div>
                 )}
             </HeadlessTransition>
         </>
-    );
-};
+    )
+}
 
 const SidebarHeader = () => {
     const { isSidebarOpen, isSidebarHovered, setSidebarOpen } =
-        useContext(GlobalContext);
+        useContext(GlobalContext)
 
     return (
         <div className="flex items-center justify-between flex-shrink-0 px-3">
@@ -58,7 +58,7 @@ const SidebarHeader = () => {
                     type="button"
                     srText={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
                     onClick={() => {
-                        setSidebarOpen(!isSidebarOpen);
+                        setSidebarOpen(!isSidebarOpen)
                     }}
                 >
                     {isSidebarOpen ? (
@@ -77,8 +77,8 @@ const SidebarHeader = () => {
                 </Button>
             )}
         </div>
-    );
-};
+    )
+}
 
 export const SidebarLink = ({
     href,
@@ -89,15 +89,15 @@ export const SidebarLink = ({
     arrow,
     onClick,
 }) => {
-    const { isSidebarOpen, isSidebarHovered } = useContext(GlobalContext);
+    const { isSidebarOpen, isSidebarHovered } = useContext(GlobalContext)
 
-    let LinkTag = external ? 'a' : Link;
+    let LinkTag = external ? 'a' : Link
 
-    const baseClasses = `p-2 w-full flex items-center gap-2 rounded-md transition-colors`;
+    const baseClasses = `p-2 w-full flex items-center gap-2 rounded-md transition-colors`
     const activeClasses =
-        'text-white bg-purple-500 shadow-lg hover:bg-purple-600';
+        'text-white bg-purple-500 shadow-lg hover:bg-purple-600'
     const unActiveClasses =
-        'text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-dark-eval-2';
+        'text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-dark-eval-2'
 
     if (href) {
         return (
@@ -117,7 +117,7 @@ export const SidebarLink = ({
                     <span className="text-base font-medium">{title}</span>
                 )}
             </LinkTag>
-        );
+        )
     } else {
         return (
             <button
@@ -139,9 +139,9 @@ export const SidebarLink = ({
 
                 {arrow}
             </button>
-        );
+        )
     }
-};
+}
 
 export const SidebarCollapsibleItem = ({
     href,
@@ -150,11 +150,11 @@ export const SidebarCollapsibleItem = ({
     external = false,
     target,
 }) => {
-    const Tag = external ? 'a' : Link;
+    const Tag = external ? 'a' : Link
 
-    const linkBaseClasses = `transition-colors hover:text-gray-900 dark:hover:text-gray-100`;
-    const linkActiveClasses = `text-gray-900 dark:text-gray-200`;
-    const linkInActiveClasses = `text-gray-500 dark:text-gray-400`;
+    const linkBaseClasses = `transition-colors hover:text-gray-900 dark:hover:text-gray-100`
+    const linkActiveClasses = `text-gray-900 dark:text-gray-200`
+    const linkInActiveClasses = `text-gray-500 dark:text-gray-400`
     return (
         <li
             className={`relative leading-8 m-0 pl-6 before:block before:w-4 before:h-0 before:absolute before:left-0 before:top-4 before:border-t-2 before:border-t-gray-200 before:-mt-0.5 last:before:bg-white last:before:h-auto last:before:top-4 last:before:bottom-0 dark:last:before:bg-dark-eval-1 dark:before:border-t-gray-600`}
@@ -169,8 +169,8 @@ export const SidebarCollapsibleItem = ({
                 {title}
             </Tag>
         </li>
-    );
-};
+    )
+}
 
 export const SidebarCollapsible = ({
     title,
@@ -178,8 +178,8 @@ export const SidebarCollapsible = ({
     active = false,
     children,
 }) => {
-    const [isOpen, setOpen] = useState(active);
-    const { isSidebarOpen, isSidebarHovered } = useContext(GlobalContext);
+    const [isOpen, setOpen] = useState(active)
+    const { isSidebarOpen, isSidebarHovered } = useContext(GlobalContext)
 
     return (
         <div className="relative">
@@ -187,7 +187,7 @@ export const SidebarCollapsible = ({
                 active={active}
                 title={title}
                 onClick={() => {
-                    setOpen(!isOpen);
+                    setOpen(!isOpen)
                 }}
                 icon={
                     icon ?? (
@@ -222,16 +222,16 @@ export const SidebarCollapsible = ({
                 appear
                 in={isOpen && (isSidebarOpen || isSidebarHovered)}
                 onEnter={(node) => {
-                    node.style.maxHeight = `0px`;
+                    node.style.maxHeight = `0px`
                 }}
                 onEntered={(node) => {
-                    node.style.maxHeight = `${node.scrollHeight}px`;
+                    node.style.maxHeight = `${node.scrollHeight}px`
                 }}
                 onExit={(node) => {
-                    node.style.maxHeight = `${node.scrollHeight}px`;
+                    node.style.maxHeight = `${node.scrollHeight}px`
                 }}
                 onExited={(node) => {
-                    node.style.maxHeight = `0px`;
+                    node.style.maxHeight = `0px`
                 }}
                 timeout={0}
             >
@@ -244,11 +244,11 @@ export const SidebarCollapsible = ({
                 )}
             </Transition>
         </div>
-    );
-};
+    )
+}
 
 const SidebarFooter = () => {
-    const { isSidebarOpen, setSidebarOpen } = useContext(GlobalContext);
+    const { isSidebarOpen, setSidebarOpen } = useContext(GlobalContext)
 
     return (
         <div className="flex-shrink-0 px-3 lg:hidden">
@@ -257,7 +257,7 @@ const SidebarFooter = () => {
                 variant="secondary"
                 type="button"
                 onClick={() => {
-                    setSidebarOpen(!isSidebarOpen);
+                    setSidebarOpen(!isSidebarOpen)
                 }}
                 srText={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
             >
@@ -274,12 +274,12 @@ const SidebarFooter = () => {
                 )}
             </Button>
         </div>
-    );
-};
+    )
+}
 
 export default () => {
     const { isSidebarOpen, isSidebarHovered, handleSidebarHover } =
-        useContext(GlobalContext);
+        useContext(GlobalContext)
 
     return (
         <>
@@ -307,5 +307,5 @@ export default () => {
                 {isSidebarOpen && <SidebarFooter />}
             </aside>
         </>
-    );
-};
+    )
+}

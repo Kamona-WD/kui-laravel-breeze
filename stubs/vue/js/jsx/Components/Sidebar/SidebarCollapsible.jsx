@@ -1,7 +1,7 @@
-import { defineComponent, ref, Transition } from 'vue';
-import SidebarLink from '@/Components/Sidebar/SidebarLink';
-import { EmptyCircleIcon } from '@/Components/Icons/outline';
-import { sidebarState } from '@/Composables';
+import { defineComponent, ref, Transition } from 'vue'
+import SidebarLink from '@/Components/Sidebar/SidebarLink'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
+import { sidebarState } from '@/Composables'
 
 export default defineComponent({
     props: {
@@ -17,29 +17,29 @@ export default defineComponent({
     },
 
     setup(props, { slots }) {
-        const isOpen = ref(props.active);
+        const isOpen = ref(props.active)
 
         const beforeEnter = (el) => {
-            el.style.maxHeight = `0px`;
-        };
+            el.style.maxHeight = `0px`
+        }
 
         const enter = (el) => {
-            el.style.maxHeight = `${el.scrollHeight}px`;
-        };
+            el.style.maxHeight = `${el.scrollHeight}px`
+        }
 
         const beforeLeave = (el) => {
-            el.style.maxHeight = `${el.scrollHeight}px`;
-        };
+            el.style.maxHeight = `${el.scrollHeight}px`
+        }
 
         const leave = (el) => {
-            el.style.maxHeight = `0px`;
-        };
+            el.style.maxHeight = `0px`
+        }
 
         return () => (
             <div class="relative">
                 <SidebarLink
                     onClick={() => {
-                        isOpen.value = !isOpen.value;
+                        isOpen.value = !isOpen.value
                     }}
                     active={props.active}
                     title={props.title}
@@ -110,6 +110,6 @@ export default defineComponent({
                     </div>
                 </Transition>
             </div>
-        );
+        )
     },
-});
+})

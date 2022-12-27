@@ -1,3 +1,12 @@
+<script setup>
+import PerfectScrollbar from '@/Components/PerfectScrollbar.vue'
+import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
+import { DashboardIcon } from '@/Components/Icons/outline'
+import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible.vue'
+import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem.vue'
+import { TemplateIcon } from '@heroicons/vue/outline'
+</script>
+
 <template>
     <PerfectScrollbar
         tagname="nav"
@@ -10,13 +19,22 @@
             :active="route().current('dashboard')"
         >
             <template #icon>
-                <DashboardIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <DashboardIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
             </template>
         </SidebarLink>
 
-        <SidebarCollapsible title="Components" :active="route().current('components.*')">
+        <SidebarCollapsible
+            title="Components"
+            :active="route().current('components.*')"
+        >
             <template #icon>
-                <TemplateIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <TemplateIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
             </template>
 
             <SidebarCollapsibleItem
@@ -27,7 +45,7 @@
         </SidebarCollapsible>
 
         <!-- Examples -->
-        <!-- 
+        <!--
         => External link example
         <SidebarLink
             title="Github"
@@ -56,12 +74,3 @@
         </SidebarCollapsible>-->
     </PerfectScrollbar>
 </template>
-
-<script setup>
-import PerfectScrollbar from '@/Components/PerfectScrollbar.vue'
-import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
-import { DashboardIcon } from '@/Components/Icons/outline'
-import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible.vue'
-import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem.vue'
-import { TemplateIcon } from "@heroicons/vue/outline";
-</script>

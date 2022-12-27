@@ -6,5 +6,5 @@ export default ({ forInput, value, className, children }) => {
         >
             {value ? value : children}
         </label>
-    );
-};
+    )
+}

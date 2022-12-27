@@ -16,8 +16,8 @@ export const MenuFoldLineRightIcon = (props) => {
                 strokeLinejoin="round"
             />
         </svg>
-    );
-};
+    )
+}
 
 export const MenuFoldLineLeftIcon = (props) => {
     return (
@@ -35,8 +35,8 @@ export const MenuFoldLineLeftIcon = (props) => {
                 strokeLinejoin="round"
             />
         </svg>
-    );
-};
+    )
+}
 
 export const DashboardIcon = (props) => {
     return (
@@ -58,8 +58,8 @@ export const DashboardIcon = (props) => {
                 d="M12 3C9.34784 3 6.8043 4.05357 4.92893 5.92893C3.05357 7.8043 2 10.3478 2 13C2 14.3132 2.25866 15.6136 2.7612 16.8268C3.26375 18.0401 4.00035 19.1425 4.92893 20.0711C5.11647 20.2586 5.37082 20.364 5.63604 20.364H18.364C18.6292 20.364 18.8835 20.2586 19.0711 20.0711C19.9997 19.1425 20.7362 18.0401 21.2388 16.8268C21.7413 15.6136 22 14.3132 22 13C22 10.3478 20.9464 7.8043 19.0711 5.92893C17.1957 4.05357 14.6522 3 12 3ZM6.34315 7.34315C7.84344 5.84285 9.87827 5 12 5C14.1217 5 16.1566 5.84285 17.6569 7.34315C19.1571 8.84344 20 10.8783 20 13C20 14.0506 19.7931 15.0909 19.391 16.0615C19.0406 16.9075 18.5479 17.6861 17.9353 18.364H6.06469C5.45205 17.6861 4.95938 16.9075 4.60896 16.0615C4.20693 15.0909 4 14.0506 4 13C4 10.8783 4.84285 8.84344 6.34315 7.34315Z"
             />
         </svg>
-    );
-};
+    )
+}
 
 export const ArrowsInnerIcon = (props) => {
     return (
@@ -77,8 +77,8 @@ export const ArrowsInnerIcon = (props) => {
                 strokeLinejoin="round"
             />
         </svg>
-    );
-};
+    )
+}
 
 export const EmptyCircleIcon = (props) => {
     return (
@@ -96,5 +96,5 @@ export const EmptyCircleIcon = (props) => {
                 strokeLinejoin="round"
             />
         </svg>
-    );
-};
+    )
+}

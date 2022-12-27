@@ -1,10 +1,10 @@
-import { defineComponent, Transition } from 'vue';
-import { onMounted } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
-import { sidebarState } from '@/Composables';
-import SidebarHeader from '@/Components/Sidebar/SidebarHeader';
-import SidebarContent from '@/Components/Sidebar/SidebarContent';
-import SidebarFooter from '@/Components/Sidebar/SidebarFooter';
+import { defineComponent, Transition } from 'vue'
+import { onMounted } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+import { sidebarState } from '@/Composables'
+import SidebarHeader from '@/Components/Sidebar/SidebarHeader'
+import SidebarContent from '@/Components/Sidebar/SidebarContent'
+import SidebarFooter from '@/Components/Sidebar/SidebarFooter'
 
 const SidebarOverlay = defineComponent({
     setup() {
@@ -20,26 +20,26 @@ const SidebarOverlay = defineComponent({
                 <div
                     v-show={sidebarState.isOpen}
                     onClick={() => {
-                        sidebarState.isOpen = false;
+                        sidebarState.isOpen = false
                     }}
                     class="fixed inset-0 z-20 bg-black/50 lg:hidden"
                 ></div>
             </Transition>
-        );
+        )
     },
-});
+})
 
 export default defineComponent({
     setup() {
         onMounted(() => {
-            window.addEventListener('resize', sidebarState.handleWindowResize);
+            window.addEventListener('resize', sidebarState.handleWindowResize)
 
             Inertia.on('navigate', () => {
                 if (window.innerWidth <= 1024) {
-                    sidebarState.isOpen = false;
+                    sidebarState.isOpen = false
                 }
-            });
-        });
+            })
+        })
 
         return () => (
             <>
@@ -60,10 +60,10 @@ export default defineComponent({
                         },
                     ]}
                     onmouseenter={() => {
-                        sidebarState.handleHover(true);
+                        sidebarState.handleHover(true)
                     }}
                     onmouseleave={() => {
-                        sidebarState.handleHover(false);
+                        sidebarState.handleHover(false)
                     }}
                 >
                     <SidebarHeader />
@@ -71,6 +71,6 @@ export default defineComponent({
                     <SidebarFooter />
                 </aside>
             </>
-        );
+        )
     },
-});
+})

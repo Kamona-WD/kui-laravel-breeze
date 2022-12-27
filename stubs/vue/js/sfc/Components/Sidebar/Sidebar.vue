@@ -1,3 +1,22 @@
+<script setup>
+import { onMounted } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+import { sidebarState } from '@/Composables'
+import SidebarHeader from '@/Components/Sidebar/SidebarHeader.vue'
+import SidebarContent from '@/Components/Sidebar/SidebarContent.vue'
+import SidebarFooter from '@/Components/Sidebar/SidebarFooter.vue'
+
+onMounted(() => {
+    window.addEventListener('resize', sidebarState.handleWindowResize)
+
+    Inertia.on('navigate', () => {
+        if (window.innerWidth <= 1024) {
+            sidebarState.isOpen = false
+        }
+    })
+})
+</script>
+
 <template>
     <transition
         enter-active-class="transition"
@@ -32,26 +51,9 @@
         @mouseleave="sidebarState.handleHover(false)"
     >
         <SidebarHeader />
+
         <SidebarContent />
+
         <SidebarFooter />
     </aside>
 </template>
-
-<script setup>
-import { onMounted } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
-import { sidebarState } from '@/Composables'
-import SidebarHeader from '@/Components/Sidebar/SidebarHeader.vue'
-import SidebarContent from '@/Components/Sidebar/SidebarContent.vue'
-import SidebarFooter from '@/Components/Sidebar/SidebarFooter.vue'
-
-onMounted(() => {
-    window.addEventListener('resize', sidebarState.handleWindowResize)
-
-    Inertia.on('navigate', () => {
-        if (window.innerWidth <= 1024) {
-            sidebarState.isOpen = false
-        }
-    })
-})
-</script>

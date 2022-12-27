@@ -1,3 +1,24 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+
+const props = defineProps({
+    href: String,
+    title: String,
+    active: {
+        type: Boolean,
+        default: false,
+    },
+    external: {
+        type: Boolean,
+        default: false,
+    }
+})
+
+const { external } = props
+
+const Tag = external ? 'a' : Link
+</script>
+
 <template>
     <li
         :class="[
@@ -23,24 +44,3 @@
         </component>
     </li>
 </template>
-
-<script setup>
-import { Link } from '@inertiajs/inertia-vue3'
-
-const props = defineProps({
-    href: String,
-    title: String,
-    active: {
-        type: Boolean,
-        default: false,
-    },
-    external: {
-        type: Boolean,
-        default: false,
-    }
-})
-
-const { external } = props
-
-const Tag = external ? 'a' : Link
-</script>

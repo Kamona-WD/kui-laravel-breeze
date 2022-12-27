@@ -1,61 +1,61 @@
-import { useState, createContext, useEffect } from 'react';
-import Navbar from '@/Components/Navbar/Navbar';
-import Sidebar from '@/Components/Sidebar/Sidebar';
-import PageFooter from '@/Components/PageFooter';
-import { Head } from '@inertiajs/inertia-react';
-import { useDarkMode } from '@/Hooks';
+import { useState, createContext, useEffect } from 'react'
+import Navbar from '@/Components/Navbar/Navbar'
+import Sidebar from '@/Components/Sidebar/Sidebar'
+import PageFooter from '@/Components/PageFooter'
+import { Head } from '@inertiajs/inertia-react'
+import { useDarkMode } from '@/Hooks'
 
-export const GlobalContext = createContext();
+export const GlobalContext = createContext()
 
 export default ({ auth, header, children, title }) => {
-    const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024);
-    const [isSidebarHovered, setSidebarHovered] = useState(false);
-    const [isScrollDown, setScrollDown] = useState(false);
-    const [isScrollUp, setScrollUp] = useState(false);
-    const [isDark, setDarkMode] = useDarkMode();
+    const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024)
+    const [isSidebarHovered, setSidebarHovered] = useState(false)
+    const [isScrollDown, setScrollDown] = useState(false)
+    const [isScrollUp, setScrollUp] = useState(false)
+    const [isDark, setDarkMode] = useDarkMode()
 
     const handleSidebarHover = (value) => {
-        setSidebarHovered(value);
-    };
+        setSidebarHovered(value)
+    }
 
     const handleWindowResize = () => {
         if (window.innerWidth <= 1024) {
-            setSidebarOpen(false);
+            setSidebarOpen(false)
         } else {
-            setSidebarOpen(true);
+            setSidebarOpen(true)
         }
-    };
+    }
 
-    let lastScrollTop = 0;
+    let lastScrollTop = 0
 
     const handleScroll = () => {
-        let st = window.pageYOffset || document.documentElement.scrollTop;
+        let st = window.pageYOffset || document.documentElement.scrollTop
         if (st > lastScrollTop) {
             // downscroll
-            setScrollDown(true);
-            setScrollUp(false);
+            setScrollDown(true)
+            setScrollUp(false)
         } else {
             // upscroll
-            setScrollDown(false);
-            setScrollUp(true);
+            setScrollDown(false)
+            setScrollUp(true)
             if (st == 0) {
                 //  reset
-                setScrollDown(false);
-                setScrollUp(true);
+                setScrollDown(false)
+                setScrollUp(true)
             }
         }
-        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-    };
+        lastScrollTop = st <= 0 ? 0 : st // For Mobile or negative scrolling
+    }
 
     useEffect(() => {
-        window.addEventListener('resize', handleWindowResize);
-        document.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleWindowResize)
+        document.addEventListener('scroll', handleScroll)
 
         return () => {
-            window.removeEventListener('resize', handleWindowResize);
-            document.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+            window.removeEventListener('resize', handleWindowResize)
+            document.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
     return (
         <GlobalContext.Provider
@@ -75,7 +75,7 @@ export default ({ auth, header, children, title }) => {
         >
             <Head title={title} />
 
-            <div className="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-100">
+            <div className="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-100">
                 <Sidebar />
 
                 <div
@@ -97,5 +97,5 @@ export default ({ auth, header, children, title }) => {
                 </div>
             </div>
         </GlobalContext.Provider>
-    );
-};
+    )
+}

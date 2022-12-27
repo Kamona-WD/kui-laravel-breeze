@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
-import { sidebarState } from '@/Composables';
-import { EmptyCircleIcon } from '@/Components/Icons/outline';
+import { defineComponent } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
+import { sidebarState } from '@/Composables'
+import { EmptyCircleIcon } from '@/Components/Icons/outline'
 
 export default defineComponent({
     props: {
@@ -24,7 +24,7 @@ export default defineComponent({
     },
 
     setup(props, { slots }) {
-        const Tag = !props.external ? Link : 'a';
+        const Tag = !props.external ? Link : 'a'
 
         if (props.href) {
             return () => (
@@ -56,7 +56,7 @@ export default defineComponent({
                         {props.title}
                     </span>
                 </Tag>
-            );
+            )
         }
         return () => (
             <button
@@ -89,6 +89,6 @@ export default defineComponent({
 
                 {slots.arrow?.()}
             </button>
-        );
+        )
     },
-});
+})

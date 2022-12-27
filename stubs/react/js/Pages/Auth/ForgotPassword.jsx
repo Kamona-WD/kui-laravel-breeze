@@ -1,26 +1,26 @@
-import { useForm } from "@inertiajs/inertia-react";
-import { MailIcon, PaperAirplaneIcon } from "@heroicons/react/outline";
-import Guest from "@/Layouts/Guest";
-import ValidationErrors from "@/Components/ValidationErrors";
-import InputIconWrapper from "@/Components/InputIconWrapper";
-import Label from "@/Components/Label";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
+import { useForm } from '@inertiajs/inertia-react'
+import { MailIcon, PaperAirplaneIcon } from '@heroicons/react/outline'
+import Guest from '@/Layouts/Guest'
+import ValidationErrors from '@/Components/ValidationErrors'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Label from '@/Components/Label'
+import Input from '@/Components/Input'
+import Button from '@/Components/Button'
 
 export default ({ status }) => {
     const { data, setData, post, processing, errors } = useForm({
-        email: "",
-    });
+        email: '',
+    })
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+        setData(event.target.name, event.target.value)
+    }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("password.email"));
-    };
+        post(route('password.email'))
+    }
 
     return (
         <Guest title="Forgot Password">
@@ -77,5 +77,5 @@ export default ({ status }) => {
                 </div>
             </form>
         </Guest>
-    );
-};
+    )
+}
