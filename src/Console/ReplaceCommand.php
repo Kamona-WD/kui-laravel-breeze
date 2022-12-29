@@ -84,18 +84,21 @@ class ReplaceCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/profile'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/buttons-showcase'));
 
         // Clean directories
         (new Filesystem)->cleanDirectory(resource_path('views/auth'));
         (new Filesystem)->cleanDirectory(resource_path('views/layouts'));
         (new Filesystem)->cleanDirectory(resource_path('views/components'));
+        (new Filesystem)->cleanDirectory(resource_path('views/profile'));
         (new Filesystem)->cleanDirectory(resource_path('views/buttons-showcase'));
 
         copy(__DIR__ . '/../../stubs/blade/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/auth', resource_path('views/auth'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/profile', resource_path('views/profile'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/buttons-showcase', resource_path('views/buttons-showcase'));
 
         if (!$this->isVite) {
@@ -117,8 +120,8 @@ class ReplaceCommand extends Command
         // Icons
         $this->requireComposerPackages('blade-ui-kit/blade-heroicons:^1.2');
 
-        $this->info('Breeze scaffolding replaced successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->components->info('Breeze scaffolding replaced successfully.');
+        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     protected function replaceVue($type)
@@ -181,8 +184,8 @@ class ReplaceCommand extends Command
             copy(__DIR__ . '/../../stubs/vue/vite.config.js', base_path('vite.config.js'));
         }
 
-        $this->info('Breeze scaffolding replaced successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->components->info('Breeze scaffolding replaced successfully.');
+        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     protected function replaceReact()
@@ -232,8 +235,8 @@ class ReplaceCommand extends Command
             $this->replaceInFile("'resources/js/app.js'", "'resources/js/app.jsx'", resource_path('views/app.blade.php'));
         }
 
-        $this->info('Breeze scaffolding replaced successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->components->info('Breeze scaffolding replaced successfully.');
+        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     protected function replaceFavIcon()

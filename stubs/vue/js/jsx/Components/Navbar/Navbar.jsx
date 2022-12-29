@@ -57,6 +57,7 @@ export default defineComponent({
                             )}
                         </Button>
                     </div>
+
                     <div class="flex items-center gap-2">
                         {/* Dark mode button */}
                         <Button
@@ -137,6 +138,11 @@ export default defineComponent({
 
                                 content: () => (
                                     <>
+                                        <DropdownLink
+                                            href={route('profile.edit')}
+                                            title="Profile"
+                                        />
+
                                         <DropdownLink
                                             href={route('logout')}
                                             method="post"

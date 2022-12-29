@@ -135,7 +135,14 @@ onUnmounted(() => {
                         </button>
                     </span>
                 </template>
+
                 <template #content>
+                    <DropdownLink
+                        :href="route('profile.edit')"
+                    >
+                        Profile
+                    </DropdownLink>
+
                     <DropdownLink
                         :href="route('logout')"
                         method="post"

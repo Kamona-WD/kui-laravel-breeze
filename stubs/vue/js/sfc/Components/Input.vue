@@ -13,6 +13,13 @@ defineEmits(['update:modelValue'])
 
 const input = ref(null)
 
+const focus = () => input.value?.focus()
+
+defineExpose({
+    input,
+    focus
+})
+
 onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
         input.value.focus()

@@ -80,6 +80,11 @@ export default ({ auth }) => {
                         }
                     >
                         <Dropdown.Item
+                            href={route('profile.edit')}
+                            title="Profile"
+                        />
+
+                        <Dropdown.Item
                             href={route('logout')}
                             method="post"
                             as="button"
