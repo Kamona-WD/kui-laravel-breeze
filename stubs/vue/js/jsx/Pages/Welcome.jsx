@@ -17,7 +17,7 @@ export default defineComponent({
                 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-200 sm:items-center sm:pt-0">
                     {props.canLogin && (
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                            {usePage().props.value.auth.user ? (
+                            {usePage().props.auth.user ? (
                                 <Link
                                     href="/dashboard"
                                     class="text-sm text-gray-700 underline"

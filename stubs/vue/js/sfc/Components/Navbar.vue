@@ -50,7 +50,7 @@ onUnmounted(() => {
                 iconOnly
                 variant="secondary"
                 type="button"
-                @click="toggleDarkMode"
+                @click="() => { toggleDarkMode() }"
                 v-slot="{ iconSizeClasses }"
                 class="md:hidden"
                 srText="Toggle dark mode"
@@ -72,7 +72,7 @@ onUnmounted(() => {
                 iconOnly
                 variant="secondary"
                 type="button"
-                @click="toggleDarkMode"
+                @click="() => { toggleDarkMode() }"
                 v-slot="{ iconSizeClasses }"
                 class="hidden md:inline-flex"
                 srText="Toggle dark mode"

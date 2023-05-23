@@ -37,7 +37,7 @@ export default defineComponent({
                             iconOnly
                             variant="secondary"
                             type="button"
-                            onClick={toggleDarkMode}
+                            onClick={ () => { toggleDarkMode() } }
                             class="md:hidden"
                             srText="Toggle dark mode"
                         >
@@ -64,7 +64,7 @@ export default defineComponent({
                             iconOnly
                             variant="secondary"
                             type="button"
-                            onClick={toggleDarkMode}
+                            onClick={ () => { toggleDarkMode() } }
                             class="hidden md:inline-flex"
                             srText="Toggle dark mode"
                         >
@@ -119,7 +119,7 @@ export default defineComponent({
                                         type="button"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md  hover:text-gray-700 focus:outline-none focus:ring focus:ring-purple-500 focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark-eval-1 dark:bg-dark-eval-1 dark:text-gray-400 dark:hover:text-gray-200"
                                     >
-                                        {usePage().props.value.auth.user.name}
+                                        {usePage().props.auth.user.name}
 
                                         <svg
                                             class="ml-2 -mr-0.5 h-4 w-4"
