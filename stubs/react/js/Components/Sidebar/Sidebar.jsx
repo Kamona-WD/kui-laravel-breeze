@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { GlobalContext } from '@/Layouts/Authenticated'
 import ApplicationLogo from '@/Components/ApplicationLogo'
-import { Link } from '@inertiajs/inertia-react'
+import { Link } from '@inertiajs/react'
 import Button from '@/Components/Button'
 import {
     MenuFoldLineLeftIcon,

@@ -4,7 +4,7 @@ import Guest from '@/Layouts/Guest'
 import Input from '@/Components/Input'
 import Label from '@/Components/Label'
 import ValidationErrors from '@/Components/ValidationErrors'
-import { useForm } from '@inertiajs/inertia-react'
+import { useForm } from '@inertiajs/react'
 import InputIconWrapper from '@/Components/InputIconWrapper'
 import { LockClosedIcon } from '@heroicons/react/outline'
 

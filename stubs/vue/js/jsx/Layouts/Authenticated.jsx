@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Head } from '@inertiajs/inertia-vue3'
+import { Head } from '@inertiajs/vue3'
 import Sidebar from '@/Components/Sidebar/Sidebar'
 import Navbar from '@/Components/Navbar/Navbar'
 import PageFooter from '@/Components/PageFooter'

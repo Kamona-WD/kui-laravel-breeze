@@ -5,7 +5,7 @@ import {
     LockClosedIcon,
     UserAddIcon,
 } from '@heroicons/react/outline'
-import { Link, useForm } from '@inertiajs/inertia-react'
+import { Link, useForm } from '@inertiajs/react'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'
 import InputIconWrapper from '@/Components/InputIconWrapper'

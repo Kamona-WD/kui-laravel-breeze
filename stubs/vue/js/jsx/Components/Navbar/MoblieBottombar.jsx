@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import { SearchIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
 import { scrolling, sidebarState } from '@/Composables'
 import Button from '@/Components/Button'

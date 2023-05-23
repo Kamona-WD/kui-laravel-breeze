@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@inertiajs/inertia-vue3'
+import { Head } from '@inertiajs/vue3'
 import Sidebar from '@/Components/Sidebar/Sidebar.vue'
 import Navbar from '@/Components/Navbar.vue'
 import PageFooter from '@/Components/PageFooter.vue'

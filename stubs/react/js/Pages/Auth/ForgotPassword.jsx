@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/inertia-react'
+import { useForm } from '@inertiajs/react'
 import { MailIcon, PaperAirplaneIcon } from '@heroicons/react/outline'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'

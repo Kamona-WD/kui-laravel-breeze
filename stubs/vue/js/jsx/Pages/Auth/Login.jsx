@@ -1,13 +1,13 @@
-import { defineComponent, withModifiers } from 'vue';
-import { Link, useForm } from '@inertiajs/inertia-vue3';
-import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/vue/outline';
-import InputIconWrapper from '@/Components/InputIconWrapper';
-import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
+import { defineComponent, withModifiers } from 'vue'
+import { Link, useForm } from '@inertiajs/vue3'
+import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Button from '@/Components/Button'
+import Checkbox from '@/Components/Checkbox'
+import GuestLayout from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import ValidationErrors from '@/Components/ValidationErrors'
 
 export default defineComponent({
     props: {
@@ -20,13 +20,13 @@ export default defineComponent({
             email: '',
             password: '',
             remember: false,
-        });
+        })
 
         const submit = () => {
             form.post(route('login'), {
                 onFinish: () => form.reset('password'),
-            });
-        };
+            })
+        }
 
         return () => (
             <GuestLayout title="Log in">
@@ -146,6 +146,6 @@ export default defineComponent({
                     </div>
                 </form>
             </GuestLayout>
-        );
+        )
     },
-});
+})

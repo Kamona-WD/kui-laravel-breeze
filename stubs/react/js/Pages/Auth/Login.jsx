@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useForm } from '@inertiajs/inertia-react'
+import { Link, useForm } from '@inertiajs/react'
 import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/react/outline'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'

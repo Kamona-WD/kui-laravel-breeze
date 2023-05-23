@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from 'react'
 import Navbar from '@/Components/Navbar/Navbar'
 import Sidebar from '@/Components/Sidebar/Sidebar'
 import PageFooter from '@/Components/PageFooter'
-import { Head } from '@inertiajs/inertia-react'
+import { Head } from '@inertiajs/react'
 import { useDarkMode } from '@/Hooks'
 
 export const GlobalContext = createContext()

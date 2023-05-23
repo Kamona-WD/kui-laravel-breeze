@@ -2,8 +2,7 @@ import './bootstrap'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { createInertiaApp } from '@inertiajs/inertia-react'
-import { InertiaProgress } from '@inertiajs/progress'
+import { createInertiaApp } from '@inertiajs/react'
 
 const appName =
     window.document.getElementsByTagName('title')[0]?.innerText || 'K UI'
@@ -14,6 +13,7 @@ createInertiaApp({
     setup({ el, App, props }) {
         return render(<App {...props} />, el)
     },
+    progress: {
+        color: '#a855f7'
+    }
 })
-
-InertiaProgress.init({ color: '#a855f7' })

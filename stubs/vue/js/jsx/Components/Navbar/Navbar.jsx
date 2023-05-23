@@ -1,5 +1,5 @@
 import { defineComponent, onMounted, onUnmounted } from 'vue'
-import { usePage } from '@inertiajs/inertia-vue3'
+import { usePage } from '@inertiajs/vue3'
 import { useFullscreen } from '@vueuse/core'
 import MoblieBottombar from '@/Components/Navbar/MoblieBottombar'
 import { SunIcon, MoonIcon, ArrowsExpandIcon } from '@heroicons/vue/outline'

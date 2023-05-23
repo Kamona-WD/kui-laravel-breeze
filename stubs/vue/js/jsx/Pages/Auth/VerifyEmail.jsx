@@ -1,7 +1,7 @@
-import { defineComponent, computed, withModifiers } from 'vue';
-import { Link, useForm } from '@inertiajs/inertia-vue3';
-import GuestLayout from '@/Layouts/Guest';
-import Button from '@/Components/Button';
+import { defineComponent, computed, withModifiers } from 'vue'
+import { Link, useForm } from '@inertiajs/vue3'
+import GuestLayout from '@/Layouts/Guest'
+import Button from '@/Components/Button'
 
 export default defineComponent({
     props: {
@@ -9,15 +9,15 @@ export default defineComponent({
     },
 
     setup(props) {
-        const form = useForm();
+        const form = useForm()
 
         const submit = () => {
-            form.post(route('verification.send'));
-        };
+            form.post(route('verification.send'))
+        }
 
         const verificationLinkSent = computed(
             () => props.status === 'verification-link-sent'
-        );
+        )
 
         return () => (
             <GuestLayout title="Email Verification">
@@ -52,6 +52,6 @@ export default defineComponent({
                     </div>
                 </form>
             </GuestLayout>
-        );
+        )
     },
-});
+})

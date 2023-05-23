@@ -1,5 +1,5 @@
 import { defineComponent, withModifiers, Transition } from 'vue'
-import { Link, useForm, usePage } from '@inertiajs/inertia-vue3'
+import { Link, useForm, usePage } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError'
 import Label from '@/Components/Label'
 import Button from '@/Components/Button'

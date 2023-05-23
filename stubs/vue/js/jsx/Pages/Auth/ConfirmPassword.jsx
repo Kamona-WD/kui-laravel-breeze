@@ -1,24 +1,24 @@
-import { defineComponent, withModifiers } from 'vue';
-import { useForm } from '@inertiajs/inertia-vue3';
-import { LockClosedIcon } from '@heroicons/vue/outline';
-import InputIconWrapper from '@/Components/InputIconWrapper';
-import Button from '@/Components/Button';
-import GuestLayout from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
+import { defineComponent, withModifiers } from 'vue'
+import { useForm } from '@inertiajs/vue3'
+import { LockClosedIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Button from '@/Components/Button'
+import GuestLayout from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import ValidationErrors from '@/Components/ValidationErrors'
 
 export default defineComponent({
     setup() {
         const form = useForm({
             password: '',
-        });
+        })
 
         const submit = () => {
             form.post(route('password.confirm'), {
                 onFinish: () => form.reset(),
-            });
-        };
+            })
+        }
 
         return () => (
             <GuestLayout title="Confirm Password">
@@ -68,6 +68,6 @@ export default defineComponent({
                     </div>
                 </form>
             </GuestLayout>
-        );
+        )
     },
-});
+})

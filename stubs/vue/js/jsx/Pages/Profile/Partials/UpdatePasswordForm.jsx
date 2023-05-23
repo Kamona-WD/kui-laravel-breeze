@@ -1,5 +1,5 @@
 import { defineComponent, ref, withModifiers, Transition } from 'vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm } from '@inertiajs/vue3'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import InputError from '@/Components/InputError'

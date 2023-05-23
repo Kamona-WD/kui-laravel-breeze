@@ -1,6 +1,6 @@
 import { defineComponent, Transition, computed } from 'vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 
 export const DropdownLink = defineComponent({
     props: {

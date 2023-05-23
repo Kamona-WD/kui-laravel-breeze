@@ -1,12 +1,12 @@
-import { defineComponent, withModifiers } from 'vue';
-import { useForm } from '@inertiajs/inertia-vue3';
-import { MailIcon, LockClosedIcon } from '@heroicons/vue/outline';
-import InputIconWrapper from '@/Components/InputIconWrapper';
-import Button from '@/Components/Button';
-import GuestLayout from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
+import { defineComponent, withModifiers } from 'vue'
+import { useForm } from '@inertiajs/vue3'
+import { MailIcon, LockClosedIcon } from '@heroicons/vue/outline'
+import InputIconWrapper from '@/Components/InputIconWrapper'
+import Button from '@/Components/Button'
+import GuestLayout from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import ValidationErrors from '@/Components/ValidationErrors'
 
 export default defineComponent({
     props: {
@@ -20,13 +20,13 @@ export default defineComponent({
             email: props.email,
             password: '',
             password_confirmation: '',
-        });
+        })
 
         const submit = () => {
             form.post(route('password.store'), {
                 onFinish: () => form.reset('password', 'password_confirmation'),
-            });
-        };
+            })
+        }
 
         return () => (
             <GuestLayout title="Reset Password">
@@ -126,6 +126,6 @@ export default defineComponent({
                     </div>
                 </form>
             </GuestLayout>
-        );
+        )
     },
-});
+})

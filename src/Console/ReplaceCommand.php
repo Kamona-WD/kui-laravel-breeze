@@ -75,7 +75,7 @@ class ReplaceCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@alpinejs/collapse' => '^3.4.2',
-                'postcss-import' => '^14.0.2',
+                'postcss-import' => '^15.1.0',
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
         });
@@ -130,19 +130,19 @@ class ReplaceCommand extends Command
         $this->updateNodePackages(function ($packages) use ($type) {
             $extraPackages = [
                 '@heroicons/vue' => '^1.0.4',
-                '@vueuse/core' => '^6.5.3',
-                'postcss-import' => '^14.0.2',
+                '@vueuse/core' => '^10.1.2',
+                'postcss-import' => '^15.1.0',
                 'perfect-scrollbar' => '^1.5.5'
             ];
 
             if (!$this->isVite) {
-                $extraPackages += ['@vue/babel-plugin-jsx' => '^1.1.0'];
+                $extraPackages += ['@vue/babel-plugin-jsx' => '^1.1.1'];
             } else {
-                $extraPackages += ['@vitejs/plugin-vue-jsx' => '^1.3.10'];
+                $extraPackages += ['@vitejs/plugin-vue-jsx' => '^3.0.1'];
             }
 
             if ($type == 'jsx') {
-                $extraPackages += ['@headlessui/vue' => '^1.4.3'];
+                $extraPackages += ['@headlessui/vue' => '^1.7.13'];
             }
 
             return $extraPackages + $packages;
@@ -184,6 +184,10 @@ class ReplaceCommand extends Command
             copy(__DIR__ . '/../../stubs/vue/vite.config.js', base_path('vite.config.js'));
         }
 
+        if ($type == 'jsx') {
+            $this->replaceInFile('.vue"])', '.jsx"])', resource_path('views/app.blade.php'));
+        }
+
         $this->components->info('Breeze scaffolding replaced successfully.');
         $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
     }
@@ -193,9 +197,9 @@ class ReplaceCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@headlessui/react' => '^1.4.2',
                 '@heroicons/react' => '^1.0.5',
-                'postcss-import' => '^14.0.2',
+                '@headlessui/react' => '^1.7.14',
+                'postcss-import' => '^15.1.0',
                 'react-transition-group' => '^4.4.2',
                 'perfect-scrollbar' => '^1.5.5'
             ] + $packages;
@@ -233,6 +237,7 @@ class ReplaceCommand extends Command
             copy(__DIR__ . '/../../stubs/react/js/app.vite.js', resource_path('js/app.jsx'));
 
             $this->replaceInFile("'resources/js/app.js'", "'resources/js/app.jsx'", resource_path('views/app.blade.php'));
+            $this->replaceInFile('.vue"])', '.jsx"])', resource_path('views/app.blade.php'));
         }
 
         $this->components->info('Breeze scaffolding replaced successfully.');

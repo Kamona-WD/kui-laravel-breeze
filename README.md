@@ -20,7 +20,7 @@ We recommend installing this package on a project that you are starting from scr
 > **_note_** It doesn't matter if you use `vitejs` or `laravel-mix`, it will work in both cases.
 
 1. Fresh install Laravel >= 8.0 and `cd` to your app.
-2. Install laravel/breeze >= `1.15.0`
+2. Install laravel/breeze >= `1.18.0`
 
 ```sh
 composer require laravel/breeze --dev
@@ -34,6 +34,9 @@ php artisan breeze:install
 
 ```sh
 composer require kamona/kui-laravel-breeze --dev
+
+# for laravel/breeze < 1.18.0
+composer require kamona/kui-laravel-breeze:0.4.0 --dev
 
 # for laravel/breeze < 1.15.0
 composer require kamona/kui-laravel-breeze:0.3.0 --dev

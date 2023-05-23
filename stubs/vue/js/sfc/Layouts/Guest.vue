@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3'
+import { Head, Link } from '@inertiajs/vue3'
 import { MoonIcon, SunIcon } from '@heroicons/vue/outline'
 import ApplicationLogo from '@/Components/ApplicationLogo.vue'
 import PageFooter from '@/Components/PageFooter.vue'

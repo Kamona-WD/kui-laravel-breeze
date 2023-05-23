@@ -1,5 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo'
-import { Link, Head } from '@inertiajs/inertia-react'
+import { Link, Head } from '@inertiajs/react'
 import PageFooter from '@/Components/PageFooter'
 
 export default ({ children, title }) => {

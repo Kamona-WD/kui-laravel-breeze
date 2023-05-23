@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useForm } from '@inertiajs/inertia-react'
+import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'

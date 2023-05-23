@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Head, Link, usePage } from '@inertiajs/inertia-vue3'
+import { Head, Link, usePage } from '@inertiajs/vue3'
 
 export default defineComponent({
     props: {

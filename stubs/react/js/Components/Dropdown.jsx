@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/inertia-react'
+import { Link } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import { Menu } from '@headlessui/react'
 
@@ -29,7 +29,7 @@ const Dropdown = ({
     trigger,
     align = 'right',
     width = '48',
-    contentClasses = 'py-1 bg-white',
+    contentClasses = 'py-1 bg-white dark:bg-dark-eval-1',
 }) => {
     let alignmentClasses = 'origin-top'
 

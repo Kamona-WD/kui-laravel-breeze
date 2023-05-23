@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link } from '@inertiajs/inertia-react'
+import { Link } from '@inertiajs/react'
 import { SearchIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Button from '@/Components/Button'
 import ApplicationLogo from '@/Components/ApplicationLogo'

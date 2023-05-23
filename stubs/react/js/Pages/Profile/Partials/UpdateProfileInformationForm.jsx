@@ -1,4 +1,4 @@
-import { Link, useForm, usePage } from '@inertiajs/inertia-react'
+import { Link, useForm, usePage } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'

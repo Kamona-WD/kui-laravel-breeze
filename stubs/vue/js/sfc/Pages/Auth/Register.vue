@@ -1,5 +1,5 @@
 <script setup>
-import { Link, useForm } from '@inertiajs/inertia-vue3'
+import { Link, useForm } from '@inertiajs/vue3'
 import { UserIcon, MailIcon, LockClosedIcon, UserAddIcon } from '@heroicons/vue/outline'
 import GuestLayout from '@/Layouts/Guest.vue'
 import InputIconWrapper from '@/Components/InputIconWrapper.vue'
