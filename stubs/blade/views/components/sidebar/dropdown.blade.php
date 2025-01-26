@@ -17,7 +17,7 @@
     />
 
     <div
-        x-show="open && (isSidebarOpen || isSidebarHovered)"
+        x-show="open && (isOpen || isHovered)"
         x-collapse
     >
         <ul

@@ -28,42 +28,38 @@
 
 <body class="font-sans antialiased">
     <div
-        x-data="mainState"
-        :class="{ dark: isDarkMode }"
-        x-on:resize.window="handleWindowResize"
-        x-cloak
+        x-data="globalState"
+        :class="{ dark: $store.darkMode.value }"
     >
-        <div class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-200">
+        <div class="min-h-screen flex text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-100">
             <!-- Sidebar -->
             <x-sidebar.sidebar />
 
             <!-- Page Wrapper -->
             <div
-                class="flex flex-col min-h-screen"
+                class="flex-1 flex flex-col min-h-screen transition-[margin] duration-150 md:ms-16 lg:ms-64"
                 :class="{
-                    'lg:ml-64': isSidebarOpen,
-                    'md:ml-16': !isSidebarOpen
+                    'lg:ms-64': $store.sidebar.isOpen,
                 }"
-                style="transition-property: margin; transition-duration: 150ms;"
             >
 
                 <!-- Navbar -->
                 <x-navbar />
 
-                <!-- Page Heading -->
-                <header>
-                    <div class="p-4 sm:p-6">
+                <div class="container mx-auto flex-1 flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-6">
+                    <!-- Page Heading -->
+                    <header class="flex-shrink-0 w-full">
                         {{ $header }}
-                    </div>
-                </header>
-
-                <!-- Page Content -->
-                <main class="px-4 sm:px-6 flex-1">
-                    {{ $slot }}
-                </main>
-
-                <!-- Page Footer -->
-                <x-footer />
+                    </header>
+    
+                    <!-- Page Content -->
+                    <main class="flex-1 w-full">
+                        {{ $slot }}
+                    </main>
+    
+                    <!-- Page Footer -->
+                    <x-footer />
+                </div>
             </div>
         </div>
     </div>

@@ -1,10 +1,10 @@
 <nav
     aria-label="secondary"
     x-data="{ open: false }"
-    class="sticky top-0 z-10 flex items-center justify-between px-4 py-4 sm:px-6 transition-transform duration-500 bg-white dark:bg-dark-eval-1"
+    class="sticky top-0 z-10 flex items-center justify-between bg-white px-6 py-2 transition-transform duration-500 dark:bg-dark-eval-1"
     :class="{
         '-translate-y-full': scrollingDown,
-        'translate-y-0': scrollingUp,
+        'translate-y-0 shadow-lg': scrollingUp,
     }">
 
     <div class="flex items-center gap-3">
@@ -14,10 +14,10 @@
             icon-only
             variant="secondary"
             sr-text="Toggle dark mode"
-            x-on:click="toggleTheme"
+            x-on:click="$store.darkMode.toggle()"
         >
-            <x-kui-icon x-show="!isDarkMode" name="tabler--moon" class="w-6 h-6" />
-            <x-kui-icon x-show="isDarkMode" name="tabler--sun" class="w-6 h-6" />
+            <x-icon x-show="!$store.darkMode.value" name="tabler--moon" class="w-6 h-6" />
+            <x-icon x-show="$store.darkMode.value" name="tabler--sun" class="w-6 h-6" />
         </x-button>
     </div>
 
@@ -28,10 +28,10 @@
             icon-only
             variant="secondary"
             sr-text="Toggle dark mode"
-            x-on:click="toggleTheme"
+            x-on:click="$store.darkMode.toggle()"
         >
-            <x-kui-icon x-show="!isDarkMode" name="tabler--moon" class="w-6 h-6" />
-            <x-kui-icon x-show="isDarkMode" name="tabler--sun" class="w-6 h-6" />
+            <x-icon x-show="!$store.darkMode.value" name="tabler--moon" class="w-6 h-6" />
+            <x-icon x-show="$store.darkMode.value" name="tabler--sun" class="w-6 h-6" />
         </x-button>
 
         <x-dropdown align="right" width="48">
@@ -41,7 +41,7 @@
                 >
                     <div>{{ Auth::user()->name }}</div>
 
-                    <x-kui-icon name="tabler--chevron-down" />
+                    <x-icon name="tabler--chevron-down" />
                 </button>
             </x-slot>
 
@@ -71,10 +71,10 @@
 
 <!-- Mobile bottom bar -->
 <div
-    class="fixed inset-x-0 bottom-0 flex items-center justify-between px-4 py-4 sm:px-6 transition-transform duration-500 bg-white md:hidden dark:bg-dark-eval-1"
+    class="fixed inset-x-0 z-10 bottom-0 flex items-center justify-between px-4 py-4 sm:px-6 transition-transform duration-500 bg-white md:hidden dark:bg-dark-eval-1"
     :class="{
         'translate-y-full': scrollingDown,
-        'translate-y-0': scrollingUp,
+        'translate-y-0 shadow-t-lg': scrollingUp,
     }"
 >
     <x-button
@@ -83,7 +83,7 @@
         variant="secondary"
         sr-text="Search"
     >
-        <x-kui-icon name="tabler--search" class="w-6 h-6" />
+        <x-icon name="tabler--search" class="w-6 h-6" />
     </x-button>
 
     <a href="{{ route('dashboard') }}">
@@ -97,9 +97,8 @@
         icon-only
         variant="secondary"
         sr-text="Open main menu"
-        x-on:click="isSidebarOpen = !isSidebarOpen"
+        x-on:click="$store.sidebar.open()"
     >
-        <x-kui-icon x-show="!isSidebarOpen" name="tabler--menu" class="w-6 h-6" />
-        <x-kui-icon x-show="isSidebarOpen" name="tabler--x" class="w-6 h-6" />
+        <x-icon name="tabler--menu" class="w-6 h-6" />
     </x-button>
 </div>

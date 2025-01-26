@@ -1,9 +1,8 @@
-<x-perfect-scrollbar
-    as="nav"
-    aria-label="main"
-    class="flex flex-col flex-1 gap-4 px-3"
+<nav 
+    x-perfect-scroll
+    aria-label="main" 
+    class="relative flex flex-1 flex-col gap-4 px-3"
 >
-
     <x-sidebar.link
         title="Dashboard"
         href="{{ route('dashboard') }}"
@@ -32,4 +31,4 @@
             :active="request()->routeIs('buttons.text-icon')"
         />
     </x-sidebar.dropdown>
-</x-perfect-scrollbar>
+</nav>

@@ -16,20 +16,20 @@
 @if ($collapsible)
     <button type="button" {{ $attributes->merge(['class' => $classes]) }} >
         @if ($icon)
-            <x-kui-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
+            <x-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-kui-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
+            <x-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span
             class="text-base font-medium whitespace-nowrap"
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
         >
             {{ $title }}
         </span>
 
         <span
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
             aria-hidden="true"
             class="relative block ml-auto w-6 h-6"
         >
@@ -47,14 +47,14 @@
 @else
     <a {{ $attributes->merge(['class' => $classes]) }}>
         @if ($icon)
-            <x-kui-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
+            <x-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-kui-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
+            <x-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span
             class="text-base font-medium"
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
         >
             {{ $title }}
         </span>

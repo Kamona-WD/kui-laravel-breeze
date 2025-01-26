@@ -26,17 +26,27 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="font-sans antialiased">
     <div
-        x-data="mainState"
-        class="font-sans antialiased"
-        :class="{dark: isDarkMode}"
-        x-cloak
+        x-data="globalState"
+        :class="{dark: $store.darkMode.value}"
     >
-        <div class="flex flex-col min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-200">
-            {{ $slot }}
+        <div class="text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-dark-eval-0">
+            <div class="container mx-auto py-6 min-h-screen flex flex-col gap-24">
+                <div class="flex flex-1 flex-col items-center justify-center gap-24">
+                    <div>
+                        <a href="/">
+                            <x-application-logo class="w-20 h-20" />
+                        </a>
+                    </div>
 
-            <x-footer />
+                    <main class="w-full sm:max-w-md">
+                        {{ $slot }}
+                    </main>
+                </div>
+
+                <x-footer />
+            </div>
         </div>
 
         <div class="fixed top-10 right-10">
@@ -45,16 +55,16 @@
                 icon-only
                 variant="secondary"
                 sr-text="Toggle dark mode"
-                x-on:click="toggleTheme"
+                x-on:click="$store.darkMode.toggle()"
             >
                 <x-kui-icon
-                    x-show="!isDarkMode"
+                    x-show="!$store.darkMode.value"
                     name="tabler--moon"
                     class="w-6 h-6"
                 />
 
                 <x-kui-icon
-                    x-show="isDarkMode"
+                    x-show="$store.darkMode.value"
                     name="tabler--sun"
                     class="w-6 h-6"
                 />
