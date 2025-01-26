@@ -1,6 +1,7 @@
 @props([
     'active' => false,
-    'title' => ''
+    'title' => '',
+    'icon' => null,
 ])
 
 <div
@@ -12,13 +13,8 @@
         title="{{ $title }}"
         x-on:click="open = !open"
         isActive="{{ $active }}"
-    >
-        @if ($icon ?? false)
-            <x-slot name="icon">
-                {{ $icon }}
-            </x-slot>
-        @endif
-    </x-sidebar.link>
+        icon="{{ $icon }}"
+    />
 
     <div
         x-show="open && (isSidebarOpen || isSidebarHovered)"

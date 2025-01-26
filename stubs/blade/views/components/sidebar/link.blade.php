@@ -1,7 +1,8 @@
 @props([
     'isActive' => false,
     'title' => '',
-    'collapsible' => false
+    'collapsible' => false,
+    'icon' => null,
 ])
 
 @php
@@ -14,10 +15,10 @@
 
 @if ($collapsible)
     <button type="button" {{ $attributes->merge(['class' => $classes]) }} >
-        @if ($icon ?? false)
-            {{ $icon }}
+        @if ($icon)
+            <x-kui-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-icons.empty-circle class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-kui-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span
@@ -45,10 +46,10 @@
     </button>
 @else
     <a {{ $attributes->merge(['class' => $classes]) }}>
-        @if ($icon ?? false)
-            {{ $icon }}
+        @if ($icon)
+            <x-kui-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-icons.empty-circle class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-kui-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span

@@ -1,7 +1,10 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+import defaultTheme from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import forms from '@tailwindcss/forms'
+import { addIconSelectors } from '@iconify/tailwind'
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     darkMode: 'class',
 
     content: [
@@ -14,7 +17,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                sans: ['Noto Sans', ...defaultTheme.fontFamily.sans],
             },
 
             colors: {
@@ -24,9 +27,18 @@ module.exports = {
                     'eval-2': '#2A2F42',
                     'eval-3': '#2C3142',
                 },
+
+                primary: {
+                    light: colors.purple[400],
+                    DEFAULT: colors.purple[500],
+                    dark: colors.purple[600],
+                },
             },
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        forms,
+        addIconSelectors(['tabler']),
+    ],
 }

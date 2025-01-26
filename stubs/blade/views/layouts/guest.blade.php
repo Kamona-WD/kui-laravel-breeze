@@ -8,9 +8,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet" />
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+    />
 
     <!-- Styles -->
     <style>
@@ -18,10 +21,9 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -45,15 +47,15 @@
                 sr-text="Toggle dark mode"
                 x-on:click="toggleTheme"
             >
-                <x-heroicon-o-moon
+                <x-kui-icon
                     x-show="!isDarkMode"
-                    aria-hidden="true"
+                    name="tabler--moon"
                     class="w-6 h-6"
                 />
 
-                <x-heroicon-o-sun
+                <x-kui-icon
                     x-show="isDarkMode"
-                    aria-hidden="true"
+                    name="tabler--sun"
                     class="w-6 h-6"
                 />
             </x-button>

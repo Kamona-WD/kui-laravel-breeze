@@ -18,8 +18,6 @@
         </div>
     </x-slot>
 
-    <p class="py-4 text-gray-600 dark:text-gray-400">Useless Pages to demo sidebar.</p>
-
     <div class="py-6">
         @php
             $variants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'black'];

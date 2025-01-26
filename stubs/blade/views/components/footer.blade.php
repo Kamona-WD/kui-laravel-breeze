@@ -1,10 +1,8 @@
 <footer class="flex-shrink-0 px-6 py-4">
-    <p class="flex items-center justify-center gap-1 text-sm text-gray-600 dark:text-gray-400">
+    <div class="flex items-center justify-center gap-1 text-sm text-gray-600 dark:text-gray-400">
         <span>Made with</span>
 
-        <span>
-            <x-heroicon-s-heart class="w-6 h-6 text-red-500" />
-        </span>
+        <x-kui-icon name="tabler--heart-filled" class="w-5 h-5 text-red-500" />
 
         <span>by</span>
 
@@ -15,5 +13,5 @@
         >
             Ahmed Kamel
         </a>
-    </p>
+    </div>
 </footer>

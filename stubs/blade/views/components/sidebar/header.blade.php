@@ -30,8 +30,8 @@
             class="hidden w-6 h-6 lg:block"
         />
 
-        <x-heroicon-o-x
-            aria-hidden="true"
+        <x-kui-icon
+            name="x"
             class="w-6 h-6 lg:hidden"
         />
     </x-button>
