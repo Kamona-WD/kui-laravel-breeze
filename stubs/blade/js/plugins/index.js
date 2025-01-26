@@ -24,6 +24,7 @@ export default function (Alpine) {
         },
     })
     
+    // TODO: Move this to navbar plugin.
     Alpine.data('globalState', () => {
         let lastScrollTop = 0
     
