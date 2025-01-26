@@ -68,8 +68,8 @@ class ReplaceCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@alpinejs/collapse' => '^3.4.2',
-                '@iconify/tailwind' => '^1.2.15',
-                '@iconify-json/tabler' => '^1.2.0',
+                '@iconify/tailwind' => '^1.2.0',
+                '@iconify-json/tabler' => '^1.2.15',
                 'perfect-scrollbar' => '^1.5.5',
             ] + $packages;
         });
