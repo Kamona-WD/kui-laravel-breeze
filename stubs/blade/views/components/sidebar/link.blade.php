@@ -1,7 +1,8 @@
 @props([
     'isActive' => false,
     'title' => '',
-    'collapsible' => false
+    'collapsible' => false,
+    'icon' => null,
 ])
 
 @php
@@ -14,21 +15,21 @@
 
 @if ($collapsible)
     <button type="button" {{ $attributes->merge(['class' => $classes]) }} >
-        @if ($icon ?? false)
-            {{ $icon }}
+        @if ($icon)
+            <x-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-icons.empty-circle class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span
             class="text-base font-medium whitespace-nowrap"
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
         >
             {{ $title }}
         </span>
 
         <span
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
             aria-hidden="true"
             class="relative block ml-auto w-6 h-6"
         >
@@ -45,15 +46,15 @@
     </button>
 @else
     <a {{ $attributes->merge(['class' => $classes]) }}>
-        @if ($icon ?? false)
-            {{ $icon }}
+        @if ($icon)
+            <x-icon name="{{ $icon }}" class="flex-shrink-0 w-6 h-6" />
         @else
-            <x-icons.empty-circle class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-icon name="tabler--circle" class="flex-shrink-0 w-6 h-6" />
         @endif
 
         <span
             class="text-base font-medium"
-            x-show="isSidebarOpen || isSidebarHovered"
+            x-show="isOpen || isHovered"
         >
             {{ $title }}
         </span>

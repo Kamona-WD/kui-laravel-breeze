@@ -70,6 +70,14 @@ You will found sidebar links in:
 - vue-jsx: `resources/js/Components/Sidebar/SidebarContent.jsx`.
 - react: `resources/js/Components/Sidebar/SidebarContent.jsx`.
 
+---
+
+### Support
+
+[![PayPal Me](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/Akamel721/)
+
+---
+
 #### Screens
 
 |                              |                              |

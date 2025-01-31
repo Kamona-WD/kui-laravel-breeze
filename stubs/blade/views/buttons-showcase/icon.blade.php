@@ -8,7 +8,7 @@
                 target="_blank"
                 href="https://github.com/kamona-wd/kui-laravel-breeze"
                 variant="black"
-                class="items-center max-w-xs gap-2"
+                class="justify-center max-w-xs gap-2"
             >
                 <x-icons.github class="w-6 h-6" aria-hidden="true" />
 
@@ -16,8 +16,6 @@
             </x-button>
         </div>
     </x-slot>
-
-    <p class="py-4 text-gray-600 dark:text-gray-400">Useless Pages to demo sidebar.</p>
 
     <div class="py-6">
         @php
@@ -35,7 +33,8 @@
                             :variant="$variant"
                             :size="$size" :sr-text="$variant"
                         >
-                            <x-heroicon-o-home
+                            <x-kui-icon
+                                name="tabler--home"
                                 class="{{ $size == 'sm' ? 'w-4 h-4' : ($size == 'base' ? 'w-6 h-6' : 'w-7 h-7' ) }}"
                             />
                         </x-button>

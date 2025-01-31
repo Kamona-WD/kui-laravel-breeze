@@ -1,27 +1,20 @@
-<x-perfect-scrollbar
-    as="nav"
-    aria-label="main"
-    class="flex flex-col flex-1 gap-4 px-3"
+<nav 
+    x-perfect-scroll
+    aria-label="main" 
+    class="relative flex flex-1 flex-col gap-4 px-3"
 >
-
     <x-sidebar.link
         title="Dashboard"
         href="{{ route('dashboard') }}"
         :isActive="request()->routeIs('dashboard')"
-    >
-        <x-slot name="icon">
-            <x-icons.dashboard class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
-        </x-slot>
-    </x-sidebar.link>
-
+        icon="tabler--home"
+    />
+       
     <x-sidebar.dropdown
         title="Buttons"
         :active="Str::startsWith(request()->route()->uri(), 'buttons')"
+        icon="tabler--grid"
     >
-        <x-slot name="icon">
-            <x-heroicon-o-view-grid class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
-        </x-slot>
-
         <x-sidebar.sublink
             title="Text button"
             href="{{ route('buttons.text') }}"
@@ -38,21 +31,4 @@
             :active="request()->routeIs('buttons.text-icon')"
         />
     </x-sidebar.dropdown>
-
-    <div
-        x-transition
-        x-show="isSidebarOpen || isSidebarHovered"
-        class="text-sm text-gray-500"
-    >
-        Dummy Links
-    </div>
-
-    @php
-        $links = array_fill(0, 20, '');
-    @endphp
-
-    @foreach ($links as $index => $link)
-        <x-sidebar.link title="Dummy link {{ $index + 1 }}" href="#" />
-    @endforeach
-
-</x-perfect-scrollbar>
+</nav>
