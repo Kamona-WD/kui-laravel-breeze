@@ -15,8 +15,8 @@ body:
         - React
         - Other
       default: 0
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: What problem does this feature solve?
