@@ -34,4 +34,3 @@ body:
   - type: textarea
     attributes:
       label: Additional data
-      value: |

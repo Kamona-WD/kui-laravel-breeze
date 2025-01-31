@@ -13,7 +13,7 @@ class ReplaceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,vue,vue-jsx,react)}
+    protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,vue,react)}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -50,11 +50,7 @@ class ReplaceCommand extends Command
         }
 
         if ($this->argument('stack') === 'vue') {
-            return $this->replaceVue('sfc');
-        }
-
-        if ($this->argument('stack') === 'vue-jsx') {
-            return $this->replaceVue('jsx');
+            return $this->replaceVue();
         }
 
         if ($this->argument('stack') === 'react') {
@@ -115,21 +111,20 @@ class ReplaceCommand extends Command
         $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected function replaceVue($type)
+    protected function replaceVue()
     {
         // NPM Packages...
-        $this->updateNodePackages(function ($packages) use ($type) {
+        $this->updateNodePackages(function ($packages) {
             $extraPackages = [
-                '@heroicons/vue' => '^1.0.4',
+                '@headlessui/vue' => '^1.7.13',
                 '@vueuse/core' => '^10.1.2',
-                '@vitejs/plugin-vue-jsx' => '^3.0.1',
-                'postcss-import' => '^15.1.0',
+                '@vitejs/plugin-vue-jsx' => '^4.1.1',
+                '@iconify/tailwind' => '^1.2.0',
+                '@iconify-json/tabler' => '^1.2.15',
+                '@kui-dashboard/tailwindcss-plugin' => '^0.1.0',
                 'perfect-scrollbar' => '^1.5.5',
+                'tailwind-merge' => '^2.6.0',
             ];
-
-            if ($type == 'jsx') {
-                $extraPackages += ['@headlessui/vue' => '^1.7.13'];
-            }
 
             return $extraPackages + $packages;
         });
@@ -150,23 +145,18 @@ class ReplaceCommand extends Command
         (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
 
         // Copy
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Components', resource_path('js/Components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/' . $type . '/Pages', resource_path('js/Pages'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Icons', resource_path('js/Components/Icons'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Pages', resource_path('js/Pages'));
 
         // Tailwind / Assets...
         copy(__DIR__ . '/../../stubs/vue/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
 
         copy(__DIR__ . '/../../stubs/common/inertia/layout/app.blade.php', resource_path('views/app.blade.php'));
-        copy(__DIR__ . '/../../stubs/vue/js/' . $type . '/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/vue/js/app.js', resource_path('js/app.js'));
         copy(__DIR__ . '/../../stubs/vue/vite.config.js', base_path('vite.config.js'));
-
-        if ($type == 'jsx') {
-            $this->replaceInFile('.vue"])', '.jsx"])', resource_path('views/app.blade.php'));
-        }
 
         $this->components->info('Breeze scaffolding replaced successfully.');
         $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
