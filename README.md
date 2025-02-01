@@ -50,7 +50,6 @@ php artisan kui-breeze:replace blade
 # For example
 # php artisan breeze:replace blade => php artisan kui-breeze:replace blade
 # php artisan breeze:replace vue => php artisan kui-breeze:replace vue
-# php artisan breeze:replace vue => php artisan kui-breeze:replace vue-jsx
 # php artisan breeze:replace react => php artisan kui-breeze:replace react
 
 # then

@@ -1,14 +1,7 @@
 import { useEffect } from 'react'
-import {
-    UserIcon,
-    MailIcon,
-    LockClosedIcon,
-    UserAddIcon,
-} from '@heroicons/react/outline'
 import { Link, useForm } from '@inertiajs/react'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'
-import InputIconWrapper from '@/Components/InputIconWrapper'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
@@ -52,79 +45,49 @@ export default () => {
                     <div className="space-y-2">
                         <Label forInput="name" value="Name" />
 
-                        <InputIconWrapper
-                            icon={
-                                <UserIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="text"
-                                name="name"
-                                placeholder="Name"
-                                value={data.name}
-                                className="block w-full"
-                                autoComplete="name"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                required
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--user"
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                            value={data.name}
+                            autoComplete="name"
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                            required
+                        />
                     </div>
 
                     {/* Email */}
                     <div className="space-y-2">
                         <Label forInput="email" value="Email" />
 
-                        <InputIconWrapper
-                            icon={
-                                <MailIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                value={data.email}
-                                className="block w-full mt-1"
-                                autoComplete="username"
-                                handleChange={onHandleChange}
-                                required
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--mail"
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={data.email}
+                            autoComplete="username"
+                            handleChange={onHandleChange}
+                            required
+                        />
                     </div>
 
                     {/* Password */}
                     <div className="space-y-2">
                         <Label forInput="password" value="Password" />
 
-                        <InputIconWrapper
-                            icon={
-                                <LockClosedIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={data.password}
-                                className="block w-full mt-1"
-                                autoComplete="new-password"
-                                handleChange={onHandleChange}
-                                required
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--lock"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={data.password}
+                            autoComplete="new-password"
+                            handleChange={onHandleChange}
+                            required
+                        />
                     </div>
 
                     {/* Password confirmation */}
@@ -134,35 +97,25 @@ export default () => {
                             value="Confirm Password"
                         />
 
-                        <InputIconWrapper
-                            icon={
-                                <LockClosedIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="password"
-                                name="password_confirmation"
-                                placeholder="Confirm Password"
-                                value={data.password_confirmation}
-                                className="block w-full mt-1"
-                                handleChange={onHandleChange}
-                                required
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--lock"
+                            type="password"
+                            name="password_confirmation"
+                            placeholder="Confirm Password"
+                            value={data.password_confirmation}
+                            className="block w-full mt-1"
+                            handleChange={onHandleChange}
+                            required
+                        />
                     </div>
 
                     {/* Submit */}
                     <Button
                         className="justify-center w-full gap-2"
                         processing={processing}
-                    >
-                        <UserAddIcon aria-hidden="true" className="w-6 h-6" />
-                        <span>Register</span>
-                    </Button>
+                        startIcon="tabler--user-plus"
+                        text="Register"
+                    />
 
                     {/* Login link */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">

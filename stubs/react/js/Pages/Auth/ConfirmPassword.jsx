@@ -5,8 +5,6 @@ import Input from '@/Components/Input'
 import Label from '@/Components/Label'
 import ValidationErrors from '@/Components/ValidationErrors'
 import { useForm } from '@inertiajs/react'
-import InputIconWrapper from '@/Components/InputIconWrapper'
-import { LockClosedIcon } from '@heroicons/react/outline'
 
 export default () => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -43,33 +41,23 @@ export default () => {
                     <div className="space-y-2">
                         <Label forInput="password" value="Password" />
 
-                        <InputIconWrapper
-                            icon={
-                                <LockClosedIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={data.password}
-                                className="block w-full mt-1"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--lock"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={data.password}
+                            className="block w-full mt-1"
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                        />
                     </div>
 
                     <Button
                         className="justify-center w-full"
                         processing={processing}
-                    >
-                        Confirm
-                    </Button>
+                        text="Confirm"
+                    />
                 </div>
             </form>
         </Guest>

@@ -1,13 +1,13 @@
 import './bootstrap'
 import '../css/app.css'
 
-import React from 'react'
-import { render } from 'react-dom'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
+import { primaryColor } from '@kui-dashboard/tailwindcss-plugin'
 
-const appName =
-    window.document.getElementsByTagName('title')[0]?.innerText || 'K UI'
+import { createRoot } from 'react-dom/client';
+
+const appName = import.meta.env.VITE_APP_NAME || 'K-UI'
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -17,9 +17,11 @@ createInertiaApp({
             import.meta.glob('./Pages/**/*.jsx')
         ),
     setup({ el, App, props }) {
-        return render(<App {...props} />, el)
+         const root = createRoot(el)
+
+        root.render(<App {...props} />)
     },
     progress: {
-        color: '#a855f7'
+        color: primaryColor
     }
 })

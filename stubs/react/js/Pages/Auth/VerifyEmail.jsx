@@ -29,9 +29,7 @@ export default ({ status }) => {
 
             <form onSubmit={submit}>
                 <div className="flex items-center justify-between mt-4">
-                    <Button processing={processing}>
-                        Resend Verification Email
-                    </Button>
+                    <Button processing={processing} text="Resend Verification Email" />
 
                     <Link
                         href={route('logout')}

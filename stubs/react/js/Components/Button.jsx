@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 export default ({
     type = 'submit',
@@ -10,52 +11,71 @@ export default ({
     external,
     variant = 'primary',
     size = 'base',
-    iconOnly,
+    icon,
+    startIcon,
+    endIcon,
+    text,
     squared = false,
     pill = false,
     srText,
     onClick,
+    ...rest
 }) => {
-    const baseClasses = `inline-flex items-center transition-colors font-medium select-none disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-dark-eval-2`
+    const baseClasses = `inline-flex items-center justify-center gap-1 transition-colors font-medium select-none disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-dark-2`
 
-    let variantClasses = ``
-
+    let variantClasses = ''
+    
     switch (variant) {
-        case 'secondary':
-            variantClasses = `bg-white text-gray-500 hover:bg-gray-100 focus:ring-purple-500 dark:text-gray-400 dark:bg-dark-eval-1 dark:hover:bg-dark-eval-2 dark:hover:text-gray-200`
+        case 'primary':
+            variantClasses =
+                'bg-primary text-white hover:bg-primary-dark focus:ring-primary'
             break
         case 'success':
-            variantClasses = `bg-green-500 text-white hover:bg-green-600 focus:ring-green-500`
-            break
-        case 'danger':
-            variantClasses = `bg-red-500 text-white hover:bg-red-600 focus:ring-red-500`
-            break
-        case 'warning':
-            variantClasses = `bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500`
+            variantClasses =
+                'bg-success text-white hover:bg-success-dark focus:ring-success'
             break
         case 'info':
-            variantClasses = `bg-cyan-500 text-white hover:bg-cyan-600 focus:ring-cyan-500`
+            variantClasses =
+                'bg-info text-white hover:bg-info-dark focus:ring-info'
+            break
+        case 'warning':
+            variantClasses =
+                'bg-warning text-white hover:bg-warning-dark focus:ring-warning'
+            break
+        case 'danger':
+            variantClasses =
+                'bg-danger text-white hover:bg-danger-dark focus:ring-danger'
+            break
+        case 'white':
+            variantClasses =
+                'bg-white text-gray-500 hover:bg-gray-100 focus:ring-white'
             break
         case 'black':
-            variantClasses = `bg-black text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-black dark:hover:bg-dark-eval-3`
+            variantClasses =
+                'bg-black text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-black dark:hover:bg-dark-3'
             break
-        default:
-            variantClasses = `bg-purple-500 text-white hover:bg-purple-600 focus:ring-purple-500`
+        case 'transparent':
+            variantClasses =
+                'bg-transparent text-gray-500 hover:text-gray-600 focus:ring-primary dark:text-gray-300 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-2'
+            break
     }
 
-    const sizeClasses = `${
-        size == 'base' ? (iconOnly ? 'p-2' : 'px-4 py-2 text-base') : ''
-    } ${size == 'sm' ? (iconOnly ? 'p-1.5' : 'px-2.5 py-1.5 text-sm') : ''} ${
-        size == 'lg' ? (iconOnly ? 'p-3' : 'px-5 py-2 text-xl') : ''
-    }`
+    const sizeClasses = twJoin([
+        size == 'sm' && (icon ? 'p-1.5' : 'px-2.5 py-1.5 text-sm'),
+        size == 'base' && (icon ? 'p-2' : 'px-4 py-2 text-base'),
+        size == 'lg' && (icon ? 'p-3' : 'px-5 py-2 text-xl'),
+    ])
 
-    const roundedClasses = `${!squared && !pill ? 'rounded-md' : ''} ${
-        pill ? 'rounded-full' : ''
-    }`
+    const roundedClasses = twJoin([
+        (!squared && !pill) && 'rounded-md',
+        pill && 'rounded-full'
+    ])
 
-    const iconSizeClasses = `${size == 'sm' ? 'w-5 h-5' : ''} ${
-        size == 'base' ? 'w-6 h-6' : ''
-    } ${size == 'lg' ? 'w-7 h-7' : ''}`
+    const iconSizeClasses = twJoin([
+        size == 'sm' && 'w-5 h-5',
+        size == 'base' && 'w-6 h-6',
+        size == 'lg' && 'w-7 h-7',
+    ])
 
     if (href) {
         const Tag = external ? 'a' : Link
@@ -64,12 +84,22 @@ export default ({
             <Tag
                 target={target}
                 href={href}
-                className={`${baseClasses} ${sizeClasses} ${variantClasses} ${roundedClasses} ${className} ${
-                    processing ? 'pointer-events-none opacity-50' : ''
-                }`}
+                className={twMerge([
+                    baseClasses,
+                    sizeClasses,
+                    variantClasses,
+                    roundedClasses,
+                    processing && 'pointer-events-none opacity-50',
+                    className,
+                ])}
+                {...rest}
             >
+                {icon && <span className={twJoin(['iconify', icon, iconSizeClasses])}></span>}
+                {srText && <span className="sr-only">{srText}</span>}
+                {startIcon && <span className={twJoin(['iconify', startIcon, iconSizeClasses])}></span>}
                 {children}
-                {iconOnly && <span className="sr-only">{srText ?? ''}</span>}
+                {text && <span>{text}</span>}
+                {endIcon && <span className={twJoin(['iconify', endIcon, iconSizeClasses])}></span>}
             </Tag>
         )
     }
@@ -77,12 +107,23 @@ export default ({
     return (
         <button
             type={type}
-            className={`${baseClasses} ${sizeClasses} ${variantClasses} ${roundedClasses} ${className}`}
+            className={twMerge([
+                baseClasses,
+                sizeClasses,
+                variantClasses,
+                roundedClasses,
+                className,
+            ])}
             disabled={processing}
             onClick={onClick}
+            {...rest}
         >
+            {icon && <span className={twJoin(['iconify', icon, iconSizeClasses])}></span>}
+            {srText && <span className="sr-only">{srText}</span>}
+            {startIcon && <span className={twJoin(['iconify', startIcon, iconSizeClasses])}></span>}
             {children}
-            {iconOnly && <span className="sr-only">{srText ?? ''}</span>}
+            {text && <span>{text}</span>}
+            {endIcon && <span className={twJoin(['iconify', endIcon, iconSizeClasses])}></span>}
         </button>
     )
 }

@@ -27,7 +27,7 @@ export default (props) => {
                 </div>
             }
         >
-            <div className="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+            <div className="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-1">
                 You're logged in!
             </div>
         </Authenticated>

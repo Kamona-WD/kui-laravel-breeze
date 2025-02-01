@@ -75,25 +75,23 @@ export default ({ auth, header, children, title }) => {
         >
             <Head title={title} />
 
-            <div className="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-100">
+            <div className="flex min-h-screen bg-gray-100 text-gray-900 dark:bg-dark-0 dark:text-gray-100">
                 <Sidebar />
 
                 <div
-                    style={{
-                        transitionProperty: 'margin',
-                        transitionDuration: '150ms',
-                    }}
-                    className={`flex flex-col min-h-screen ${
-                        isSidebarOpen ? 'lg:ml-64' : 'md:ml-16'
+                    className={`flex min-h-screen flex-1 flex-col transition-[margin] duration-150 md:ms-16 ${
+                        isSidebarOpen && 'lg:ml-64'
                     }`}
                 >
                     <Navbar auth={auth} />
 
-                    {header && <header className="p-4 sm:p-6">{header}</header>}
+                    <div className="container mx-auto flex flex-1 flex-col items-center gap-4 p-4 sm:gap-6 sm:p-6">
+                        {header && <header className="w-full flex-shrink-0">{header}</header>}
 
-                    <main className="flex-1 px-4 sm:px-6">{children}</main>
+                        <main className="w-full flex-1">{children}</main>
 
-                    <PageFooter />
+                        <PageFooter />
+                    </div>
                 </div>
             </div>
         </GlobalContext.Provider>

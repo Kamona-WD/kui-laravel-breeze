@@ -6,12 +6,11 @@ import Button from '@/Components/Button'
 import {
     MenuFoldLineLeftIcon,
     MenuFoldLineRightIcon,
-    EmptyCircleIcon,
 } from '@/Components/Icons/outline'
-import { XIcon } from '@heroicons/react/outline'
 import { Transition } from 'react-transition-group'
 import { Transition as HeadlessTransition } from '@headlessui/react'
 import SidebarContent from '@/Components/Sidebar/SidebarContent'
+import { twJoin } from 'tailwind-merge'
 
 const SidebarOverlay = () => {
     const { isSidebarOpen, setSidebarOpen } = useContext(GlobalContext)
@@ -32,7 +31,7 @@ const SidebarOverlay = () => {
                         onClick={() => {
                             setSidebarOpen(false)
                         }}
-                        className="fixed inset-0 z-20 bg-black/50 lg:hidden"
+                        className="fixed inset-0 z-20 bg-black/50 md:hidden"
                     ></div>
                 )}
             </HeadlessTransition>
@@ -53,10 +52,10 @@ const SidebarHeader = () => {
 
             {(isSidebarOpen || isSidebarHovered) && (
                 <Button
-                    iconOnly
-                    variant="secondary"
                     type="button"
+                    variant="transparent"
                     srText={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+                    className="p-2"
                     onClick={() => {
                         setSidebarOpen(!isSidebarOpen)
                     }}
@@ -73,7 +72,10 @@ const SidebarHeader = () => {
                         />
                     )}
 
-                    <XIcon aria-hidden="true" className="w-6 h-6 lg:hidden" />
+                    <span 
+                        aria-hidden="true" 
+                        className="iconify tabler--x w-6 h-6 lg:hidden"
+                    ></span>
                 </Button>
             )}
         </div>
@@ -85,7 +87,7 @@ export const SidebarLink = ({
     active = false,
     title,
     external = false,
-    icon,
+    icon = 'tabler--circle',
     arrow,
     onClick,
 }) => {
@@ -93,26 +95,28 @@ export const SidebarLink = ({
 
     let LinkTag = external ? 'a' : Link
 
-    const baseClasses = `p-2 w-full flex items-center gap-2 rounded-md transition-colors`
-    const activeClasses =
-        'text-white bg-purple-500 shadow-lg hover:bg-purple-600'
-    const unActiveClasses =
-        'text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-dark-eval-2'
+    const baseClasses = 'w-full flex items-center gap-2 rounded-md p-2 transition-colors'
+
+    const inActiveClasses = 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-dark-2 dark:hover:text-gray-300'
+
+    const activeClasses = 'bg-primary text-white shadow-lg hover:bg-primary-dark'
 
     if (href) {
         return (
             <LinkTag
                 href={href}
-                className={`${baseClasses} ${
-                    active ? activeClasses : unActiveClasses
-                }`}
+                className={twJoin([
+                    baseClasses,
+                    active ? activeClasses : inActiveClasses
+                ])}
             >
-                {icon ?? (
-                    <EmptyCircleIcon
-                        aria-hidden="true"
-                        className="flex-shrink-0 w-6 h-6"
-                    />
-                )}
+                <span
+                    aria-hidden="true"
+                    className={twJoin([
+                        'iconify flex-shrink-0 w-6 h-6',
+                        icon
+                    ])}
+                ></span>
                 {(isSidebarOpen || isSidebarHovered) && (
                     <span className="text-base font-medium">{title}</span>
                 )}
@@ -122,17 +126,19 @@ export const SidebarLink = ({
         return (
             <button
                 type="button"
-                className={`${baseClasses} ${
-                    active ? activeClasses : unActiveClasses
-                }`}
+                className={twJoin([
+                    baseClasses,
+                    active ? activeClasses : inActiveClasses
+                ])}
                 onClick={onClick}
             >
-                {icon ?? (
-                    <EmptyCircleIcon
-                        aria-hidden="true"
-                        className="flex-shrink-0 w-6 h-6"
-                    />
-                )}
+                <span
+                    aria-hidden="true"
+                    className={twJoin([
+                        'iconify flex-shrink-0 w-6 h-6',
+                        icon
+                    ])}
+                ></span>
                 {(isSidebarOpen || isSidebarHovered) && (
                     <span className="text-base font-medium">{title}</span>
                 )}
@@ -157,14 +163,13 @@ export const SidebarCollapsibleItem = ({
     const linkInActiveClasses = `text-gray-500 dark:text-gray-400`
     return (
         <li
-            className={`relative leading-8 m-0 pl-6 before:block before:w-4 before:h-0 before:absolute before:left-0 before:top-4 before:border-t-2 before:border-t-gray-200 before:-mt-0.5 last:before:bg-white last:before:h-auto last:before:top-4 last:before:bottom-0 dark:last:before:bg-dark-eval-1 dark:before:border-t-gray-600`}
+            className={`relative leading-8 m-0 pl-6 before:block before:w-4 before:h-0 before:absolute before:left-0 before:top-4 before:border-t-2 before:border-t-gray-200 before:-mt-0.5 last:before:bg-white last:before:h-auto last:before:top-4 last:before:bottom-0 dark:last:before:bg-dark-1 dark:before:border-t-gray-600`}
         >
             <Tag
                 href={href}
                 target={target}
-                className={`${linkBaseClasses} ${
-                    active ? linkActiveClasses : linkInActiveClasses
-                }`}
+                className={`${linkBaseClasses} ${active ? linkActiveClasses : linkInActiveClasses
+                    }`}
             >
                 {title}
             </Tag>
@@ -189,14 +194,7 @@ export const SidebarCollapsible = ({
                 onClick={() => {
                     setOpen(!isOpen)
                 }}
-                icon={
-                    icon ?? (
-                        <EmptyCircleIcon
-                            aria-hidden="true"
-                            className="flex-shrink-0 w-6 h-6"
-                        />
-                    )
-                }
+                icon={icon}
                 arrow={
                     (isSidebarOpen || isSidebarHovered) && (
                         <span
@@ -204,14 +202,12 @@ export const SidebarCollapsible = ({
                             className="relative block w-6 h-6 ml-auto"
                         >
                             <span
-                                className={`absolute right-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${
-                                    isOpen ? '-rotate-45' : 'rotate-45'
-                                } ${active ? 'bg-white' : 'bg-gray-400'}`}
+                                className={`absolute right-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${isOpen ? '-rotate-45' : 'rotate-45'
+                                    } ${active ? 'bg-white' : 'bg-gray-400'}`}
                             ></span>
                             <span
-                                className={`absolute left-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${
-                                    isOpen ? 'rotate-45' : '-rotate-45'
-                                } ${active ? 'bg-white' : 'bg-gray-400'}`}
+                                className={`absolute left-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${isOpen ? 'rotate-45' : '-rotate-45'
+                                    } ${active ? 'bg-white' : 'bg-gray-400'}`}
                             ></span>
                         </span>
                     )
@@ -252,27 +248,29 @@ const SidebarFooter = () => {
 
     return (
         <div className="flex-shrink-0 px-3 lg:hidden">
-            <Button
-                iconOnly
-                variant="secondary"
-                type="button"
-                onClick={() => {
-                    setSidebarOpen(!isSidebarOpen)
-                }}
-                srText={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
-            >
-                {isSidebarOpen ? (
-                    <MenuFoldLineLeftIcon
-                        aria-hidden="true"
-                        className="w-6 h-6"
-                    />
-                ) : (
-                    <MenuFoldLineRightIcon
-                        aria-hidden="true"
-                        className="w-6 h-6"
-                    />
-                )}
-            </Button>
+            {!isSidebarOpen && 
+                <Button
+                    type="button"
+                    variant="transparent"
+                    className="p-2"
+                    onClick={() => {
+                        setSidebarOpen(!isSidebarOpen)
+                    }}
+                    srText={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+                >
+                    {isSidebarOpen ? (
+                        <MenuFoldLineLeftIcon
+                            aria-hidden="true"
+                            className="w-6 h-6"
+                        />
+                    ) : (
+                        <MenuFoldLineRightIcon
+                            aria-hidden="true"
+                            className="w-6 h-6"
+                        />
+                    )}
+                </Button>
+            }
         </div>
     )
 }
@@ -286,19 +284,11 @@ export default () => {
             <SidebarOverlay />
 
             <aside
-                style={{
-                    transitionProperty: 'width, transform',
-                    transitionDuration: '150ms',
-                }}
-                className={`fixed inset-y-0 z-20 flex flex-col py-4 space-y-6 bg-white shadow-lg dark:bg-dark-eval-1 ${
-                    isSidebarOpen || isSidebarHovered
-                        ? 'translate-x-0 w-64'
-                        : ''
-                } ${
-                    !isSidebarOpen && !isSidebarHovered
-                        ? '-translate-x-full w-64 md:w-16 md:translate-x-0'
-                        : ''
-                }`}
+                className={`fixed inset-y-0 z-40 flex w-64 -translate-x-full flex-col gap-6 bg-white py-3 shadow-lg transition-all duration-200 dark:bg-dark-1 md:transition-[width] lg:translate-x-0 ${(isSidebarOpen || isSidebarHovered)
+                    && 'translate-x-0 w-64'
+                    } ${(!isSidebarOpen && !isSidebarHovered)
+                    && '-translate-x-full w-64 md:w-16 md:translate-x-0'
+                    }`}
                 onMouseEnter={() => handleSidebarHover(true)}
                 onMouseLeave={() => handleSidebarHover(false)}
             >
