@@ -5,40 +5,31 @@ namespace KUI\Breeze\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class ReplaceCommand extends Command
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\select;
+
+class ReplaceCommand extends Command implements PromptsForMissingInput
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'kui-breeze:replace {stack=blade : The development stack that should be replaced (blade,vue,react)}
+    use ReplaceBlade;
+    use ReplaceVue;
+    use ReplaceReact;
+
+    protected $signature = 'kui-breeze:replace {stack : The development stack that should be replaced (blade,vue,react)}
+                            {--install : Install node pakages}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Replace laravel\\breeze views.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    public function handle(): int
     {
         $this->writeLogo();
 
@@ -58,175 +49,46 @@ class ReplaceCommand extends Command
         }
     }
 
-    protected function replaceBlade()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                '@alpinejs/anchor' => '^3.14.8',
-                '@alpinejs/resize' => '^3.14.8',
-                '@alpinejs/collapse' => '^3.4.2',
-                '@iconify/tailwind' => '^1.2.0',
-                '@iconify-json/tabler' => '^1.2.15',
-                'perfect-scrollbar' => '^1.5.5',
-            ] + $packages;
-        });
-
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/profile'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/buttons-showcase'));
-
-        // Clean directories
-        (new Filesystem)->cleanDirectory(resource_path('views/auth'));
-        (new Filesystem)->cleanDirectory(resource_path('views/layouts'));
-        (new Filesystem)->cleanDirectory(resource_path('views/components'));
-        (new Filesystem)->cleanDirectory(resource_path('views/profile'));
-        (new Filesystem)->cleanDirectory(resource_path('views/buttons-showcase'));
-        (new Filesystem)->cleanDirectory(resource_path('js/plugins'));
-
-        copy(__DIR__ . '/../../stubs/blade/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/components', resource_path('views/components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/profile', resource_path('views/profile'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/views/buttons-showcase', resource_path('views/buttons-showcase'));
-
-        
-        copy(__DIR__ . '/../../stubs/blade/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
-        copy(__DIR__ . '/../../stubs/blade/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
-        
-        // Routes
-        copy(__DIR__ . '/../../stubs/blade/web.php', base_path('routes/web.php'));
-        
-        // Assets
-        copy(__DIR__ . '/../../stubs/blade/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/blade/js/app.js', resource_path('js/app.js'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/blade/js/plugins', resource_path('js/plugins'));
-
-        $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
-    }
-
-    protected function replaceVue()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            $extraPackages = [
-                '@headlessui/vue' => '^1.7.13',
-                '@vueuse/core' => '^10.1.2',
-                '@vitejs/plugin-vue-jsx' => '^4.1.1',
-                '@iconify/tailwind' => '^1.2.0',
-                '@iconify-json/tabler' => '^1.2.15',
-                '@kui-dashboard/tailwindcss-plugin' => '^0.1.0',
-                'perfect-scrollbar' => '^1.5.5',
-                'tailwind-merge' => '^2.6.0',
-            ];
-
-            return $extraPackages + $packages;
-        });
-
-        // Routes
-        copy(__DIR__ . '/../../stubs/vue/web.php', base_path('routes/web.php'));
-
-        // Components + Pages...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Composables'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
-
-        // Clean directories
-        (new Filesystem)->cleanDirectory(resource_path('js/Components'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Composables'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Layouts'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
-
-        // Copy
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Composables', resource_path('js/Composables'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/js/Pages', resource_path('js/Pages'));
-
-        // Tailwind / Assets...
-        copy(__DIR__ . '/../../stubs/vue/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
-
-        copy(__DIR__ . '/../../stubs/common/inertia/layout/app.blade.php', resource_path('views/app.blade.php'));
-        copy(__DIR__ . '/../../stubs/vue/js/app.js', resource_path('js/app.js'));
-        copy(__DIR__ . '/../../stubs/vue/vite.config.js', base_path('vite.config.js'));
-
-        $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
-    }
-
-    protected function replaceReact()
-    {
-        // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                '@headlessui/react' => '^1.7.14',
-                '@iconify-json/tabler' => '^1.2.15',
-                '@iconify/tailwind' => '^1.2.0',
-                '@kui-dashboard/tailwindcss-plugin' => '^0.1.0',
-                'react-transition-group' => '^4.4.2',
-                'perfect-scrollbar' => '^1.5.5',
-                'tailwind-merge' => '^3.0.1',
-            ] + $packages;
-        });
-
-        // Routes
-        copy(__DIR__ . '/../../stubs/react/web.php', base_path('routes/web.php'));
-
-        // Components + Pages...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Hooks'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
-
-        // Clean directories
-        (new Filesystem)->cleanDirectory(resource_path('js/Components'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Hooks'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Layouts'));
-        (new Filesystem)->cleanDirectory(resource_path('js/Pages'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Hooks', resource_path('js/Hooks'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/react/js/Pages', resource_path('js/Pages'));
-
-        // Tailwind / Assets...
-        copy(__DIR__ . '/../../stubs/react/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
-
-        copy(__DIR__ . '/../../stubs/common/inertia/layout/app.blade.php', resource_path('views/app.blade.php'));
-        copy(__DIR__ . '/../../stubs/react/js/app.jsx', resource_path('js/app.jsx'));
-        
-        copy(__DIR__ . '/../../stubs/react/views/app.blade.php', resource_path('views/app.blade.php'));
-
-        $this->replaceInFile("'resources/js/app.js'", "'resources/js/app.jsx'", resource_path('views/app.blade.php'));
-
-        $this->components->info('Breeze scaffolding replaced successfully.');
-        $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
-    }
-
-    protected function replaceFavIcon()
+    protected function replaceFavIcon(): void
     {
         (new Filesystem)->ensureDirectoryExists(base_path('public'));
         copy(__DIR__ . '/../../stubs/common/favicon.ico', base_path('public/favicon.ico'));
     }
 
+    protected function afterReplaceFiles(): void
+    {
+        $this->components->success('Breeze scaffolding replaced successfully.');
+
+        $this->installNodePakages();
+
+        if(!$this->option('install')) {
+            $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');
+        }
+    }
+
+    protected function installNodePakages(): void
+    {
+        if($this->option('install')) {
+            $this->components->info('Installing and building Node dependencies.');
+
+            if (file_exists(base_path('pnpm-lock.yaml'))) {
+                $this->runCommands(['pnpm install', 'pnpm run build']);
+            } elseif (file_exists(base_path('yarn.lock'))) {
+                $this->runCommands(['yarn install', 'yarn run build']);
+            } elseif (file_exists(base_path('bun.lockb'))) {
+                $this->runCommands(['bun install', 'bun run build']);
+            } elseif (file_exists(base_path('deno.lock'))) {
+                $this->runCommands(['deno install', 'deno task build']);
+            } else {
+                $this->runCommands(['npm install', 'npm run build']);
+            }
+        }
+    }
+
     /**
      * Copied from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
-     * Installs the given Composer Packages into the application.
-     *
-     * @param  mixed  $packages
-     * @return void
      */
-    protected function requireComposerPackages($packages)
+    protected function requireComposerPackages($packages): void
     {
         $composer = $this->option('composer');
 
@@ -247,14 +109,29 @@ class ReplaceCommand extends Command
     }
 
     /**
-     * Copied from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
-     * Update the "package.json" file.
-     *
-     * @param  callable  $callback
-     * @param  bool  $dev
-     * @return void
+     * Copied from https://github.com/laravel/breeze/blob/2.x/src/Console/InstallCommand.php
      */
-    protected static function updateNodePackages(callable $callback, $dev = true)
+    protected function runCommands($commands): void
+    {
+        $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
+
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            try {
+                $process->setTty(true);
+            } catch (RuntimeException $e) {
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
+            }
+        }
+
+        $process->run(function ($type, $line) {
+            $this->output->write('    '.$line);
+        });
+    }
+
+    /**
+     * Copied from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
+     */
+    protected static function updateNodePackages(callable $callback, $dev = true): void
     {
         if (!file_exists(base_path('package.json'))) {
             return;
@@ -277,21 +154,38 @@ class ReplaceCommand extends Command
         );
     }
 
+    protected function promptForMissingArgumentsUsing()
+    {
+        return [
+            'stack' => fn () => select(
+                label: 'Which Breeze stack would you like to replace?',
+                options: [
+                    'blade' => 'Blade',
+                    'react' => 'React',
+                    'vue' => 'Vue',
+                ],
+                scroll: 3,
+            ),
+        ];
+    }
+
+    protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output): void
+    {
+        $input->setOption('install', confirm(
+            label: 'Would you like to install node pakages?',
+            default: $this->option('install')
+        ));
+    }
+
     /**
      * Copied from https://github.com/laravel/breeze/blob/1.x/src/Console/InstallCommand.php
-     * Replace a given string within a given file.
-     *
-     * @param  string  $search
-     * @param  string  $replace
-     * @param  string  $path
-     * @return void
      */
-    protected function replaceInFile($search, $replace, $path)
+    protected function replaceInFile(string $search, string  $replace, string $path): void
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
     }
 
-    protected function writeLogo()
+    protected function writeLogo(): null
     {
         $logo = PHP_EOL . '<fg=bright-blue>
 ██╗  ██╗     ██╗   ██╗██╗
