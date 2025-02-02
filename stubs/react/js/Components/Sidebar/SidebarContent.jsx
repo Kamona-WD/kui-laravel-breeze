@@ -1,11 +1,9 @@
 import PerfectScrollbar from '@/Components/PerfectScrollbar'
-import { DashboardIcon } from '@/Components/Icons/outline'
 import {
     SidebarLink,
     SidebarCollapsibleItem,
     SidebarCollapsible,
 } from '@/Components/Sidebar/Sidebar'
-import { TemplateIcon } from '@heroicons/react/outline'
 
 export default () => {
     return (
@@ -17,18 +15,13 @@ export default () => {
                 title={'Dashboard'}
                 href={route('dashboard')}
                 active={route().current('dashboard')}
-                icon={
-                    <DashboardIcon
-                        aria-hidden="true"
-                        className="flex-shrink-0 w-6 h-6"
-                    />
-                }
+                icon="tabler--home"
             />
 
             <SidebarCollapsible
                 title="Components"
                 active={route().current('components.*')}
-                icon={<TemplateIcon aria-hidden="true" className="w-6 h-6" />}
+                icon="tabler--grid"
             >
                 <SidebarCollapsibleItem
                     href={route('components.buttons')}

@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useForm } from '@inertiajs/react'
-import { MailIcon, LockClosedIcon, LoginIcon } from '@heroicons/react/outline'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'
-import InputIconWrapper from '@/Components/InputIconWrapper'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
@@ -53,50 +51,31 @@ export default ({ status, canResetPassword }) => {
                     <div className="space-y-2">
                         <Label forInput="email" value="Email" />
 
-                        <InputIconWrapper
-                            icon={
-                                <MailIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="text"
-                                name="email"
-                                placeholder="Email"
-                                value={data.email}
-                                className="block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--mail"
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={data.email}
+                            autoComplete="username"
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                        />
                     </div>
 
                     {/* Password */}
                     <div className="space-y-2">
                         <Label forInput="password" value="Password" />
-                        <InputIconWrapper
-                            icon={
-                                <LockClosedIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={data.password}
-                                className="block w-full"
-                                autoComplete="current-password"
-                                handleChange={onHandleChange}
-                                withIcon
-                            />
-                        </InputIconWrapper>
+
+                        <Input
+                            icon="tabler--lock"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={data.password}
+                            autoComplete="current-password"
+                            handleChange={onHandleChange}
+                        />
                     </div>
 
                     {/* Remember */}
@@ -127,10 +106,9 @@ export default ({ status, canResetPassword }) => {
                     <Button
                         className="justify-center w-full gap-2"
                         processing={processing}
-                    >
-                        <LoginIcon aria-hidden="true" className="w-6 h-6" />
-                        <span>Log in</span>
-                    </Button>
+                        startIcon="tabler--login"
+                        text="Login"
+                    />
 
                     {/* Register link */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">

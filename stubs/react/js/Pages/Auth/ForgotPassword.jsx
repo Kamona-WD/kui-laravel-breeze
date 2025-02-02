@@ -1,8 +1,6 @@
 import { useForm } from '@inertiajs/react'
-import { MailIcon, PaperAirplaneIcon } from '@heroicons/react/outline'
 import Guest from '@/Layouts/Guest'
 import ValidationErrors from '@/Components/ValidationErrors'
-import InputIconWrapper from '@/Components/InputIconWrapper'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
@@ -43,37 +41,23 @@ export default ({ status }) => {
                     <div className="space-y-2">
                         <Label htmlFor="email" value="Email" />
 
-                        <InputIconWrapper
-                            icon={
-                                <MailIcon
-                                    aria-hidden="true"
-                                    className="w-5 h-5"
-                                />
-                            }
-                        >
-                            <Input
-                                type="text"
-                                name="email"
-                                placeholder="Email"
-                                value={data.email}
-                                className="block w-full mt-1"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                withIcon
-                            />
-                        </InputIconWrapper>
+                        <Input
+                            icon="tabler--mail"
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={data.email}
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                        />
                     </div>
 
                     <Button
                         className="justify-center w-full gap-2"
                         processing={processing}
-                    >
-                        <PaperAirplaneIcon
-                            aria-hidden="true"
-                            className="w-6 h-6"
-                        />
-                        <span>Email Password Reset Link</span>
-                    </Button>
+                        startIcon="tabler--location"
+                        text="Email Password Reset Link"
+                    />
                 </div>
             </form>
         </Guest>

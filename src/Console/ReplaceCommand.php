@@ -167,11 +167,13 @@ class ReplaceCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@heroicons/react' => '^1.0.5',
                 '@headlessui/react' => '^1.7.14',
-                'postcss-import' => '^15.1.0',
+                '@iconify-json/tabler' => '^1.2.15',
+                '@iconify/tailwind' => '^1.2.0',
+                '@kui-dashboard/tailwindcss-plugin' => '^0.1.0',
                 'react-transition-group' => '^4.4.2',
-                'perfect-scrollbar' => '^1.5.5'
+                'perfect-scrollbar' => '^1.5.5',
+                'tailwind-merge' => '^3.0.1',
             ] + $packages;
         });
 
@@ -183,6 +185,7 @@ class ReplaceCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Hooks'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
 
         // Clean directories
         (new Filesystem)->cleanDirectory(resource_path('js/Components'));
@@ -200,10 +203,11 @@ class ReplaceCommand extends Command
         copy(__DIR__ . '/../../stubs/common/css/app.css', resource_path('css/app.css'));
 
         copy(__DIR__ . '/../../stubs/common/inertia/layout/app.blade.php', resource_path('views/app.blade.php'));
-        copy(__DIR__ . '/../../stubs/react/js/app.js', resource_path('js/app.jsx'));
+        copy(__DIR__ . '/../../stubs/react/js/app.jsx', resource_path('js/app.jsx'));
+        
+        copy(__DIR__ . '/../../stubs/react/views/app.blade.php', resource_path('views/app.blade.php'));
 
         $this->replaceInFile("'resources/js/app.js'", "'resources/js/app.jsx'", resource_path('views/app.blade.php'));
-        $this->replaceInFile('.vue"])', '.jsx"])', resource_path('views/app.blade.php'));
 
         $this->components->info('Breeze scaffolding replaced successfully.');
         $this->components->info('Please execute the "npm install && npm run dev" command to build your assets.');

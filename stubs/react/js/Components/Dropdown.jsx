@@ -1,9 +1,10 @@
-import { Link } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import { Menu } from '@headlessui/react'
+import { Link } from '@inertiajs/react'
+import { twJoin, twMerge } from 'tailwind-merge'
 
-const Item = ({ href, title, method = 'GET', as }) => {
-    const baseClasses = `block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out focus:outline-none dark:focus:text-white dark:focus:bg-dark-eval-3 dark:text-gray-400`
+const Item = ({ href, title, method = 'GET', as, startIcon, endIcon, ...rest }) => {
+    const baseClasses = `inline-flex items-center gap-2 w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 transition duration-150 ease-in-out focus:outline-none dark:text-gray-300`
 
     return (
         <Menu.Item>
@@ -12,12 +13,23 @@ const Item = ({ href, title, method = 'GET', as }) => {
                     href={href}
                     method={method}
                     as={as}
-                    className={`${baseClasses} ${
-                        active &&
-                        'bg-gray-100 dark:text-gray-200 dark:bg-dark-eval-3'
-                    } ${disabled && 'pointer-events-none'}`}
+                    className={twMerge([
+                        baseClasses,
+                        active && 'bg-primary text-white dark:text-white',
+                        disabled && 'pointer-events-none',
+
+                    ])}
+                    {...rest}
                 >
+                    {startIcon && <span aria-hidden="true" className={twJoin([
+                        'iconify h-4 w-4',
+                        startIcon,
+                    ])}></span>}
                     {title}
+                    {endIcon && <span aria-hidden="true" className={twJoin([
+                        'ms-auto iconify h-4 w-4',
+                        endIcon,
+                    ])}></span>}
                 </Link>
             )}
         </Menu.Item>
@@ -29,7 +41,7 @@ const Dropdown = ({
     trigger,
     align = 'right',
     width = '48',
-    contentClasses = 'py-1 bg-white dark:bg-dark-eval-1',
+    contentClasses = 'py-1 bg-white dark:bg-dark-1',
 }) => {
     let alignmentClasses = 'origin-top'
 
@@ -53,15 +65,19 @@ const Dropdown = ({
                 enter="transition ease-out duration-200"
                 enterFrom="transform opacity-0 scale-95"
                 enterTo="transform opacity-100 scale-100"
-                leaveActive="transition ease-in duration-75"
+                leaveactive="transition ease-in duration-75"
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
+                    className={twJoin([
+                        'absolute z-50 mt-2 rounded-md shadow-lg focus:outline-none focus:ring-1 focus:ring-primary-darker focus:ring-offset-1 focus:ring-offset-white focus:dark:ring-offset-dark-1',
+                        alignmentClasses,
+                        widthClasses,
+                    ])}
                 >
                     <div
-                        className={`rounded-md ring-1 ring-black ring-opacity-5 ${contentClasses}`}
+                        className={`rounded-md ring-1 ring-black/5 ${contentClasses}`}
                     >
                         {children}
                     </div>

@@ -1,4 +1,6 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+import forms from '@tailwindcss/forms'
+import { addIconSelectors } from '@iconify/tailwind'
+import twPlugin from '@kui-dashboard/tailwindcss-plugin'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,20 +15,13 @@ module.exports = {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
-            },
 
-            colors: {
-                dark: {
-                    'eval-0': '#151823',
-                    'eval-1': '#222738',
-                    'eval-2': '#2A2F42',
-                    'eval-3': '#2C3142',
-                },
-            },
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        forms,
+        twPlugin,
+        addIconSelectors(['tabler']),
+    ],
 }
