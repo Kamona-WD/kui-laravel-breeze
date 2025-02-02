@@ -1,9 +1,9 @@
 import forms from '@tailwindcss/forms'
-import { addIconSelectors } from '@iconify/tailwind'
 import twPlugin from '@kui-dashboard/tailwindcss-plugin'
+import { addIconSelectors } from '@iconify/tailwind'
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     darkMode: 'class',
 
     content: [
